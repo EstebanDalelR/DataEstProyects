@@ -29,8 +29,8 @@ public class ProcessJSON {
             JsonToken token = reader.peek();
             if (token.equals(JsonToken.evento_control))
                 controlHandleArray(reader);
-            else if (token.equals(JsonToken.evento_llamada)) {
-                 centralHandleArray(reader);
+            else if (token.equals(JsonToken.evento_vehiculo)) {
+                 vehiculoHandleArray(reader);
              if (token.equals(JsonToken.evento_datos)) {
                  datosHandleArray(reader);
               
@@ -41,23 +41,23 @@ public class ProcessJSON {
     }
 //
     /**
-     * Cuando detecta que hay un arreglo de tipo llamda es llamado este método
+     * Cuando detecta que hay un arreglo de tipo vehiculo es llamado este método
      * Los arreglos pueden contener objetos o elementos primitivos
      *
      * @param reader
      * @throws IOException
      */
-    public static void llamadaHandleArray(JsonReader reader) throws IOException
+    public static void vehiculoHandleArray(JsonReader reader) throws IOException
     {
         reader.beginArray();
         while (reader.hasNext()) {
             JsonToken token = reader.peek();
             if (token.equals(JsonToken.TipoEventoControl)){
-              CentralLlamadas.iniciar(datos);}
-            else if (token.equals(JsonToken.CREAR_AGENTE)){
-              CentralLlamadas.agregarAgente(agente);}
-            else if (token.equals(JsonToken.AGREGAR_CLIENTE)){
-                Cliente.nuevoCliente(datosCliente);      }                 
+              CentralVehiculos.iniciar(datos);}
+            else if (token.equals(JsonToken.CREAR_VEHICULO)){
+              CentralVehiculos.crearVehiculo(datosVehiculo);}
+            else if (token.equals(JsonToken.AGREGAR_RUTA)){
+                CentralVehiculos.agregarRuta(datosRuta);      }                 
             } else
                 handleNonArrayToken(reader, token);
         }
