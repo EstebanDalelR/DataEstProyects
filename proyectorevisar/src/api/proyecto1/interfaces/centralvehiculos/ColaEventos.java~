@@ -1,0 +1,13 @@
+package api.proyecto1.interfaces.centralvehiculos;
+import java.util.Collections;
+import java.util.LinkedList;
+public class ColaEventos implements IColaEventos{
+  LinkedList colaEventosSospechosos = new LinkedList();
+  public void encolar(IEventoVehiculo evento){
+  colaEventosSospechosos.addFirst(evento);
+  }
+  public IEventoVehiculo desencolar(){
+  return (IEventoVehiculo)colaEventosSospechosos.removeLast();
+  }
+  
+}
