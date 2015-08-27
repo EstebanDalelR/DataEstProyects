@@ -1,0 +1,116 @@
+[
+  {
+    "evento_control" : "INICIAR_CENTRAL_LLAMADAS"
+  },
+  {
+    "evento_control" : "CREAR_AGENTE",
+    "agente" : { "id_agente": 1, "nombre_agente":"Andres", "apellido_agente":"Bueno"}
+  },
+  {
+    "evento_control" : "CREAR_AGENTE",
+    "agente" : { "id_agente": 2, "nombre_agente":"Sergio", "apellido_agente":"Malo"}
+  },
+  {
+    "evento_control" : "CREAR_AGENTE",
+    "agente" : { "id_agente": 1, "nombre_agente":"Ana", "apellido_agente":"Perez"}
+  },
+  {
+    "evento_control" : "CREAR_AGENTE",
+    "agente" : { "id_agente": 1, "nombre_agente":"Guillermo", "apellido_agente":"Franco"}
+  },
+  {
+    "evento_control" : "AGREGAR_CLIENTE",
+    "cliente":{"id_cliente":1, "nombre":"Andres", "apellido":"Rodriguez", "direccion":"Calle 19 #70 - 1", "Ciudad":"Bogota"}
+  },
+  {
+    "evento_control" : "AGREGAR_CLIENTE",
+    "cliente":{"id_cliente":2, "nombre":"Angela", "apellido":"Ardila", "direccion": "calle 8a #40 - 29", "Ciudad":"Cali"}
+  },
+  {
+    "evento_control" : "AGREGAR_CLIENTE",
+    "cliente":{"id_cliente":3, "nombre":"Ramiro", "apellido":"Contreras", "direccion": "calle 8a #12 - 57", "Ciudad":"Bucaramanga"}
+  },
+  {
+    "evento_control" : "AGREGAR_CLIENTE",
+    "cliente":{"id_cliente":4, "nombre":"Ana", "apellido":"Galindo", "direccion": "carrera 36 #94 - 25", "Ciudad":"Cali"}
+  },
+  {
+    "evento_control": "AGREGAR_PEDIDO_DESPACHO",
+    "pedido_despacho":{"id_despacho":1, "id_cliente": 1, "punto_recogida":[1,4.4], "punto_entrega":[-1,0.3]}
+  },
+  {
+    "evento_control": "AGREGAR_PEDIDO_DESPACHO",
+    "pedido_despacho":{"id_despacho":2, "id_cliente": 4, "punto_recogida":[4,-1], "punto_entrega":[1,10]}
+  },
+  {
+    "evento_control": "AGREGAR_PEDIDO_DESPACHO",
+    "pedido_despacho":{"id_despacho":3, "id_cliente": 3, "punto_recogida":[-1.7,10], "punto_entrega":[-2,5.8]}
+  },
+  {
+    "evento_control": "AGREGAR_PEDIDO_DESPACHO",
+    "pedido_despacho":{"id_despacho":4, "id_cliente": 2, "punto_recogida":[5,1], "punto_entrega":[-2,8]}
+  },
+  {
+    "evento_datos": "CARGAR_LLAMADAS",
+    "llamadas":[
+        {"id_llamada":1,"categoria_llamada":"RECLAMO", "id_cliente":4, "pedido_despacho":2, "caso_nuevo":true,"id_caso":1, "id_caso_anterior":-1, "timestamp_llamada":"22/08/2015 09:00", "
+            problema":
+            {"tipo_problema":"ENTREGA_NO_REALIZADA", "timestamp_problema":"21/08/2015 10:30", "punto_problema":[1,10]}
+        },
+    {"id_llamada":2,"categoria_llamada":"QUEJA", "id_cliente":4, "pedido_despacho":2, "caso_nuevo":true,"id_caso":2, "id_caso_anterior":1, "timestamp_llamada":"22/08/2015 09:50", "problema":{"tipo_problema":"MALA_ATENCION_GESTOR", "timestamp_problema":"22/2015 09:00", "punto_problema":[1,10]}},
+
+    {"id_llamada":3,"categoria_llamada":"PREGUNTA", "id_cliente":4, "pedido_despacho":2, "caso_nuevo":false, "id_caso":1, "id_caso_anterior":1, "timestamp_llamada":"23/08/2015 09:00", "problema":{"tipo_problema":"INFORMACION_ENTREGA", "punto_problema":[1,10]}},
+
+    {"id_llamada":4,"categoria_llamada":"QUEJA", "id_cliente":4, "pedido_despacho":2, "caso_nuevo":true,"id_caso":3, "id_caso_anterior":1, "timestamp_llamada":"22/08/2015 09:00", "problema":{"tipo_problema":"CIERRE_QUEJA_NO_SATISFACTORIA", "punto_problema":[1,10]}},
+
+    {"id_llamada":5,"categoria_llamada":"QUEJA", "id_cliente":4, "pedido_despacho":2, "caso_nuevo":false,"id_caso":3, "id_caso_anterior":3, "timestamp_llamada":"22/08/2015 09:00", "problema":{"tipo_problema":"MALA_ATENCION_GESTOR", "punto_problema":[1,10]}},
+
+    {"id_llamada":6,"categoria_llamada":"QUEJA", "id_cliente":4, "pedido_despacho":2, "caso_nuevo":false,"id_caso":4, "id_caso_anterior":3, "timestamp_llamada":"22/08/2015 09:00", "problema":{"tipo_problema":"MALA_INFORMACION_GESTOR", "punto_problema":[1,10]}}
+    ]
+  },
+  {
+    "evento_control": "ACTIVAR_AGENTE",
+    "id_agente":1
+  },
+  {
+    "evento_control": "ATENDER_LLAMADA"
+  },
+  {
+    "evento_control": "ATENDER_LLAMADA"
+  },
+  {
+    "evento_control": "CERRAR_CASO",
+    "id_caso":2
+  },
+  {
+    "evento_control": "ACTIVAR_AGENTE",
+    "id_agente":4
+  },
+  {
+    "evento_control": "ATENDER_LLAMADA"
+  },
+  {
+    "evento_control": "ATENDER_LLAMADA"
+  },
+  {
+    "evento_control": "ACTIVAR_AGENTE",
+    "id_agente":2
+  },
+  {
+    "evento_control": "ATENDER_LLAMADA"
+  },
+  {
+    "evento_control": "ATENDER_LLAMADA"
+  },
+  {
+    "evento_control": "CERRAR_CASO",
+    "id_caso":4
+  },
+  {
+    "evento_control": "CERRAR_CASO",
+    "id_caso":1
+  },
+  {
+    "evento_control":"CONSOLIDAR_LLAMADAS"
+  }
+]
