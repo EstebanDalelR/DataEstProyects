@@ -1,0 +1,9 @@
+package pry_estructuras;
+
+import estructuras.cola.ICola;
+
+public class Cola implements ICola {
+  
+
+  
+}
