@@ -5,28 +5,35 @@ public class CentralLlamadas implements ICentralLlamdas
   * M�todo que permite iniciar la central de llamadas, realiza las acciones
   * necesarias para que la central de llamadas pueda atender los eventos de control
   */
- public void iniciarCentralLlamadas();
-
+  public void iniciarCentralLlamadas()
+  {
+    //TODO
+  }
  /**
   * M�todo que le permite a la central recibir y procesar los eventos de control asociados a
   * la central de llamadas. Este m�todo es el punto de entrada para todos los datos de la central de llamadas,
   * y va a permitir la verificaci�n de los requerimientos funcionales de la soluci�n.
   * @param archivo Archivo Json con los eventos de control para ser procesados por la central
   */
- public void recibirEventosControl(File archivo);
+ public void recibirEventosControl(File archivo)
+ {
+   //leer JSON
+ }
 
- /**
-  * M�todo creado para agregar un agente a la cola de atenci�n
-  * las llamadas del call center
-  * @param gentes agente que se desea agregar a la central de llamadas
-  */
- public void agregarAgente(IAgente agente);
+ public void agregarAgente(Agente agente)
+ {
+   Agente creado= agente;
+   queueAgentes.push(creado);
+ }
 
  /**
   * M�todo para realizar la recepci�n de llamadas y procesarlas por el agente activo del call center
   * @param llamada llamada a ser atendida en el call center
   */
- public void procesarLlamada(ILlamada llamada);
+ public void procesarLlamada(Llamada llamada)
+ {
+   //TODO
+ }
 
  /**
   * M�todo que permite a un agente iniciar un caso, se asocia el cliente, la llamada y la categoria.
@@ -35,13 +42,19 @@ public class CentralLlamadas implements ICentralLlamdas
   * @param categoria enum que identifica si la llamada es petici�n, queja o reclamo
   * @return Caso creado
   */
- public ICaso iniciarCaso(ICliente cliente, ILlamada llamada, CategoriaCaso categoria);
+ public Caso iniciarCaso(Cliente cliente, Llamada llamada, CategoriaCaso categoria)
+ {
+    //TODO
+ }
 
  /**
   * M�todo que permite a un agente cerrar el caso.
   * @param caso que se desea cerrar
   */
- public void finalizarCaso(ICaso caso);
+ public void finalizarCaso(Caso caso)
+ {
+    //TODO
+ }
 
  /**
   * M�todo que permite unificar las llamadas recibidas por el call center con las
@@ -49,7 +62,10 @@ public class CentralLlamadas implements ICentralLlamdas
   * @param llamadasComputadorAgentes Las llamadas guardadas en los computadores de los agentes (un iterador de iteradores, pues son múltiples agentes y cada uno tiene múltiples llamadas)
   * @return Llamadas atendidas en el call center sin repeticiones y ordenadas por hora
   */
- public Iterable<ILlamada> unificarLlamadas(Iterable<Iterable<ILlamada>> llamadasComputadorAgentes);
+ public Iterable<Llamada> unificarLlamadas(Iterable<Iterable<Llamada>> llamadasComputadorAgentes)
+ {
+    //TODO
+ }
 
  /**
   * M�todo que permite retornar todos los casos ocurridos entre dos fechas y que no han sido solucionados
@@ -57,14 +73,20 @@ public class CentralLlamadas implements ICentralLlamdas
   * @param fechaFinal fecha final de la consulta
   * @return lista de casos creados en las fechas ingresadas y que no est�n solucionados
   */
- public Iterable<ICaso> darCasosNoSolucionadosPorFecha(Date fechaInicial, Date fechaFinal);
+ public Iterable<Caso> darCasosNoSolucionadosPorFecha(Date fechaInicial, Date fechaFinal)
+ {
+    //TODO
+ }
 
  /**
   * M�todo que retorna la Categor�a que, en promedio, tiene los casos que m�s se demoran
   * en ser cerrados
   * @return La categor�a que, en promedio, tiene los casos que m�s se demoran en ser cerrados
   */
- public CategoriaCaso darCategoriaPromedioMasDemorado();
+ public CategoriaCaso darCategoriaPromedioMasDemorado()
+ {
+    //TODO
+ }
 
  /**
   * M�todo que retorna una lista con los agentes que m�s atendieron llamadas entre dos fechas
@@ -73,13 +95,19 @@ public class CentralLlamadas implements ICentralLlamdas
   * @param fechaFinal fecha final de consulta
   * @return una lista con los "cantidadAgente" agentes que m�s atendieron llamadas entre las fechas
   */
- public Iterable<IAgente> darAgentesMasAtiendenPorFecha(int cantidadAgentes, Date fechaInicial, Date fechaFinal);
+ public Iterable<Agente> darAgentesMasAtiendenPorFecha(int cantidadAgentes, Date fechaInicial, Date fechaFinal)
+ {
+    //TODO
+ }
 
  /**
   * M�todo que permite saber cual es el agente que m�s casos cierra en la primera llamada
   * @return el agente que m�s casos cierra en la primera llamada
   */
- public IAgente darAgenteMasCasosCierraPrimeraLlamada();
+ public Agente darAgenteMasCasosCierraPrimeraLlamada()
+ {
+    //TODO
+ }
 
  /**
   * M�todo que permite saber el tiempo promedio que tardaron en cerrarse, todos los casos
@@ -88,7 +116,10 @@ public class CentralLlamadas implements ICentralLlamdas
   * @param fechaFinal fecha final de consulta
   * @return el promedio de tiempo de cierre de los casos que fueron cerrados entre las fechas de consulta
   */
- public double darPromedioCierreCasosPorFecha(Date fechaInicial, Date fechaFinal);
+ public double darPromedioCierreCasosPorFecha(Date fechaInicial, Date fechaFinal)
+ {
+    //TODO
+ }
 
  /**
   * M�todo que permite saber el tiempo promedio que tardaron en cerrarse, todos los casos
@@ -98,30 +129,45 @@ public class CentralLlamadas implements ICentralLlamdas
   * @param fechaFinal fecha final de consulta
   * @return el promedio de tiempo cierre de casos por el agente para los casos cerrados entre las fechas de consulta
   */
- public double darPromedioCierreCasosAgentePorFecha(IAgente agente, Date fechaInicia, Date fechaFinal);
+ public double darPromedioCierreCasosAgentePorFecha(Agente agente, Date fechaInicia, Date fechaFinal)
+ {
+    //TODO
+ }
 
  /**
   * M�todo que permite obtener un listado con los casos sospechosos de mal servicio
   * @return lista con los casos sospechosos de mal servicio
   */
- public Iterable<ICaso> darCasosSospechaMalServicio();
+ public Iterable<Caso> darCasosSospechaMalServicio()
+ {
+    //TODO
+ }
 
  /**
   * M�todo que permite indicar que un agente ya no atiende llamadas de la central de llamadas
   * @param agente Agente a desactivar
   */
- public void desactivarAgente(IAgente agente);
+ public void desactivarAgente(Agente agente)
+ {
+    //TODO
+ }
 
  /**
   * M�todo que permite asignar un agente para la atenci�n de llamadas de la central de llamadas.
   * @param agente Agente a activar
   */
- public void activarAgente(IAgente agente);
+ public void activarAgente(Agente agente)
+ {
+    //TODO
+ }
 
  /**
   * M�todo que retorna el agente que atiende llamadas en el momento
   * return agente activo
   */
- public IAgente darAgenteActivo();
+ public IAgente darAgenteActivo()
+ {
+    //TODO
+ }
 
 }
