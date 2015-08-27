@@ -24,10 +24,6 @@
     apellido=input;
   }
 
- /**
-  * M�todo que retorna todos los casos del cliente
-  * @return Todos los casos del cliente
-  */
  public Iterable<Caso> darHistoricoCasos()
  {
    return casos;
