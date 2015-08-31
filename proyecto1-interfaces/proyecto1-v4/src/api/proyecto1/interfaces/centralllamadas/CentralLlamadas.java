@@ -7,7 +7,8 @@ public class CentralLlamadas implements ICentralLlamdas
   */
   public void iniciarCentralLlamadas()
   {
-    new CentralLlamadas//TODO
+    // leer del JSON
+    //
   }
  /**
   * M�todo que le permite a la central recibir y procesar los eventos de control asociados a

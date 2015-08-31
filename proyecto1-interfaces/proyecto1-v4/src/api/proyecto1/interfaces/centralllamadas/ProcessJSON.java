@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.net.MalformedURLException;
 
+import com.google.gson.*;
 import com.google.gson.stream .JsonReader;
 import com.google.gson.stream.JsonToken;
 //copia de CentralVehiculos para cambiar

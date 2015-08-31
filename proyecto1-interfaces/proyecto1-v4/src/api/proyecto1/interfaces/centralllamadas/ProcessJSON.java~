@@ -1,11 +1,12 @@
-package api.proyecto1.interfaces.centralvehiculos;
+package api;
 import java.io.IOException;
 import java.io.StringReader;
 import java.net.MalformedURLException;
 
 import com.google.gson.stream .JsonReader;
 import com.google.gson.stream.JsonToken;
-
+//copia de CentralVehiculos para cambiar
+//TODO
 
 public class ProcessJSON {
 
@@ -24,20 +25,12 @@ public class ProcessJSON {
     private static void handleObject(JsonReader reader) throws IOException
     {
         reader.beginObject();
-        
         while (reader.hasNext()) {
             JsonToken token = reader.peek();
             if (token.equals(JsonToken.evento_control))
-            {
-          system.out.println(""(evento_control" : "INICIAR_CENTRAL_VEHICULO)"");
-            }
                 controlHandleArray(reader);
-            else if (token.equals(JsonToken.evento_vehiculo)) {
-               {
-          system.out.println(token);
-                 vehiculoHandleArray(reader);
-            }
-                 
+            else if (token.equals(JsonToken.evento_llamada)) {
+                 centralHandleArray(reader);
              if (token.equals(JsonToken.evento_datos)) {
                  datosHandleArray(reader);
               
@@ -48,23 +41,23 @@ public class ProcessJSON {
     }
 //
     /**
-     * Cuando detecta que hay un arreglo de tipo vehiculo es llamado este método
+     * Cuando detecta que hay un arreglo de tipo llamda es llamado este método
      * Los arreglos pueden contener objetos o elementos primitivos
      *
      * @param reader
      * @throws IOException
      */
-    public static void vehiculoHandleArray(JsonReader reader) throws IOException
+    public static void llamadaHandleArray(JsonReader reader) throws IOException
     {
         reader.beginArray();
         while (reader.hasNext()) {
             JsonToken token = reader.peek();
             if (token.equals(JsonToken.TipoEventoControl)){
-              CentralVehiculos.iniciar(datos);}
-            else if (token.equals(JsonToken.CREAR_VEHICULO)){
-              CentralVehiculos.crearVehiculo(datosVehiculo);}
-            else if (token.equals(JsonToken.AGREGAR_RUTA)){
-                CentralVehiculos.agregarRuta(datosRuta);      }                 
+              CentralLlamadas.iniciar(datos);}
+            else if (token.equals(JsonToken.CREAR_AGENTE)){
+              CentralLlamadas.agregarAgente(agente);}
+            else if (token.equals(JsonToken.AGREGAR_CLIENTE)){
+                Cliente.nuevoCliente(datosCliente);      }                 
             } else
                 handleNonArrayToken(reader, token);
         }

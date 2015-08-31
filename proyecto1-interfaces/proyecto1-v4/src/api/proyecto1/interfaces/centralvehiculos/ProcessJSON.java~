@@ -24,20 +24,12 @@ public class ProcessJSON {
     private static void handleObject(JsonReader reader) throws IOException
     {
         reader.beginObject();
-        
         while (reader.hasNext()) {
             JsonToken token = reader.peek();
             if (token.equals(JsonToken.evento_control))
-            {
-          system.out.println(""(evento_control" : "INICIAR_CENTRAL_VEHICULO)"");
-            }
                 controlHandleArray(reader);
             else if (token.equals(JsonToken.evento_vehiculo)) {
-               {
-          system.out.println(token);
                  vehiculoHandleArray(reader);
-            }
-                 
              if (token.equals(JsonToken.evento_datos)) {
                  datosHandleArray(reader);
               
