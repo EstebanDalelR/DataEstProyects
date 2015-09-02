@@ -7,8 +7,8 @@ public class QueueAgentes<T> implements serializable, ICola
   
   private tamanioEst=0;
   private Object elementos[];\
-  
-  public QueueAgentes(){
+    
+    public QueueAgentes(){
     elementos= (T[]) new Object[tamanioEst];
   }
   public void agregarAgente(T aAgregar)
@@ -24,12 +24,42 @@ public class QueueAgentes<T> implements serializable, ICola
     int nuevoTamanio= elementos.length*2;
     elementos= Arrays.copyOf(elementos, nuevoTamanio);
   }
-  public T atenderAgente(){
-   for(i=0;i<elementos.length;i++)
-   {
-     if(!elementos.
-   
-          
-          }
-  
+  public T mostrarPrimerAgente()
+  {
+    if(!elementos.isEmpty())
+    {
+      for(i=0;i<elementos.length;i++)
+      {
+        if(!elementos[i].equals(null))
+        {
+          return elementos[i];     
+        }
+      }
+    }
+    else
+    {
+      return null;
+    }
+    
+  }
+  public void atenderAgente() 
+  {
+    if(!elementos.isEmpty())
+    {
+      for(i=0;i<elementos.length;i++)
+      {
+        if(!elementos[i].equals(null))
+        {
+          T elementoT= elementos[i];
+          elementos[i]==null;
+          return elementoT;     
+        }
+      }
+    }
+    else
+    {
+      return null;
+    }
+    
+  }
 }
