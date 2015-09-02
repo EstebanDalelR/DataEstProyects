@@ -2,11 +2,12 @@ package pry_estructuras;
 
 import estructuras.lista.ILista;
 import java.util.Iterator;
+import java.util.Array;
 
 public interface IArrayCaso extends Array
 {
 
-  P
+  
   public boolean agregar(Caso input)
   {
     add(input);

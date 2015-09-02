@@ -1,0 +1,19 @@
+package api;
+
+import estructuras.cola.ICola;
+
+public class QueueAgentes<T> implements serializable, ICola
+{
+  
+  private tamanioEst=0;
+  private Object elementos[];\
+  
+  public QueueAgentes(){
+    elementos= (T[]) new Object[tamanioEst];
+  }
+  public void agregarAgente(T aAgregar)
+  {
+    
+  
+  
+}
