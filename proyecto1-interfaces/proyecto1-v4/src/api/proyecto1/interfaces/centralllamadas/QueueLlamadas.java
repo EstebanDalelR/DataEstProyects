@@ -2,17 +2,17 @@ package api;
 
 import estructuras.cola.ICola;
 
-public class QueueAgentes<T> implements serializable, ICola
+public class QueueLlamadas<T> implements serializable, ICola
 {
   
   private tamanioEst=0;
-  private Object elementos[];\
-    
-  public QueueAgentes()
+  private Object elementos[];
+  
+  public QueueLlamadas()
   {
     elementos= (T[]) new Object[tamanioEst];
   }
-  public void agregarAgente(T aAgregar)
+  public void agregarLlamada(T aAgregar)
   {
     if(tamanioEst== elementos.length)
     {
@@ -25,7 +25,7 @@ public class QueueAgentes<T> implements serializable, ICola
     int nuevoTamanio= elementos.length*2;
     elementos= Arrays.copyOf(elementos, nuevoTamanio);
   }
-  public T mostrarPrimerAgente()
+  public T mostrarPrimerLlamada()
   {
     if(!elementos.isEmpty())
     {
@@ -42,7 +42,7 @@ public class QueueAgentes<T> implements serializable, ICola
       return null;
     }
   }
-  public T atenderAgente() 
+  public T atenderLlamada() 
   {
     if(!elementos.isEmpty())
     {
