@@ -1,0 +1,14 @@
+package api;
+
+import estructuras.ILista;
+
+public class ListaClientes<T> implements ILista
+{
+  private int tamanioEst=0;
+  private Object elementos[];
+  
+  public ListaClientes()
+  {
+     elementos= (T[]) new Object[tamanioEst];
+  }
+  
