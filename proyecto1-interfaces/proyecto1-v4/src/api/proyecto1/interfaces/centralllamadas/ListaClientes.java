@@ -9,7 +9,7 @@ public class ListaClientes<T> implements ILista
   
   public ListaClientes()
   {
-     elementos= (T[]) new Object[tamanioEst];
+    elementos= (T[]) new Object[tamanioEst];
   }
   public void agregarAgente(T aAgregar)
   {
@@ -19,10 +19,29 @@ public class ListaClientes<T> implements ILista
     }
     elementos [tamanioEst++] =aAgregar;
   }
-   public void agrandarArreglo()
+  public void agrandarArreglo()
   {
     int nuevoTamanio= elementos.length*2;
     elementos= Arrays.copyOf(elementos, nuevoTamanio);
   }
-  public void 
+  public T buscarCliente(T aBuscar)
+  {
+    for(i=0; i<elementos.size;i++)
+    {
+      if(elementos[i].equals(aBuscar)
+           {
+        return elementos[i];
+      }
+         }
+    return null;
+    }
+  public T buscarPorIndice(int indice)
+  {
+    if(indice>=0&&indice<elementos.length)
+    {
+      return elementos[i];
+    }
+    
+  }
   
+  }
