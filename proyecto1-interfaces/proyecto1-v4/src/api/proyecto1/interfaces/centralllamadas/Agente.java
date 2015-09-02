@@ -2,10 +2,11 @@
   
   public class Agente implements IAgente
   {
-    String nombre;
-    String apellido;
-    Llamada llamada;
-    iterable<Llamadas> lista;
+    private String nombre;
+    private String apellido;
+    private Llamada llamada;
+    private iterable<Llamadas> lista;
+  }
   public String getNombre()
   {
     return nombre;
