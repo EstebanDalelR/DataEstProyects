@@ -6,7 +6,8 @@
     private String apellido;
     private Llamada llamada;
     private iterable<Llamadas> lista;
-  }
+    private ArrayList llamadasRecibidas;
+    
   public Agente(String nNombre, String nApellido)
   {
     nombre=nNombre;
@@ -33,8 +34,7 @@
 
  public void atenderLlamada(Llamada nLlamada)
  {
-   llamada=Llamada;
-   lista.add (llamada);
+   llamadasRecibidas.add (nLlamada);
  }
 
  public Iterable<Llamada> darLlamadasAtendidas()

@@ -7,32 +7,38 @@
     private Llamada llamada;
     private iterable<Llamadas> lista;
   }
+  public Agente(String nNombre, String nApellido)
+  {
+    nombre=nNombre;
+    apellido=nApellido;
+  }
   public String getNombre()
   {
     return nombre;
   }
 
-  public void setNombre(String input)
+  public void setNombre(String nNombre)
   {
-    nombre=input;
+    nombre=nNombre;
   }
   public String getApellido();
   {
     return apellido;
   }
 
-  public void setApellido(String input)
+  public void setApellido(String nApellido)
   {
-    apellido=input;
+    apellido=nApellido;
   }
 
- public void atenderLlamada(Llamada input)
+ public void atenderLlamada(Llamada nLlamada)
  {
-   llamada=input;
+   llamada=Llamada;
+   lista.add (llamada);
  }
 
  public Iterable<Llamada> darLlamadasAtendidas()
  {
-   return lista;
+   return lista.iterator();
  }
 }
