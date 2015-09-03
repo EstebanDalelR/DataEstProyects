@@ -81,7 +81,7 @@ public class PilaEventosSospechosos implements IPilaEventosSospechosos{
   }
   public ArrayList toArray(){
    Node temp = first;
-   ArrayList nueva = new ArrayList<T>;
+   ArrayList nueva = new ArrayList<Object>;
    while(temp.next()!=null){
    Object a =temp.pop();
    nueva.add(a);

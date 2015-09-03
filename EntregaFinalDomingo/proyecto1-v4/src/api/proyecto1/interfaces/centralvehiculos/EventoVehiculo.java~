@@ -4,7 +4,7 @@ public class EventoVehiculo implements IEventoVehiculo
 
   private TipoEventoVehiculo tipoEvento;
 //public final class Long fecha;
-   enum TipoEventoVehiculo;
+   public enum TipoEventoVehiculo;
   public void setTipo(TipoEventoControl tipo)
   {
   tipoEvento = tipo;
