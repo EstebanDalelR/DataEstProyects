@@ -4,8 +4,8 @@ package api.proyecto1.interfaces.centralvehiculos;
  * Punto se refiere a un punto como el par ordenado latitud y longitu de una zona geogr�fica
  */
 public class Punto implements IPunto {
-  double latitud;
-double longitud;
+private double latitud;
+private double longitud;
 /**
  * Constructor de la clase
  */

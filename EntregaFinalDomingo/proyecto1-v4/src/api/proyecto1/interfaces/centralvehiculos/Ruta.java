@@ -4,8 +4,8 @@ package api.proyecto1.interfaces.centralvehiculos;
  *Ruta modela una ruta definida como un conjunto de segmentos
  */
 public class Ruta implements IRuta {
- ListaSegmentos listaSegmentos;
- ListaEventosAutorizados listaEventosAutorizados;
+private ListaSegmentos listaSegmentos;
+private ListaEventosAutorizados listaEventosAutorizados;
   
   public Ruta(){
   ListaSegmentos listaSegmentos = new ListaSegmentos();

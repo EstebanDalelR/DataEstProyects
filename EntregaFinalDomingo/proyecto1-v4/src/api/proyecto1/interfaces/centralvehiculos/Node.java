@@ -1,7 +1,7 @@
 package api.proyecto1.interfaces.centralvehiculos;
 public class Node <T>{
-T element;
-Node next;
+private T element;
+private Node next;
 public Node(T ele, Node link){
 elemnt=ele;
 next=link;

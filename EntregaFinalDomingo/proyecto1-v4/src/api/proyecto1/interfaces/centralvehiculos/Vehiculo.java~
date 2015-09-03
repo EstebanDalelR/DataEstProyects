@@ -1,22 +1,35 @@
 package api.proyecto1.interfaces.centralvehiculos;
 
 /*
- * IVehiculo modela un veh�culo de CTT, que guarda todos los eventos informados por
+ * Vehiculo modela un vehiculo de CTT, que guarda todos los eventos informados por
  * sus dispositivos enteros
  */
 public class Vehiculo {
-
+ColaEventos colaEventos;
+public vehiculo(){
+ColaEventos colaEventos = new ColaEventos();
+}
  /**
-  * M�todo que permite obtener la lista de eventos guardados en el veh�culo
+  * Metodo que permite obtener la lista de eventos guardados en el veh�culo
   * @return la lista de eventos guardados en el veh�culo
   */
- public Iterable<IEventoVehiculo> getEventos();
+public Iterable<EventoVehiculo> getEventos(){
+return colaEventos;
+}
 
  /**
-  * m�todo que permite establecer la lista de eventos guardados en el veh�culo
+  * metodo que permite establecer la lista de eventos guardados en el vehiculo
   * @param listaEventos
   */
- public void guardarEvento(Iterable<IEventoVehiculo> listaEventos);
+public void guardarEvento(Iterable<EventoVehiculo> listaEventos){
+
+  while(listaEventos.hasNext()){
+  Evento temp = listaEventos.get(i);
+    colaEventos.offer(temp);
+    listaEventos =listaEventos.next();
+ i++; 
+  }
+}
 
  /**
   * M�todo que permite establecer la ruta del veh�culo

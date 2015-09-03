@@ -5,7 +5,8 @@ package api.proyecto1.interfaces.centralvehiculos;
  * sus dispositivos enteros
  */
 public class Vehiculo {
-ColaEventos colaEventos;
+private ColaEventos colaEventos;
+private Ruta rutaVehiculo;
 public vehiculo(){
 ColaEventos colaEventos = new ColaEventos();
 }
@@ -32,15 +33,18 @@ public void guardarEvento(Iterable<EventoVehiculo> listaEventos){
 }
 
  /**
-  * M�todo que permite establecer la ruta del veh�culo
-  * @param ruta ruta para el veh�culo
+  * Metodo que permite establecer la ruta del vehiculo
+  * @param ruta ruta para el vehiculo
   */
- public void setRuta(IRuta ruta);
-
+public void setRuta(Ruta ruta){
+rutaVehiculo=ruta;
+}
  /**
   * M�todo que permite obtener la ruta del veh�culo
   * @return la ruta del veh�chulo
   */
- public IRuta getRuta();
+public IRuta getRuta(){
+return rutaVehiculo;
+}
 
 }

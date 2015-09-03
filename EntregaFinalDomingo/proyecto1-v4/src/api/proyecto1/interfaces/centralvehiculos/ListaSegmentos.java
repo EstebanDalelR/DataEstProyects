@@ -1,7 +1,7 @@
 package api.proyecto1.interfaces.centralvehiculos;
 public class ListaSegmentos implements IListaSegmentos{
-NodeLista nodo;
-int size;
+private NodeLista nodo;
+private int size;
 public ListaSegmentos(){
 ListaSegmentos lista = new ListaSegmentos;
 size=0;
@@ -54,7 +54,7 @@ public T dar(int posicion){
   NodeLista temp = nodo;
   int contador=0;
   if(posicion>darTamanio()){
-  return buscado;
+    return buscado;
   }
   else {
     while (temp!=null){

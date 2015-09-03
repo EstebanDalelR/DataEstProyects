@@ -116,7 +116,7 @@ if(size==0){
 else{
 NodeLista ultimo = dar(darTamanio);
 NodeLista nuevo = new NodeLista(elem, null, ultimo);
-ultimo.cambiarSiguiente(nuevo)
+ultimo.cambiarSiguiente(nuevo);
 }
 size++;
 }
@@ -155,6 +155,9 @@ anterior.cambiarSiguiente(nuevo);
 return true;
 size++;
 }
+}
+public T darElemento(){
+  return nodo.darElemento();
 }
 }
 
