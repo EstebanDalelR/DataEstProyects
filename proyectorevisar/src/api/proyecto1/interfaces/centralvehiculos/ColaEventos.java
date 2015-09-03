@@ -1,84 +1,96 @@
 package api.proyecto1.interfaces.centralvehiculos;
-import java.util.Collections;
-import java.util.LinkedList;
+import java.util.Queue; 
+import java.util.LinkedList?
+
 public class ColaEventos implements IColaEventos{
-  LinkedList colaEventosSospechosos = new LinkedList();
-  public void encolar(EventoVehiculo evento){
-  colaEventosSospechosos.addFirst(evento);
+  Node first;
+  int size;
+  public ColaEventos(){  
+  Queue<Object> cola = new LinkedList<T>();
+  size=0;
   }
-  public EventoVehiculo decolar(){
-  return (EventoVehiculo)colaEventosSospechosos.removeLast();
+  /**
+   * Metodo que verifica si la Pila esta vacia 
+   * @return true si lo está, false de lo contrario
+   */
+  public boolean estaVacia(){
+    if(pilaSos.size()!=0){
+    return false;
+    }
+    else {
+      return true;
+    }
+    }
+  public T peek(){
+  return first.element;
+  }
+  /**
+   * Metodo que remueve un elemento de la Cola(FIFO)
+   *@return elemento atendido y removido de la Cola  
+   */
+  public T poll(){
+    T temp = first.element;
+    first = first.siguiente();
+    size--;
+    return temp;
+  }
+  /**
+   * Metodo que agrega un nuevo elemento a la Cola (FIFO)
+   *@param elemento a ser agregado en la Cola
+   */
+  public void offer(T e){
+    if(size!=0){
+      Node temp = first;
+      while(temp.siguiente()!=null){
+        temp.siguiente();
+      }
+      Node nuevo = new Node( e, null);
+      temp.cambiarSiguiente(nuevo);
+    }
+    else{
+    Node nuevo = new Node( e, null);
+    }
+  }
+  /**
+   * Metodo que retorna el tamanio de la cola
+   *@return tamanio Cola
+   */
+  public int size(){
+    return size;
+  }
+  /**
+   * Metodo que busca la posicion de un objeto dentro de la cola
+   * @param Object e objeto a buscar
+   * @return la posicion del objeto dentro de la cola; -1 si el objeto no esta en la cola
+   */
+  public int search(T s){
+  Node actual= first;
+  for(int i=1; i < size ; i++){
+    if(actual.element==s){
+    return i;
+    actual = actual.next();
+    }
+  return -1;
+  }
+  }
+  /**
+   * Metodo que verifica si la cola contiene un objeto
+   * @param Object e objeto a verificar
+   * @return true si la cola contiene el objeto; false de lo contrario
+   */
+  public boolean contains(T e){
+    if(this.search(e)!=-1){
+    return true;
+    }
+    else {
+    return false;
+    }
+  }
+  /**
+   * Metodo que elimina todos los elementos de la cola 
+   */ 
+  public void clear(){
+  first=null;
   }
   
-  
-  
-   /**
-  * Mï¿½todo que retorna la lista de eventos 
-  * @return Iterablea de eventos
-  */
-  public LinkedList<EventoVehiculo> getEventoVehiculo(){
- LinkedList aRetornar = new LinkedList();
- while(colaEventosSospechosos.peek()!=null){
- EventoVehiculo event = colaEventosSospechosos.desencolar();
-   aRetornar.encolar(event);
- }
-return aRetornar;
   }
- /**
-  * Mï¿½todo que permite cargar la lista de eventos 
-  * @param eventos
-  */
-  public void setEventos(Iterable<IEventoVehiculo> eventos){
-    while(eventos.hasNext()){
-    colaEventosSospechosos.encolar(evento);
-      eventos.next;
-  }
-  }
-
- /**
-  * Mï¿½todo que permite buscar un evento en la ruta por sus extremos
-  * @param extremoInicial El extremo del segmento del evento
-  * @return EventoVehiculo de la ruta (si existe) asociado a el punto geografico
-  */
- public IEventoVehiculo buscarEventoVehiculoPorUbicacion(IPunto extremo);
-
- /**
-  * Mï¿½todo que permite cargar los eventos autorizados para la ruta,
-  * se debe verificar si los cambios de posiciï¿½n entre los eventos
-  * son horizontales o verticales y si suceden en segmentos de la ruta.
-  * @param eventosAutorizados lista de eventos autorizados
-  */
- public void setEventosAutorizados(Iterable<IEventoVehiculo> eventosAutorizados);
-
- /**
-  * Mï¿½todo que permite obtener el listado de eventos autorizados para la ruta
-  * @return La lista con los eventos de la ruta
-  */
- public Iterable<IEventoVehiculo> getEventosAutorizados();
-
- /**
-  * Método que retorna el tamaño de la Cola
-  *@return el tamaño actual de la Cola
-  */
- public int darTamanio(){
-   int cuantos=0;
-   while(colaEventosSospechosos.peek()!=null){
-     cuantos++;
- }
-   return cuantos;
- }
- /**
-  * Método que verifica si la Cola está vacía
-  * @return true si lo está, false de lo contrario
-  */
- public boolean estaVacia(){
-   if(darTamanio!=0){
-   return true;
-   }
-   else{
-   return false;
-   }
- }
-  
-  
-}

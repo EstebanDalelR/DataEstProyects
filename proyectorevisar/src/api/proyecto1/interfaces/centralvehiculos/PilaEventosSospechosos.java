@@ -5,14 +5,14 @@ public class PilaEventosSospechosos implements IPilaEventosSospechosos{
   Node first;
   int size;
   public PilaEventosSospechosos(){  
-  Stack pilaSos= new Stack();
+  PilaEventosSospechosos pilaSos= new PilaEventosSospechosos();
   size=0;
   }
   /**
    * Metodo que verifica si la Pila esta vacia 
    * @return true si lo está, false de lo contrario
    */
-  public boolean estaVacia(){
+  public boolean isEmpty(){
     if(pilaSos.size()!=0){
     return false;
     }
@@ -20,15 +20,15 @@ public class PilaEventosSospechosos implements IPilaEventosSospechosos{
       return true;
     }
     }
-  ´public EventoVehiculo peek(){
+  public Object peek(){
   return first.element;
   }
   /**
    * Metodo que remueve un elemento de la Pila(LIFO)
    *@return elemento atendido y removido de la Pila  
    */
-  public EventosVehiculo pop(){
-    EventoVehiculo temp = first.element;
+  public Object pop(){
+    Object temp = first.element;
     first = first.next();
     size--;
     return temp;
@@ -37,20 +37,20 @@ public class PilaEventosSospechosos implements IPilaEventosSospechosos{
    * Metodo que agrega un nuevo elemento a la Pila (LIFO)
    *@param elemento a ser agregado en la Pila
    */
-  public void push(EventosVehiculo e){
+  public void push(Object e){
   Node newNode = new Node(e, first);
-      first = newNode;       
+      first = newNode; 
       size++;                   
-    pilaSos.push(e);
+   // pilaSos.push(e);
   }
   /**
    * Metodo que retorna el tamanio de la pila
    *@return tamanio Pila
    */
-  public int darTamanio(){
+  public int size(){
     return size;
   }
-  public int search(EventoVehiculo s){
+  public int search(Object s){
   Node actual= first;
   for(int i=1; i < size ; i++){
     if(actual.element==s){
@@ -59,6 +59,33 @@ public class PilaEventosSospechosos implements IPilaEventosSospechosos{
     }
   return -1;
   }
+  }
+   /**
+   * Metodo que verifica si la pila contiene un objeto
+   * @param Object e objeto a verificar
+   * @return true si la pila contiene el objeto; false de lo contrario
+   */
+  public boolean contains(Object e){
+    if(this.search(e)!=-1){
+    return true;
+    }
+    else {
+    return false;
+    }
+  }
+    /**
+   * Metodo que elimina todos los elementos de la pila 
+   */ 
+  public void clear(){
+  first=null;
+  }
+  public ArrayList toArray(){
+   Node temp = first;
+   ArrayList nueva = new ArrayList<T>;
+   while(temp.next()!=null){
+   Object a =temp.pop();
+   nueva.add(a);
+   }
   }
   }
   
