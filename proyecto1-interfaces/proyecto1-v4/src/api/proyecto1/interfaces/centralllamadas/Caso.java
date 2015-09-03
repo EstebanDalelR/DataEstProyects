@@ -4,27 +4,35 @@ public class Caso implements iCaso
 {
   //enum categorias;
   //enum estadoCaso;
-  CatergoriaCaso categoria;
-  EstadoCaso estado;
-  PedidoDespacho pedido;
-  Cliente clienteCreador;
-  Array llamadas;
+  private CatergoriaCaso categoria;
+  private EstadoCaso estado;
+  private PedidoDespacho pedido;
+  private Cliente clienteCreador;
+  private Array llamadas;
   
+  public Caso(CategoriaCaso nCategoria, PedidoDespacho nPedido, Cliente nCliente, Array nLlamadas)
+  {
+    categoria=nCategoria;
+    estado=EstadoCaso.ABIERTO;
+    clienteCreador=nCliente;
+    llamadas=nLlamadas;
+    pedido=nPedido;
+  }
   public boolean getCliente()
   {
     return clienteCreador;
   }
-  public void setCliente(Cliente input)
+  public void setCliente(Cliente nCliente)
   {
-    clienteCreador=input;
+    clienteCreador=nCliente;
   }
-  public void asignarLlamada(Llamada entrante)
+  public void asignarLlamada(Llamada nLlamada)
   {
-    llamadas.add(entrante);
+    llamadas.add(nLlamada);
   }
   public Array<Llamada> getHistorialLlamadas()
   {
-    Array<Llamada> retornar= new Array<Llamada>;
+    Array<Llamada> retornar= new Array<Llamada>[llamadas.size];
     for(i=0; i<llamadas.size();i++)
     {
       retornar.add(llamadas[i]);
@@ -35,21 +43,21 @@ public class Caso implements iCaso
   {
     return estado;
   }
-  public void setEstado(EstadoCaso input)
+  public void setEstado(EstadoCaso nEstado)
   {
-    estado=input;
+    estado=nEstado;
   }
-  public void getCategoriaCaso()
+  public CategoriaCaso getCategoriaCaso()
   {
     return categoria;
   }
-  public void setCategoriaCaso(CategoriaCaso input)
+  public void setCategoriaCaso(CategoriaCaso nCategoria)
   {
-    categoria=input;
+    categoria=nCategoria;
   }
   public PedidoDespacho getPedidoDespacho()
   {
-    if(pedido!=null)
+    if(!pedido=null)
     {
     return pedido;
     }
@@ -58,9 +66,9 @@ public class Caso implements iCaso
       return null;
     }
   }
-  public void setPedidoDespacho(PedidoDespacho input)
+  public void setPedidoDespacho(PedidoDespacho nPedido)
   {
-    pedido=input;
+    pedido=nPedido;
   }
 }
   
