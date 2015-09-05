@@ -30,11 +30,11 @@ public void cambiarSiguiente(NodeLista link){
 public void cambiarAnterior(NodeLista link){
  NodeLista previ = this.anterior();
  NodeLista nuevo = link;
-if(previ==null)(
+ if(previ==null){
     prev=link;
     previ=this.anterior();
     previ.cambiarSiguiente(this);   
-  )
+ }
   else {
   prev=nuevo;
   previ.cambiarSiguiente(nuevo);

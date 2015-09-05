@@ -1,8 +1,8 @@
 package api.proyecto1.interfaces.centralvehiculos;
 public class NodeLista <Object>{
-T element;
-Node next;
-Node prev;
+private T element;
+private Node next;
+private Node prev;
 public NodeLista(T ele, NodeLista link, NodeLista anterior){
 elemnt=ele;
 next=link;

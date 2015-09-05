@@ -44,11 +44,11 @@ public class ColaEventos implements IColaEventos{
       while(temp.siguiente()!=null){
         temp.siguiente();
       }
-      Node nuevo = new Node(T e, null);
+      Node nuevo = new Node( e, null);
       temp.cambiarSiguiente(nuevo);
     }
     else{
-    Node nuevo = new Node(T e, null);
+    Node nuevo = new Node( e, null);
     }
   }
   /**

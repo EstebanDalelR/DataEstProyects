@@ -17,4 +17,7 @@ public void cambiarSiguiente(Node link){
   }
   
 }
+public T darElemento(){
+return element;
+}
 }

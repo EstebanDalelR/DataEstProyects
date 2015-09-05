@@ -4,9 +4,9 @@ package api.proyecto1.interfaces.centralvehiculos;
  * un segmento debe ser �nicamente horizontal o vertical
  */
 public class Segmento implements ISegmento{
-Punto puntoInicial;
-Punto puntoFinal;
-boolean horiVert;
+private Punto puntoInicial;
+private Punto puntoFinal;
+private boolean horiVert;
 
 public Segmento(Punto inicial, Punto pFinal){
 puntoInicial = inicial;
@@ -57,6 +57,16 @@ public boolean puntoPerteneceSegmento(Punto punto){
   return false;
   }
 }
-
-
+public boolean esHorizontaloVertical(){
+horiVert=false;
+double lati=puntoInicial.getLatitud()-puntoFinal.getLatitud();
+double lon=puntoInicial.getLongitud()-puntoFinal.getLongitud();
+if(lati!=0&&lon==0){
+horiVert=true;
+}
+else if(lon!=0&&lati==0){
+horiVert=true;
+}
+return horiVert;
+}
 }
