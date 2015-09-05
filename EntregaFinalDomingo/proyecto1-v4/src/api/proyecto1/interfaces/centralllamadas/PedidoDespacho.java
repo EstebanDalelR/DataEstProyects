@@ -1,39 +1,33 @@
 package api;
 public class PedidoDespacho implements IPedidoDespacho
 {
-
-  Cliente cliente;
-  Punto puntoDes;
-  Punto puntoOri;
-
- public void setCliente(Cliente input)
- {
-   cliente=input;
- }
-
- public Cliente getCLiente()
- {
-   return Cliente;
- }
-
- public Punto getPuntoDestino()
- {
-   return puntoDes;
- }
- public void setPuntoDestino(Punto input)
- {
-   puntoDes = input;
- }
-
- public Punto getPuntoOrigen()
- {
-   return puntoOri;
- }
-
-
- public void setPuntoOrigen(Punto punto)
- {
-   puntoOri=punto;
- }
-
+  
+  private Cliente cliente;
+  private Punto puntoDes;
+  private Punto puntoOri;
+  
+  public void setCliente(Cliente nCliente)
+  {
+    cliente=nCliente;
+  }
+  public Cliente getCLiente()
+  {
+    return cliente;
+  }
+  public Punto getPuntoDestino()
+  {
+    return puntoDes;
+  }
+  public void setPuntoDestino(Punto nPuntoDest)
+  {
+    puntoDes = nPuntoDest;
+  }
+  public Punto getPuntoOrigen()
+  {
+    return puntoOri;
+  }
+  public void setPuntoOrigen(Punto nPuntoOri)
+  {
+    puntoOri=nPuntoOri;
+  }
 }

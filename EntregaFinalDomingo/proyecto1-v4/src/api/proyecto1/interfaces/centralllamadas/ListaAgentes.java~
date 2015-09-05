@@ -8,7 +8,7 @@ public class ListaAgentes<T> implements serializable, ILista
   private tamanioEst=0;
   private Object elementos[];\
     
-  public ListaAgentes()
+    public ListaAgentes()
   {
     elementos= (T[]) new Object[tamanioEst];
   }

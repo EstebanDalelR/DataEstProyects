@@ -1,10 +1,10 @@
 package api;
-public class Llamada implements ILlamda
+public class Llamada implements ILlamada
 {
-  long estampilla;
-  Agente atendiendo;
-  Problema lio;
-  Cliente cliente;
+  private long estampilla;
+  private Agente atendiendo;
+  private Problema lio;
+  private Cliente cliente;
  public void setEstampillaTiempo(long estampillaTiempo)
  {
    estampilla=estampillaTiempo;
