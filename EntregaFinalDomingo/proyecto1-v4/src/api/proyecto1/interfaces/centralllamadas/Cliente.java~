@@ -4,6 +4,7 @@
     String nombre;
     String apellido;
     Iterable<Caso> casos;
+    Iterable<PedidoDespacho> pedidos;
   public String getNombre()
   {
     return nombre;
@@ -23,10 +24,6 @@
     apellido=input;
   }
 
- /**
-  * M�todo que retorna todos los casos del cliente
-  * @return Todos los casos del cliente
-  */
  public Iterable<Caso> darHistoricoCasos()
  {
    return casos;
@@ -52,15 +49,13 @@
    return retornar;
  }
 
- /**
-  * M�todo que retorna todos los pedidos de despacho del cliente
-  * @return Todos los pedidos de despacho del cliente
-  */
- public Iterable<PedidoDespacho> darPedidosDespacho();
+ public Iterable<PedidoDespacho> darPedidosDespacho()
+ {
+   return pedidos;
+ }
 
- /**
-  * M�todo que permite agregar un pedido de despacho del cliente
-  * @param pedido Pedido de despacho del cliente
-  */
- public void agregarPedidoDespacho(IPedidoDespacho pedido);
+ public void agregarPedidoDespacho(PedidoDespacho pedido)
+ {
+   pedidos.add(pedido);
+ }
 }

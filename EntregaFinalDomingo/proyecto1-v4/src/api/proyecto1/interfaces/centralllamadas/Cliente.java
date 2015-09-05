@@ -1,37 +1,36 @@
   package api;
   public class Cliente implemets ICliente
   {
-    String nombre;
-    String apellido;
-    Iterable<Caso> casos;
-    Iterable<PedidoDespacho> pedidos;
+    private String nombre;
+    private String apellido;
+    private Iterable<Caso> casos;
+    private Iterable<PedidoDespacho> pedidos;
   public String getNombre()
   {
     return nombre;
   }
-  public void setNombre(String input)
+  public void setNombre(String nNombre)
   {
-    nombre=input;
+    nombre=nNombre;
   }
-
   public String getApellido()
   {
     return apellido;
   }
 
-  public void setApellido(String input)
+  public void setApellido(String nApellido)
   {
-    apellido=input;
+    apellido=nApellido;
   }
 
  public Iterable<Caso> darHistoricoCasos()
  {
-   return casos;
+   return casos.iterator();
  }
 
- public void agregarCasoAHistorico(Caso casoIn)
+ public void agregarCasoAHistorico(Caso nCaso)
  {
-   casos.add(casoIn);
+   casos.add(nCaso);
  }
 
  public Iterable<Caso> darCasosAbiertos()
