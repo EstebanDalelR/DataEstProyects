@@ -2,21 +2,21 @@ package api;
 
 public class Problema implements IProblema
 {
-  long estampilla;
-  TipoProblema tipo;
-  Punto lugar;
+  private long estampilla;
+  private TipoProblema tipo;
+  private Punto lugar;
   
   public long getEstampillaTiempo()
   {
     return estampilla;
   }
-  public void setEstampillaTiempo(long estampillaTiempo)
+  public void setEstampillaTiempo(long nEstampillaTiempo)
   {
-    estampilla= estampillaTiempo;
+    estampilla= nEstampillaTiempo;
   }
-  public void setTipo(TipoProblema input)
+  public void setTipo(TipoProblema nTipo)
   {
-    tipo=input;
+    tipo=nTipo;
   }
   public TipoProblema getTipoProblema()
   {
@@ -26,8 +26,8 @@ public class Problema implements IProblema
   {
     return lugar;
   }
-  public void setPunto(Punto punto)
+  public void setPunto(Punto nPunto)
   {
-    lugar=punto;
+    lugar=nPunto;
   }
 }
