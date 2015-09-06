@@ -18,9 +18,11 @@ public class ProcessJSON {
   Gson gson = new Gson();
   
   try {
+    //recibir input
     Scanner scanner = new Scanner(System.in);
     System.out.print("Escriba la locación dekl JSON completa:");
     String rutaJSON = scanner.next();
+    //tomar el file del JSON
     File archJson = new File(rutaJSON);
     InputStream inputStream = new FileInputStream(archJson);
     Reader fileReader = new InputStreamReader(inputStream);
@@ -29,7 +31,7 @@ public class ProcessJSON {
     //                                      new FileReader("c:\\file.json"));
     
     //convert the json string back to object
-    DataObject obj = gson.fromJson(br, DataObject.class);
+    DataObject obj = gson.fromJson(JsonReader, DataObject.class);
     
     System.out.println(obj);
     

@@ -6,9 +6,9 @@ public class Llamada implements ILlamada
   private Problema lio;
   private Cliente cliente;
  
-  public void setEstampillaTiempo(long estampillaTiempo)
+  public void setEstampillaTiempo(long nEstampillaTiempo)
  {
-   estampilla=estampillaTiempo;
+   estampilla=nEstampillaTiempo;
  }
  public long getEstampillaTiempo()
  {
@@ -18,24 +18,24 @@ public class Llamada implements ILlamada
  {
    return atendiendo;
  }
- public void setAgente(Agente agente)
+ public void setAgente(Agente nAgente)
  {
-   atendiendo=agente;
+   atendiendo=nAgente;
  }
  public Problema getProblema()
  {
    return lio;
  }
- public void setProblema(Problema problema)
+ public void setProblema(Problema nProblema)
  {
-   lio=problema;
+   lio=nProblema;
  }
  public Cliente getCliente()
  {
    return cliente;
  }
- public void setCliente(Cliente input)
+ public void setCliente(Cliente nCliente)
  {
-   cliente=input;
+   cliente=nCliente;
  }
 }
