@@ -9,6 +9,10 @@ import com.google.gson.stream.JsonToken;
 //copia de CentralVehiculos para cambiar
 //TODO
 
+File archJson = new File("...");
+InputStream inputStream = new FileInputStream(archJson);
+Reader fileReader = new InputStreamReader(inputStream);
+JsonReader reader = new JsonReader(fileReader);
 public class ProcessJSON {
 
     public static void main(String[] args) throws MalformedURLException, IOException
