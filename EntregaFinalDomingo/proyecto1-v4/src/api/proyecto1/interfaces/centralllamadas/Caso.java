@@ -18,6 +18,14 @@ public class Caso implements iCaso
     llamadas=nLlamadas;
     pedido=nPedido;
   }
+   public Caso(CategoriaCaso nCategoria, Cliente nCliente, Llamada nLlamada)
+  {
+    categoria=nCategoria;
+    estado=EstadoCaso.ABIERTO;
+    clienteCreador=nCliente;
+    llamadas=nLlamadas;
+    pedido=nPedido;
+  }
   public boolean getCliente()
   {
     return clienteCreador;
