@@ -23,7 +23,7 @@ public class Caso implements iCaso
     categoria=nCategoria;
     estado=EstadoCaso.ABIERTO;
     clienteCreador=nCliente;
-    llamadas=nLlamadas;
+    asignarLlamada(nLlamada);
     pedido=nPedido;
   }
   public boolean getCliente()
