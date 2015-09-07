@@ -46,6 +46,7 @@ public class CentralLlamadas implements ICentralLlamdas
   public Caso iniciarCaso(Cliente nCliente, Llamada nLlamada, CategoriaCaso nCategoria)
   {
     Caso creado = new Caso(nCategoria, nCliente, nLlamada);
+    return creado;
 //TODO
   }
   

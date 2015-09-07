@@ -13,30 +13,37 @@ import java.util.Scanner;
 //InputStream inputStream = new FileInputStream(archJson);
 //Reader fileReader = new InputStreamReader(inputStream);
 //JsonReader reader = new JsonReader(fileReader);
-public class ProcessJSON {
-  
-  Gson gson = new Gson();
-  
-  try {
-    //recibir input
-    Scanner scanner = new Scanner(System.in);
-    System.out.print("Escriba la locación dekl JSON completa:");
-    String rutaJSON = scanner.next();
-    //tomar el file del JSON
-    File archJson = new File(rutaJSON);
-    InputStream inputStream = new FileInputStream(archJson);
-    Reader fileReader = new InputStreamReader(inputStream);
-    JsonReader reader = new JsonReader(fileReader);
-    // BufferedReader br = new BufferedReader(
-    //                                      new FileReader("c:\\file.json"));
+public class ProcessJSON 
+{
+  public void readFromFile
+  {
+    Gson gson = new Gson();
     
-    //convert the json string back to object
-    DataObject obj = gson.fromJson(JsonReader, DataObject.class);
-    
-    System.out.println(obj);
-    
-  } catch (IOException e) {
-    e.printStackTrace();
+    try
+    {
+      //recibir input
+      Scanner scanner = new Scanner(System.in);
+      System.out.print("Escriba la locación dekl JSON completa:");
+      String rutaJSON = scanner.next();
+      //tomar el file del JSON
+      File archJson = new File(rutaJSON);
+      InputStream inputStream = new FileInputStream(archJson);
+      Reader fileReader = new InputStreamReader(inputStream);
+      JsonReader reader = new JsonReader(fileReader);
+      // BufferedReader br = new BufferedReader(
+      //                                      new FileReader("c:\\file.json"));
+      
+      //convert the json string back to object
+      DataObject obj = gson.fromJson(JsonReader, DataObject.class);
+      
+      System.out.println(obj);
+      
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
-  
+  public void readAsParcer(File archivo)
+  {
+    //odio esto
+  }
 }
