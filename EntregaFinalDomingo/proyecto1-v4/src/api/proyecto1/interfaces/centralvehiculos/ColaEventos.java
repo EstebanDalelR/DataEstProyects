@@ -1,8 +1,10 @@
 package api.proyecto1.interfaces.centralvehiculos;
 import java.util.Queue; 
 import java.util.LinkedList?
+import estructuras.cola.ICola;
 
-public class ColaEventos implements IColaEventos{
+
+public class ColaEventos<T> implements IColaEventos{
   private Node first;
   private int size;
   public ColaEventos(){  

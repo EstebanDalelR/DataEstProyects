@@ -1,22 +1,25 @@
 package api.proyecto1.interfaces.centralvehiculos;
-public class ListaSegmentos<T> implements IListaSegmentos{
+public class BitacoraEventos<T> {
 private NodeLista nodo;
-private int size;
-public ListaSegmentos(){
-ListaSegmentos lista = new ListaSegmentos;
+private int size; 
+private Vehiculo ve;
+private Ruta ru;
+public BitacoraEventos(Vehiculo vehiculo, Ruta ruta){
+BitacoraEventos bitacoara = new BitacoraEventos;
 size=0;
+ve=vehiculo;
+ru=ruta;
 }
-/**
- * Metodo que retorna el tamaño de la lista de segmentos 
- *@return retorna el tamaño de la lista 
- */
+public Vehiculo darVehiculo(){
+return ve;
+}
+public Ruta darRuta(){
+return ru;
+}
 public int darTamanio(){
 return size;
 }
-/**
- * Metodo que verifica si la lista de segmentos esta vacia 
- * @return true, si la lista esta vacia. False de lo contrario 
- */
+
 public boolean estaVacia(){
   if(darTamanio==0){
   return true;
@@ -25,11 +28,7 @@ public boolean estaVacia(){
     return false;
   }
 }
-/**
- * Método que busca un elemento en la Lista
- * @param e - objeto a ser buscado en la Lista
- * @return el elemento buscado en caso de existir, o null en su defecto 
- */
+
 public T buscar(T e){
   boolean a = false;
   NodoLista temp = nodo;
@@ -44,11 +43,7 @@ public T buscar(T e){
   return null;
   }
 }
-  /**
-   *Método que retorna el elemento de la Lista encontrado en la posición ingresada por parámetro. La lista inicia con la posición 0
-   *@param posicion - es la posición de la cual nos interesa obtener el elemento
-   *@return el elemento encontrado en la posición ingresada por parámetro, null si la posición supera el tamaño de la Lista
-   */
+  
 public T dar(int posicion){
   T buscado = null;
   NodeLista temp = nodo;
@@ -68,11 +63,7 @@ public T dar(int posicion){
     }
   }
   }
-/**
- * Método que elimina un elemento de la Lista
- * @param elem - elemento a ser buscado en la Lista
- * @return el elemento buscado en caso de existir, o null en su defecto
- */
+
 public T eliminar(T e){
 T buscado = this.buscar(e);
 if(buscado == null){
@@ -87,10 +78,7 @@ size--;
 return buscado;
 }
 }
-/**
- * Método que agrega un elemento al principio de la Lista
- * @param elem - elemento a ser agregado
- */
+
 public void agregarAlPrincipio(T elem){
   if(size==0){
     NodeLista nuevo = new NodeLista(elem, null, null);
@@ -159,5 +147,19 @@ size++;
 public T darElemento(){
   return nodo.darElemento();
 }
+public void eliminar repetidos(){
+    for(int i =0;i-bitacora.darTamanio()-1;i++){
+    EventoVehiculo temp = bitacora.get(i);
+    for(int j=i+1;j-bitacora.darTamanio();j++){
+    EventoVehiculo revisar = bitacora.get(j);
+    if(temp.getEstampillaTiempo().equals(revisar.getEstampillaTiempo())&&temp.getTipo()==revisar.getTipo()){
+    T eliminado = bitacora.eliminar(revisar);
+    }
+    }
+    }
+  }
+  public void recibirEventos(){}
+
 }
+
 

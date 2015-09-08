@@ -4,7 +4,7 @@ package api.proyecto1.interfaces.centralvehiculos;
  *Ruta modela una ruta definida como un conjunto de segmentos
  */
 public class Ruta implements IRuta {
-private ListaSegmentos listaSegmentos;
+private iterable<ListaSegmento> listaSegmentos;
 private ListaEventosAutorizados listaEventosAutorizados;
 private int idRuta;
 private String nombre;
@@ -26,7 +26,7 @@ private String nombre;
   * @return Iterablea de segmentos
   */
   public Iterable<ListaSegmento> getSegmentos(){
-  return listaSegmentos;
+  return listaSegmentos.iterator();
   }
 
  /**
@@ -34,6 +34,7 @@ private String nombre;
   * @param segmentos
   */
   public void setSegmentos(Iterable<Segmento> segmentos){
+   
     while(segmentos!=null){
       
       listaSegmemtos.agregarAlPrincipio(segmento);

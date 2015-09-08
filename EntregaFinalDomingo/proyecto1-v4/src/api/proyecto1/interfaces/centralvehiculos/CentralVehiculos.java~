@@ -3,12 +3,12 @@ import java.io.File;
 import java.util.Date;
 
 /*
- * ICentralVehiculos se refiere a la parte A del enunciado de proyecto 1
+ * CentralVehiculos se refiere a la parte A del enunciado de proyecto 1
  */
 public class CentralVehiculos {
-
+private ArrayList listaVehiculos;
  /**
-  * M�todo que permite iniciar la central de veh�culos, realiza las acciones
+  * Metodo que permite iniciar la central de veh�culos, realiza las acciones
   * necesarias para que la central de veh�culos pueda atender los eventos de control
   */
  public void iniciarCentralVehiculos();
@@ -26,7 +26,9 @@ public class CentralVehiculos {
   * @param vehiculo al que se le desea cargar la ruta
   * @param ruta ruta que se desea cargar en el veh�culo
   */
- public void cargarRutaVehiculo(IVehiculo vehiculo, IRuta ruta);
+ public void cargarRutaVehiculo(IVehiculo vehiculo, IRuta ruta){
+ for(int i =0;i)
+ }
 
  /**
   * M�todo que permite cargar un listado de eventos autorizados para una ruta

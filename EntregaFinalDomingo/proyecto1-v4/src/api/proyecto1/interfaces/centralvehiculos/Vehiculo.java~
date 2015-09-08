@@ -7,9 +7,37 @@ package api.proyecto1.interfaces.centralvehiculos;
 public class Vehiculo {
 private ColaEventos colaEventos;
 private Ruta rutaVehiculo;
-public vehiculo(){
+private int idVehiculo;
+private TipoVehiculo tipoVehiculo;
+private int capacidad;
+private int modelo;
+private String placa;
+
+public vehiculo(int pId, TipoVehiculo pTipo, String pPlaca, int pModelo, int pCapacidad){
 ColaEventos colaEventos = new ColaEventos();
+idVehiculo=pId;
+tipoVehiculo=pTipo;
+placa=pPlaca;
+modelo=pModelo;
+capacidad=pCapacidad;
 }
+public String darNombre(){
+return nombre;
+}
+public TipoVehiculo darTipoVehiculo(){
+  return tipoVehiculo;
+}
+public String darPlaca(){
+return placa;
+}
+public int darModelo(){
+return modelo;
+}
+public int darPlaca(){
+return placa;
+}
+
+
  /**
   * Metodo que permite obtener la lista de eventos guardados en el veh�culo
   * @return la lista de eventos guardados en el veh�culo

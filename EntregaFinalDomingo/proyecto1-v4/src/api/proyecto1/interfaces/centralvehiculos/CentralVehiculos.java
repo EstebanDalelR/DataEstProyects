@@ -7,11 +7,15 @@ import java.util.Date;
  */
 public class CentralVehiculos {
 private ArrayList listaVehiculos;
+private ArrayList listaBitacoras;
+private 
  /**
   * Metodo que permite iniciar la central de veh�culos, realiza las acciones
   * necesarias para que la central de veh�culos pueda atender los eventos de control
   */
- public void iniciarCentralVehiculos();
+public void iniciarCentralVehiculos(){
+Gson aLeer = new ProcessJSON;
+}
 
  /**
   * M�todo que le permite a la central recibir y procesar los eventos de control asociados a la central de
@@ -19,15 +23,23 @@ private ArrayList listaVehiculos;
   * y va a permitir la verificaci�n de los requerimientos funcionales de la soluci�n.
   * @param archivo Archivo Json con los eventos de control para ser procesados por la central
   */
- public void recibirEventosControl(File archivo);
+ public void recibirEventosControl(File archivo){
+    //leer JSON
+  }
 
  /**
   * M�todo que permite cargar una ruta a un veh�culo
   * @param vehiculo al que se le desea cargar la ruta
   * @param ruta ruta que se desea cargar en el veh�culo
   */
- public void cargarRutaVehiculo(IVehiculo vehiculo, IRuta ruta){
- for(int i =0;i)
+ public void cargarRutaVehiculo(IVehiculo pVehiculo, IRuta ruta){
+   for(int i =0;i<listaVehiculos.size()&&encontro==false; i++){
+   Vehiculo temp = listaVehiculos.get(i);
+   if (temp.darId()==pVehiculo.darId()){
+   encontro =true;
+   temp.setRuta(ruta);
+   }
+   }
  }
 
  /**
@@ -36,7 +48,10 @@ private ArrayList listaVehiculos;
   * @param ruta ruta a la que se desean cargar los eventos autorizados
   * @param eventosAutorizados eventos autorizados para la ruta
   */
- public void cargarEventosAutorizadosRuta(IVehiculo vehiculo, IRuta ruta, Iterable<IEventoVehiculo> eventosAutorizados);
+ public void cargarEventosAutorizadosRuta(IVehiculo vehiculo, IRuta ruta, Iterable<IEventoVehiculo> eventosAutorizados){
+   cargarRutaVehiculo(vehiculo, ruta);
+   ruta.setEventosAutorizados(eventosAutorizados);
+ }
 
  /**
   * M�todo que permite marcar el inicio de una ruta para un veh�culo
@@ -62,8 +77,9 @@ private ArrayList listaVehiculos;
   * @param ruta para la cual se desean unificar los eventos
   * @return bitacora de eventos para la ruta, listado de eventos ordenado por sucesos y sin repeticiones
   */
- public Iterable<IEventoVehiculo> unificarEventosRuta(IVehiculo vehiculo, IRuta ruta);
-
+ public Iterable<IEventoVehiculo> unificarEventosRuta(IVehiculo vehiculo, IRuta ruta){
+ BitacoraEventos vehiculo.darId()+
+ }
  /**
   * M�todo que permite obtener una lista de eventos sospechosos seg�n la bitacora de la ruta
   * @param vehiculo vehiculo que realiza la ruta

@@ -6,12 +6,21 @@ package api.proyecto1.interfaces.centralvehiculos;
 public class Ruta implements IRuta {
 private ListaSegmentos listaSegmentos;
 private ListaEventosAutorizados listaEventosAutorizados;
+private int idRuta;
+private String nombre;
   
-  public Ruta(){
+  public Ruta(int pId, String pNombre){
+  idRuta= pId;
+  nombre= pNombre;
   ListaSegmentos listaSegmentos = new ListaSegmentos();
   ListaEventosAutorizados listaEventosAutorizados = new ListaEventosAutorizados();
   }
-
+  public String darNombre(){
+  return nombre;
+ }
+  public int darId(){
+  return idRuta;
+  }
  /**
   * Metodo que retorna la lista de segmentos de la ruta
   * @return Iterablea de segmentos
