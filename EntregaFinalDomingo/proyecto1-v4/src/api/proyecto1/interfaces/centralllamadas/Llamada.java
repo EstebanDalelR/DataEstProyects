@@ -6,6 +6,9 @@ public class Llamada implements ILlamada
   private Problema lio;
   private Cliente cliente;
  
+  public Llamada()
+  {
+  }
   public void setEstampillaTiempo(long nEstampillaTiempo)
  {
    estampilla=nEstampillaTiempo;
