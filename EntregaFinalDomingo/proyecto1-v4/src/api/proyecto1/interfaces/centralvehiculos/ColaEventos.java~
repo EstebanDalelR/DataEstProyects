@@ -3,8 +3,8 @@ import java.util.Queue;
 import java.util.LinkedList?
 
 public class ColaEventos implements IColaEventos{
-  Node first;
-  int size;
+  private Node first;
+  private int size;
   public ColaEventos(){  
   Queue<Object> cola = new LinkedList<T>();
   size=0;

@@ -1,9 +1,9 @@
 package api.proyecto1.interfaces.centralvehiculos;
-public class ListaSegmentos<T> implements IListaSegmentos{
+public class BitacoraEventos<T> {
 private NodeLista nodo;
-private int size;
-public ListaSegmentos(){
-ListaSegmentos lista = new ListaSegmentos;
+private int size; 
+public BitacoraEventos(){
+BitacoraEventos bitacoara = new BitacoraEventos;
 size=0;
 }
 /**
@@ -159,5 +159,19 @@ size++;
 public T darElemento(){
   return nodo.darElemento();
 }
+public void eliminar repetidos(){
+    for(int i =0;i-bitacora.darTamanio()-1;i++){
+    EventoVehiculo temp = bitacora.get(i);
+    for(int j=i+1;j-bitacora.darTamanio();j++){
+    EventoVehiculo revisar = bitacora.get(j);
+    if(temp.getEstampillaTiempo().equals(revisar.getEstampillaTiempo())&&temp.getTipo()==revisar.getTipo()){
+    bitacora.remove(revisar);
+    }
+    }
+    }
+  }
+  public void recibirEventos(){}
+
 }
+
 

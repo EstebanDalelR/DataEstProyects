@@ -5,7 +5,7 @@ package api.proyecto1.interfaces.centralvehiculos;
  * sus dispositivos enteros
  */
 public class Vehiculo {
-private ColaEventos colaEventos;
+private iterable<EventoVehiculo> colaEventos;
 private Ruta rutaVehiculo;
 private int idVehiculo;
 private TipoVehiculo tipoVehiculo;
@@ -21,8 +21,8 @@ placa=pPlaca;
 modelo=pModelo;
 capacidad=pCapacidad;
 }
-public String darNombre(){
-return nombre;
+public int darId(){
+return idVehiculo;
 }
 public TipoVehiculo darTipoVehiculo(){
   return tipoVehiculo;
@@ -43,7 +43,7 @@ return placa;
   * @return la lista de eventos guardados en el veh�culo
   */
 public Iterable<EventoVehiculo> getEventos(){
-return colaEventos;
+return colaEventos.iterator();
 }
 
  /**
@@ -51,7 +51,7 @@ return colaEventos;
   * @param listaEventos
   */
 public void guardarEvento(Iterable<EventoVehiculo> listaEventos){
-int i=0;
+
   while(listaEventos.hasNext()){
   Evento temp = listaEventos.get(i);
     colaEventos.offer(temp);
@@ -71,7 +71,7 @@ rutaVehiculo=ruta;
   * M�todo que permite obtener la ruta del veh�culo
   * @return la ruta del veh�chulo
   */
-public Ruta getRuta(){
+public IRuta getRuta(){
 return rutaVehiculo;
 }
 
