@@ -51,7 +51,7 @@ return colaEventos;
   * @param listaEventos
   */
 public void guardarEvento(Iterable<EventoVehiculo> listaEventos){
-
+int i=0;
   while(listaEventos.hasNext()){
   Evento temp = listaEventos.get(i);
     colaEventos.offer(temp);
@@ -71,7 +71,7 @@ rutaVehiculo=ruta;
   * M�todo que permite obtener la ruta del veh�culo
   * @return la ruta del veh�chulo
   */
-public IRuta getRuta(){
+public Ruta getRuta(){
 return rutaVehiculo;
 }
 

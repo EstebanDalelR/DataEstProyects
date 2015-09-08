@@ -11,7 +11,9 @@ private ArrayList listaVehiculos;
   * Metodo que permite iniciar la central de veh�culos, realiza las acciones
   * necesarias para que la central de veh�culos pueda atender los eventos de control
   */
- public void iniciarCentralVehiculos();
+ public void iniciarCentralVehiculos(){
+ //leer json
+ }
 
  /**
   * M�todo que le permite a la central recibir y procesar los eventos de control asociados a la central de
@@ -19,15 +21,17 @@ private ArrayList listaVehiculos;
   * y va a permitir la verificaci�n de los requerimientos funcionales de la soluci�n.
   * @param archivo Archivo Json con los eventos de control para ser procesados por la central
   */
- public void recibirEventosControl(File archivo);
+ public void recibirEventosControl(File archivo){
+ //leer json
+ }
 
  /**
   * M�todo que permite cargar una ruta a un veh�culo
   * @param vehiculo al que se le desea cargar la ruta
   * @param ruta ruta que se desea cargar en el veh�culo
   */
- public void cargarRutaVehiculo(IVehiculo vehiculo, IRuta ruta){
- for(int i =0;i)
+ public void cargarRutaVehiculo(Vehiculo vehiculo, Ruta ruta){
+vehiculo.setRuta(ruta);
  }
 
  /**
@@ -36,7 +40,10 @@ private ArrayList listaVehiculos;
   * @param ruta ruta a la que se desean cargar los eventos autorizados
   * @param eventosAutorizados eventos autorizados para la ruta
   */
- public void cargarEventosAutorizadosRuta(IVehiculo vehiculo, IRuta ruta, Iterable<IEventoVehiculo> eventosAutorizados);
+ public void cargarEventosAutorizadosRuta(Vehiculo vehiculo, Ruta ruta, Iterable<IEventoVehiculo> eventosAutorizados){
+ ruta.setEventosAutorizados(eventosAutorizados);
+ vehiculo.setRuta(ruta);
+ }
 
  /**
   * M�todo que permite marcar el inicio de una ruta para un veh�culo
@@ -91,7 +98,17 @@ private ArrayList listaVehiculos;
   * @param fechaFin fecha final de consulta
   * @return lista con los eventos ocurridos para la ruta en las fechas determinadas
   */
- public Iterable<IEventoVehiculo> darEventosRutaPorTiempo(Iterable<IEventoVehiculo> bitacoraRuta, Date fechaInicio, Date fechaFin);
+ public Iterable<IEventoVehiculo> darEventosRutaPorTiempo(Iterable<IEventoVehiculo> bitacoraRuta, Date fechaInicio, Date fechaFin){
+   ColaEventos eventosFecha = new ColaEventos;
+   while(bitacoraRuta.hasNext()){
+   EventoVehiculo temp = bitacoraRuta.getEvento();
+   if(temp.darFechaInicio().despues(fechaInicio)&&temp.darFechaFin.antes(fechaFin)){
+   eventosFecha.offer(temp);
+   }
+   bitacoraRuta.next();
+   }
+   return eventosFecha;
+ }
 
  /**
   * M�todo que permite buscar el veh�culo que m�s reporta accidentes
