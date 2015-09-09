@@ -15,7 +15,7 @@ import java.util.Scanner;
 //JsonReader reader = new JsonReader(fileReader);
 public class ProcessJSON 
 {
-  public void readFromFile
+  public void readFromLine()
   {
     Gson gson = new Gson();
     
@@ -42,8 +42,29 @@ public class ProcessJSON
       e.printStackTrace();
     }
   }
-  public void readAsParcer(File archivo)
+  public void readAsParser(File archivo)
   {
     //odio esto
+    
+    Gson gson = new Gson();
+    
+    try
+    {
+      //tomar el file del JSON
+      File archJson = new File(archivo);
+      InputStream inputStream = new FileInputStream(archJson);
+      Reader fileReader = new InputStreamReader(inputStream);
+      JsonReader reader = new JsonReader(fileReader);
+      // BufferedReader br = new BufferedReader(
+      //                                      new FileReader("c:\\file.json"));
+      
+      //convert the json string back to object
+      DataObject obj = gson.fromJson(JsonReader, DataObject.class);
+      
+      System.out.println(obj);
+      
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }

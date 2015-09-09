@@ -18,13 +18,12 @@ public class CentralLlamadas implements ICentralLlamdas
    */
   public void recibirEventosControl(File archivo)
   {
-    //leer JSON
+    ProcessGSON.readAsParser(archivo);//leer JSON
   }
   
   public void agregarAgente(Agente nAgente)
   {
-    Agente creado= nAgente;
-    agentesLibres.agregarAgente(creado);
+    listaAgentes.agregarAgente(nAgente);
   }
   
   /**
