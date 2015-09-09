@@ -4,17 +4,41 @@ package api.proyecto1.interfaces.centralvehiculos;
  *Ruta modela una ruta definida como un conjunto de segmentos
  */
 public class Ruta implements IRuta {
-private iterable<ListaSegmento> listaSegmentos;
+private Iterable<ListaSegmento> listaSegmentos;
 private ListaEventosAutorizados listaEventosAutorizados;
 private int idRuta;
 private String nombre;
-  
+private double gasolinaInicial
+private double gasolinaFinal; 
   public Ruta(int pId, String pNombre){
   idRuta= pId;
   nombre= pNombre;
   ListaSegmentos listaSegmentos = new ListaSegmentos();
   ListaEventosAutorizados listaEventosAutorizados = new ListaEventosAutorizados();
   }
+  
+  
+  public Iterable<Segmentos> darSegmentosNoAutorizados(){
+   ListaSegmentos segmentosNoAutorizados = new ListaSegmentos();
+   Iterator<Segmentos> it = listaSegmentos.iterator();
+    while(it.hasNext()){
+      Segmento temp = it.next();
+      if(temp.esHorizontaloVertical()==false){
+        if(segmentosNoAutorizados.estaVacia()==true){
+       segmentosNoAutorizados.agregarAlPrincipio(temp); 
+        }
+        else{
+          Segmento ref =segmentosNoAutorizados.dar(segmentosNoAutorizados.size());
+       segmentosNoAutorizados.agregarDespuesDe(temp,T ref)
+        }
+      }
+      it.next();
+    }
+    return segmentosNoAutorizados;
+    
+  }
+  
+  
   public String darNombre(){
   return nombre;
  }
@@ -97,4 +121,17 @@ private String nombre;
   public Iterable<IEventoVehiculo> getEventosAutorizados(){
   return listaEventosAutorizados;
   }
+  public void iniciarRuta(EventoVehiculo evento){
+  if(evento==INICIAR_RUTA){
+  gasolinaInicial = evento.getGasolina();
+  }
+}
+public void finalizarRuta(EventoVehiculo evento){
+  if(evento==TERMINAR_RUTA){
+  gasolinaFinal = evento.getGasolina();
+  }
+}
+public double gasolina(){
+return gasolinaInicial-gasolinaFinal;
+}
 }

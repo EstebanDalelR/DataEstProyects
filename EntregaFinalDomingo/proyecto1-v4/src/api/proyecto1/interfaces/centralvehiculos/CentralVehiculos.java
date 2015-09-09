@@ -8,7 +8,7 @@ import java.util.Date;
 public class CentralVehiculos {
 private ArrayList listaVehiculos;
 private ArrayList listaBitacoras;
-private 
+private PilaEventosSospechos pilaEventos;
  /**
   * Metodo que permite iniciar la central de veh�culos, realiza las acciones
   * necesarias para que la central de veh�culos pueda atender los eventos de control
@@ -59,8 +59,17 @@ Gson aLeer = new ProcessJSON;
   * @param ruta ruta a realizar
   * @param eventoInicio evento de inicio que informa del inicio de la ruta y el combustible inicial
   */
- public void iniciarRutaVehiculo(IVehiculo vehiculo, IRuta ruta, IEventoVehiculo eventoInicio);
-
+ public void iniciarRutaVehiculo(IVehiculo vehiculo, IRuta ruta, IEventoVehiculo eventoInicio){
+   if(eventoInicio==INICIAR_RUTA){
+   for(int i =0;i<listaVehiculos.size()&&encontro==false; i++){
+   Vehiculo temp = listaVehiculos.get(i);
+   if (temp.darId()==vehiculo.darId()){
+   encontro =true;
+   temp.iniciarRuta(ruta);
+   }
+ }
+ }
+ }
  /**
   * M�todo que permite marcar el final de una ruta para un veh�culo por medio
   * de un evento de fin de ruta
@@ -68,7 +77,17 @@ Gson aLeer = new ProcessJSON;
   * @param ruta ruta completada por el veh�culo
   * @param eventoFinal evento de finalización que informa del fin de la ruta y el combustible final
   */
- public void finalizarRutaVehiculo(IVehiculo vehiculo, IRuta ruta, IEventoVehiculo eventoFinal);
+   public void finalizarRutaVehiculo(IVehiculo vehiculo, IRuta ruta, IEventoVehiculo eventoFinal){
+      if(eventoFinal==TERMINAR_RUTA){
+   for(int i =0;i<listaVehiculos.size()&&encontro==false; i++){
+   Vehiculo temp = listaVehiculos.get(i);
+   if (temp.darId()==vehiculo.darId()){
+   encontro =true;
+   temp.finalizarRuta(ruta);
+   }
+   }
+   }
+   }
 
  /**
   * M�todo que permite unificar los eventos de un veh�culo para una ruta, reportados por el veh�culo
@@ -78,7 +97,9 @@ Gson aLeer = new ProcessJSON;
   * @return bitacora de eventos para la ruta, listado de eventos ordenado por sucesos y sin repeticiones
   */
  public Iterable<IEventoVehiculo> unificarEventosRuta(IVehiculo vehiculo, IRuta ruta){
- BitacoraEventos vehiculo.darId()+
+ BitacoraEventos bitacora = newBitacoraEventos(vehiculo, ruta);
+ bitacora.unificarEventos(vehiculo.getEventos(), eventosReportados);
+ return bitacora;
  }
  /**
   * M�todo que permite obtener una lista de eventos sospechosos seg�n la bitacora de la ruta
@@ -87,7 +108,27 @@ Gson aLeer = new ProcessJSON;
   * @param bitacoraRuta bitacora para la ruta de la cual se desean saber los eventos sospechosos
   * @return Iterableado de eventos sospechosos asociados a los patrones
   */
- public Iterable<IEventoVehiculo> darEventosSospechososPorPatron(IVehiculo vehiculo, IRuta ruta, Iterable<IEventoVehiculo> bitacoraRuta);
+ public Iterable<IEventoVehiculo> darEventosSospechososPorPatron(IVehiculo vehiculo, IRuta ruta, Iterable<IEventoVehiculo> bitacoraRuta){
+   PilaEventosSospechosos pilaEventos = new PilaEventosSospechosos(vehiculo, ruta);
+   
+   
+//   Iterator<EventoVehiculo> it = bitacoraRuta.iterator();
+//  while(it.hasNext()){
+//      EventoVehiculo temp = it.next();
+//      if(i==0){
+//        T ref= bitacora.dar(bitacora.size());
+//        bitacora.agregarDesde(temp, ref);
+//      }
+//      else{
+//      T ref= bitacora.dar(i-1);
+//      bitacora.agregarDesde(temp, ref);
+//      }
+//      i++;
+//    }
+   
+   
+   return pilaEventos;
+ }
 
  /**
   * M�todo que permite obtener todos los eventos reportados por un veh�culo en un �rea
@@ -97,7 +138,17 @@ Gson aLeer = new ProcessJSON;
   * @param bitacoraEventos bitacora de eventos para la ruta del cual se desea obtener los eventos en el �rea
   * @return lista de eventos que ocurrieron en el �rea determinada
   */
- public Iterable<IEventoVehiculo> darEventosPorArea(IPunto surOeste, IPunto norEste, Iterable<IEventoVehiculo> bitacoraEventos);
+ public Iterable<IEventoVehiculo> darEventosPorArea(IPunto surOeste, IPunto norEste, Iterable<IEventoVehiculo> bitacoraEventos){
+ ColaEventos eventosArea = new ColaEventos(); 
+ Iterator<EventoVehiculo> it = bitacoraRuta.iterator();
+    while(it.hasNext()){
+      EventoVehiculo temp = it.next();
+      if((temp.estaEnCuadrado( norEste,  surEste, temp.darPunto())==true){
+      eventosArea.poll(temp);
+      }
+       }
+ return eventosArea;
+ }
 
  /**
   * M�todo que retorna todos los eventos ocurridos en una ruta para un intervalo de tiempo dados por
@@ -107,7 +158,18 @@ Gson aLeer = new ProcessJSON;
   * @param fechaFin fecha final de consulta
   * @return lista con los eventos ocurridos para la ruta en las fechas determinadas
   */
- public Iterable<IEventoVehiculo> darEventosRutaPorTiempo(Iterable<IEventoVehiculo> bitacoraRuta, Date fechaInicio, Date fechaFin);
+    public Iterable<IEventoVehiculo> darEventosRutaPorTiempo(Iterable<IEventoVehiculo> bitacoraRuta, Date fechaInicio, Date fechaFin){
+    ColaEventos cola = new ColaEventos;
+    Iterator<EventoVehiculo> it = bitacoraRuta.iterator();
+    while(it.hasNext()){
+      EventoVehiculo temp = it.next();
+      if(temp.getEstampillaTiempo().compareTo(fechaInicio)>=0&&temp.getEstampillaTiempo().compareTo(fechaFin)<=0){
+      cola.offer(temp);
+      }
+      temp = temp.next();
+    }
+    return cola;
+    }
 
  /**
   * M�todo que permite buscar el veh�culo que m�s reporta accidentes
@@ -135,6 +197,16 @@ Gson aLeer = new ProcessJSON;
   * @param fechaFin fecha final de consulta
   * @return consumo promedio de combustible para los veh�culos en las fechas ingresadas
   */
- public double darPromedioConsumoCombustiblePorFechas(Date fechaInicio, Date fechaFin);
-
+ public double darPromedioConsumoCombustiblePorFechas(Date fechaInicio, Date fechaFin){
+ double gas=0;
+ j=0
+   for(int i =0;i<listaVehiculos.size(); i++){
+    Vehiculo temp = listaVehiculos.get(i);
+    if(temp.darFechaInicio().compareTo(fechaInicio)>=0&&temp.darFechaFin().compareTo(fechaFin)<=0){
+   gas+= temp.darGasolina();
+    }
+ j++;
+ }
+ return(gas/j);
 }
+ }

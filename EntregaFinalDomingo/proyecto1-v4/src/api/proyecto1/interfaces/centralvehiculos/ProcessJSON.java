@@ -6,8 +6,6 @@ import com.google.gson.Gson;
 import com.google.gson.stream .JsonReader;
 import com.google.gson.stream.JsonToken;
 import java.util.Scanner;
-//copia de CentralVehiculos para cambiar
-//TODO
 
 //File archJson = new File("...");
 //InputStream inputStream = new FileInputStream(archJson);
@@ -44,6 +42,6 @@ public class ProcessJSON
   }
   public void readAsParcer(File archivo)
   {
-    //odio esto
+    //Todo
   }
 }

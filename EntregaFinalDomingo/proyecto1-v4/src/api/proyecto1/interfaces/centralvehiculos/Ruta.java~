@@ -4,7 +4,7 @@ package api.proyecto1.interfaces.centralvehiculos;
  *Ruta modela una ruta definida como un conjunto de segmentos
  */
 public class Ruta implements IRuta {
-private ListaSegmentos listaSegmentos;
+private Iterable<ListaSegmento> listaSegmentos;
 private ListaEventosAutorizados listaEventosAutorizados;
 private int idRuta;
 private String nombre;
@@ -15,6 +15,29 @@ private String nombre;
   ListaSegmentos listaSegmentos = new ListaSegmentos();
   ListaEventosAutorizados listaEventosAutorizados = new ListaEventosAutorizados();
   }
+  
+  
+  public Iterable<Segmentos> darSegmentosNoAutorizados(){
+   ListaSegmentos segmentosNoAutorizados = new ListaSegmentos();
+   Iterator<Segmentos> it = listaSegmentos.iterator();
+    while(listaSegmentos.hasNext()){
+      Segmento temp = it.next();
+      if(temp.esHorizontaloVertical()==false){
+        if(segmentosNoAutorizados.estaVacia()==true){
+       segmentosNoAutorizados.agregarAlPrincipio(temp); 
+        }
+        else{
+          Segmento ref =segmentosNoAutorizados.dar(segmentosNoAutorizados.size());
+       segmentosNoAutorizados.agregarDespuesDe(temp,T ref)
+        }
+      }
+      it.next();
+    }
+    return segmentosNoAutorizados;
+    
+  }
+  
+  
   public String darNombre(){
   return nombre;
  }
@@ -26,7 +49,7 @@ private String nombre;
   * @return Iterablea de segmentos
   */
   public Iterable<ListaSegmento> getSegmentos(){
-  return listaSegmentos;
+  return listaSegmentos.iterator();
   }
 
  /**
@@ -34,6 +57,7 @@ private String nombre;
   * @param segmentos
   */
   public void setSegmentos(Iterable<Segmento> segmentos){
+   
     while(segmentos!=null){
       
       listaSegmemtos.agregarAlPrincipio(segmento);
