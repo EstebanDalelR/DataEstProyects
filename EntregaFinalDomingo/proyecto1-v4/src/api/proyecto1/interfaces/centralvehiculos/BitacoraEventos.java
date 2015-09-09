@@ -4,8 +4,10 @@ private NodeLista nodo;
 private int size; 
 private Vehiculo ve;
 private Ruta ru;
-public BitacoraEventos(Vehiculo vehiculo, Ruta ruta){
+private MergeSort;
+public Iterable<T> BitacoraEventos(Vehiculo vehiculo, Ruta ruta){
 BitacoraEventos bitacoara = new BitacoraEventos;
+MergeSort merge= new MergeSot();
 size=0;
 ve=vehiculo;
 ru=ruta;
@@ -147,10 +149,10 @@ size++;
 public T darElemento(){
   return nodo.darElemento();
 }
-public void eliminar repetidos(){
-    for(int i =0;i-bitacora.darTamanio()-1;i++){
+public void eliminarRepetidos(){
+    for(int i =0;i<bitacora.darTamanio()-1;i++){
     EventoVehiculo temp = bitacora.get(i);
-    for(int j=i+1;j-bitacora.darTamanio();j++){
+    for(int j=i+1;j<bitacora.darTamanio();j++){
     EventoVehiculo revisar = bitacora.get(j);
     if(temp.getEstampillaTiempo().equals(revisar.getEstampillaTiempo())&&temp.getTipo()==revisar.getTipo()){
     T eliminado = bitacora.eliminar(revisar);
@@ -158,7 +160,38 @@ public void eliminar repetidos(){
     }
     }
   }
-  public void recibirEventos(){}
+public void ordenarPorFecha(Iterable<EventoVehiculo> bitacoraE){
+  
+}
+  public void unificarEventos(Iterable<EventoVehiculo> cola, Iterable<EventoVehiculo> reportados){
+    int i=0;
+    while(cola.estaVacia==false){
+      if(i==0){
+      bitacora.agregarAlPrincipio(cola.poll());
+      }
+      else{
+      T ref= bitacora.dar(i-1);
+      bitacora.agregarDespuesDe(cola.poll(),T ref)
+      }
+        i++;
+    }
+    Iterator<EventoVehiculo> it = reportados.iterator();
+    while(reportados.hasNext()){
+      EventoVehiculo temp = it.next();
+      if(i==0){
+        T ref= bitacora.dar(bitacora.size());
+        bitacora.agregarDesde(temp, ref);
+      }
+      else{
+      T ref= bitacora.dar(i-1);
+      bitacora.agregarDesde(temp, ref);
+      }
+      i++;
+    }
+    this.eliminarRepetidos();
+    MergeSort(bitacora);
+    merge(bitacora);
+  }
 
 }
 

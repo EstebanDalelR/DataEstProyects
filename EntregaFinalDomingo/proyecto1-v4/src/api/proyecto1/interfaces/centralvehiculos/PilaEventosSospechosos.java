@@ -4,8 +4,12 @@ import java.util.Stack;
 public class PilaEventosSospechosos implements IPilaEventosSospechosos{
 private Node first;
 private int size;
-  public PilaEventosSospechosos(){  
+private Vehiculo vehicu;
+private Ruta rut;
+  public Iterable<T> PilaEventosSospechosos(Vehiculo vehiculo, Ruta ruta){  
   PilaEventosSospechosos pilaSos= new PilaEventosSospechosos();
+  vehicu = vehiculo;
+  rut = ruta;
   size=0;
   }
   /**

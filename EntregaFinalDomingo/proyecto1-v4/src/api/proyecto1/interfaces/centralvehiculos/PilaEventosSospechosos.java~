@@ -2,8 +2,8 @@ package api.proyecto1.interfaces.centralvehiculos;
 import java.util.Stack;
 
 public class PilaEventosSospechosos implements IPilaEventosSospechosos{
-  Node first;
-  int size;
+private Node first;
+private int size;
   public PilaEventosSospechosos(){  
   PilaEventosSospechosos pilaSos= new PilaEventosSospechosos();
   size=0;

@@ -5,14 +5,15 @@ package api.proyecto1.interfaces.centralvehiculos;
  * sus dispositivos enteros
  */
 public class Vehiculo {
-private iterable<EventoVehiculo> colaEventos;
+private Iterable<EventoVehiculo> colaEventos;
 private Ruta rutaVehiculo;
 private int idVehiculo;
 private TipoVehiculo tipoVehiculo;
 private int capacidad;
 private int modelo;
 private String placa;
-
+private long fechaInicioRuta;
+private long fechaFinRuta;
 public vehiculo(int pId, TipoVehiculo pTipo, String pPlaca, int pModelo, int pCapacidad){
 ColaEventos colaEventos = new ColaEventos();
 idVehiculo=pId;
@@ -74,5 +75,26 @@ rutaVehiculo=ruta;
 public IRuta getRuta(){
 return rutaVehiculo;
 }
-
+public void iniciarRuta(Ruta ruta, EventoVehiculo evento){
+  if(evento==INICIAR_RUTA){
+  ruta.iniciarRuta(evento);
+  fechaInicioRuta = evento.getEstampillaTiempo();
+  }
+}
+public void finalizarRuta(Ruta ruta, EventoVehiculo evento){
+  if(evento==TERMINAR_RUTA){
+  gasolinaFinal = evento.getGasolina();
+  ruta.finalizarRuta(evento);
+  fechaFinRuta=evento.getEstampillaTiempo();
+  }
+}
+public double darGasolina(){
+return ruta.gasolina()
+}
+public long darFechaInicio(){
+return fechaInicioRuta;
+}
+public long darFechaFin(){
+  return fechaFinRuta;
+}
 }
