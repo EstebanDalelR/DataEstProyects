@@ -121,7 +121,14 @@ public class CentralLlamadas implements ICentralLlamdas
    */
   public double darPromedioCierreCasosPorFecha(Date fechaInicial, Date fechaFinal)
   {
-    //TODO
+    double casosCerrados=0;
+    int sumaCasosC=0;
+    for(i=0;i<listaAgentes;i++)
+    {
+    }
+    casosCerrados=(sumaCasos/(listaAgentes.length()));
+    sys.out.println("el promedio de casos cerrados en estas fechas es " + casosCerrados);//TODO
+    return casosCerrados;
   }
   
   /**
@@ -134,6 +141,14 @@ public class CentralLlamadas implements ICentralLlamdas
    */
   public double darPromedioCierreCasosAgentePorFecha(Agente agente, Date fechaInicia, Date fechaFinal)
   {
+    double casosCerrados=0;
+    int sumaCasosC=0;
+    for(i=0;i<listaAgentes;i++)
+    {
+    }
+    casosCerrados=(sumaCasos/(listaAgentes.length()));
+    sys.out.println("el promedio de casos cerrados en estas fechas es " + casosCerrados);//TODO
+    return casosCerrados;
     //TODO
   }
   
@@ -152,7 +167,10 @@ public class CentralLlamadas implements ICentralLlamdas
    */
   public void desactivarAgente(Agente agente)
   {
-    //TODO
+    
+    listaAgentes.eliminarAgente();
+      
+      //TODO
   }
   
   /**
@@ -161,16 +179,17 @@ public class CentralLlamadas implements ICentralLlamdas
    */
   public void activarAgente(Agente agente)
   {
-    //TODO
+    listaAgentes.agregarAgente(agente);
+//TODO
   }
   
   /**
    * M�todo que retorna el agente que atiende llamadas en el momento
    * return agente activo
    */
-  public IAgente darAgenteActivo()
+  public Agente darAgenteActivo()
   {
-    //TODO
+    listaAgentes.atenderAgente();//TODO
   }
   
 }
