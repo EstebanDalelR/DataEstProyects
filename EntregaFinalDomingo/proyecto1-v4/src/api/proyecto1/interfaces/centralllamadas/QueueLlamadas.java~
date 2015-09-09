@@ -8,7 +8,6 @@ public class QueueLlamadas<T> implements serializable, ICola
   private tamanioEst=0;
   private Object elementos[];
   
-  
   public QueueLlamadas()
   {
     elementos= (T[]) new Object[tamanioEst];

@@ -29,12 +29,12 @@ public class ListaClientes<T> implements ILista
     for(i=0; i<elementos.size;i++)
     {
       if(elementos[i].equals(aBuscar)
-           {
+      {
         return elementos[i];
       }
-         }
-    return null;
     }
+    return null;
+  }
   public T buscarPorIndice(int indice)
   {
     if(indice>=0&&indice<elementos.length)
@@ -42,5 +42,5 @@ public class ListaClientes<T> implements ILista
       return elementos[i];
     }
   }
-  }
-}
+  
+  
