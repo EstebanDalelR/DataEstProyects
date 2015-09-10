@@ -5,8 +5,8 @@ import estructuras.cola.ICola;
 public class ListaAgentes<T> implements serializable, ILista
 {
   
-  private tamanioEst=0;
-  private Object elementos[];\
+  private int tamanioEst=0;
+  private Object elementos[];
     
     public ListaAgentes()
   {

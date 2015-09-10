@@ -5,7 +5,7 @@ import estructuras.cola.ICola;
 public class QueueLlamadas<T> implements serializable, ICola
 {
   
-  private tamanioEst=0;
+  private int tamanioEst=0;
   private Object elementos[];
   
   public QueueLlamadas()

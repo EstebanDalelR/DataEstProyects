@@ -2,6 +2,7 @@ package api;
 public class CentralLlamadas implements ICentralLlamdas
 {
   private ListaAgentes agenteslibres;
+  private ArrayList listaCasos;
   /**
    * M�todo que permite iniciar la central de llamadas, realiza las acciones
    * necesarias para que la central de llamadas pueda atender los eventos de control
@@ -18,13 +19,12 @@ public class CentralLlamadas implements ICentralLlamdas
    */
   public void recibirEventosControl(File archivo)
   {
-    //leer JSON
+    ProcessJSON.readAsParser(archivo);//leer JSON
   }
   
   public void agregarAgente(Agente nAgente)
   {
-    Agente creado= nAgente;
-    agentesLibres.agregarAgente(creado);
+    listaAgentes.agregarAgente(nAgente);
   }
   
   /**
@@ -56,7 +56,7 @@ public class CentralLlamadas implements ICentralLlamdas
    */
   public void finalizarCaso(Caso caso)
   {
-    //TODO
+    for(listaCasos)//TODO
   }
   
   /**

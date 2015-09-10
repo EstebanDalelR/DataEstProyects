@@ -2,13 +2,13 @@ package api;
 
 import estructuras.cola.ICola;
 
-public class QueueAgentes<T> implements serializable, ICola
+public class ListaAgentes<T> implements serializable, ILista
 {
   
   private tamanioEst=0;
   private Object elementos[];\
     
-  public QueueAgentes()
+    public ListaAgentes()
   {
     elementos= (T[]) new Object[tamanioEst];
   }
@@ -25,40 +25,30 @@ public class QueueAgentes<T> implements serializable, ICola
     int nuevoTamanio= elementos.length*2;
     elementos= Arrays.copyOf(elementos, nuevoTamanio);
   }
-  public T mostrarPrimerAgente()
+  public T eliminarAgente(T input)
   {
-    if(!elementos.isEmpty())
+    for(i=0;i<elementos.length;i++)
     {
-      for(i=0;i<elementos.length;i++)
+      if(elementos[i].equals(input))
       {
-        if(!elementos[i].equals(null))
-        {
-          return elementos[i];     
-        }
+        T retornar=elementos[i];
+        elementos[i]==null;
+        return retornar;     
       }
     }
-    else
-    {
-      return null;
-    }
+    return null;
   }
   public T atenderAgente() 
   {
-    if(!elementos.isEmpty())
+    for(i=0;i<elementos.length;i++)
     {
-      for(i=0;i<elementos.length;i++)
+      if(!elementos[i].equals(null))
       {
-        if(!elementos[i].equals(null))
-        {
-          T elementoT= elementos[i];
-          elementos[i]==null;
-          return elementoT;     
-        }
+        T retornar=elementos[i];
+        elementos[i]==null;
+        return retornar;    
       }
     }
-    else
-    {
-      return null;
-    }
+    return null;
   }
 }

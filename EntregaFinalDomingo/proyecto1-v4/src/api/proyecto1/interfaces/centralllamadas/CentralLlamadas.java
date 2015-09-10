@@ -1,7 +1,7 @@
 package api;
 public class CentralLlamadas implements ICentralLlamdas
 {
-  private ListaAgentes agenteslibres;
+  private ListaAgentes listaAgentes;
   private ArrayList listaCasos;
   /**
    * M�todo que permite iniciar la central de llamadas, realiza las acciones
@@ -33,7 +33,7 @@ public class CentralLlamadas implements ICentralLlamdas
    */
   public void procesarLlamada(Llamada nLlamada)
   {
-    agentesLibres.atenderAgente().atenderLlamada(nLlamada);//TODO
+    listaAgentes.atenderAgente().atenderLlamada(nLlamada);//TODO
   }
   
   /**
@@ -46,6 +46,7 @@ public class CentralLlamadas implements ICentralLlamdas
   public Caso iniciarCaso(Cliente nCliente, Llamada nLlamada, CategoriaCaso nCategoria)
   {
     Caso creado = new Caso(nCategoria, nCliente, nLlamada);
+    listaCasos.add(creado);
     return creado;
 //TODO
   }
@@ -54,9 +55,16 @@ public class CentralLlamadas implements ICentralLlamdas
    * M�todo que permite a un agente cerrar el caso.
    * @param caso que se desea cerrar
    */
-  public void finalizarCaso(Caso caso)
+  public void finalizarCaso(Caso nCaso)
   {
-    for(listaCasos)//TODO
+    for(i=0;i<listaCasos;i++)
+    {
+      if(listaCasos[i].equals(nCaso))
+      {
+        listaCasos[i].setEstado(EstadoCaso.CERRADO);
+      }
+    }
+//TODO
   }
   
   /**
@@ -67,7 +75,13 @@ public class CentralLlamadas implements ICentralLlamdas
    */
   public Iterable<Llamada> unificarLlamadas(Iterable<Iterable<Llamada>> llamadasComputadorAgentes)
   {
-    //TODO
+    ArrayList llamadasUnificadas= new ArrayList;
+    for(i=0;i<listaAgentes.length;i++)
+    {
+      llamadasUnificadas.add(listaAgentes[i].darLlamadasAtendidas());
+    } 
+    return llamadasUnificadas;
+//TODO
   }
   
   /**
@@ -78,7 +92,12 @@ public class CentralLlamadas implements ICentralLlamdas
    */
   public Iterable<Caso> darCasosNoSolucionadosPorFecha(Date fechaInicial, Date fechaFinal)
   {
-    //TODO
+    ArrayList casosNoSol= new ArrayList;
+    for(i=0;i<listaAgentes.length;i++)
+    {
+      if(
+    } 
+    return llamadasUnificadas;//TODO
   }
   
   /**
