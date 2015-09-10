@@ -15,6 +15,8 @@ private PilaEventosSospechos pilaEventos;
   */
 public void iniciarCentralVehiculos(){
 Gson aLeer = new ProcessJSON;
+listaVehiculos = new ArrayList;
+listaBitacoras = new ArrayList;
 }
 
  /**
@@ -26,7 +28,10 @@ Gson aLeer = new ProcessJSON;
  public void recibirEventosControl(File archivo){
     //leer JSON
   }
-
+ public void crearVehiculo(Vehiculo){
+ Vehiculo nuevo = new Vehiculo(vehiculo.darId(), vehiculo.darTipoVehiculo(), vehiculo.darPlacas(), vehiculo.darModelo, darCapacidad());
+ listaVehiculos.add(nuevo);
+ }
  /**
   * M�todo que permite cargar una ruta a un veh�culo
   * @param vehiculo al que se le desea cargar la ruta
@@ -97,7 +102,8 @@ Gson aLeer = new ProcessJSON;
   * @return bitacora de eventos para la ruta, listado de eventos ordenado por sucesos y sin repeticiones
   */
  public Iterable<IEventoVehiculo> unificarEventosRuta(IVehiculo vehiculo, IRuta ruta){
- BitacoraEventos bitacora = newBitacoraEventos(vehiculo, ruta);
+ BitacoraEventos bitacora = new BitacoraEventos(vehiculo, ruta);
+vehiculo.asignarBitacoraARuta(bitacora);
  bitacora.unificarEventos(vehiculo.getEventos(), eventosReportados);
  return bitacora;
  }
@@ -108,26 +114,54 @@ Gson aLeer = new ProcessJSON;
   * @param bitacoraRuta bitacora para la ruta de la cual se desean saber los eventos sospechosos
   * @return Iterableado de eventos sospechosos asociados a los patrones
   */
- public Iterable<IEventoVehiculo> darEventosSospechososPorPatron(IVehiculo vehiculo, IRuta ruta, Iterable<IEventoVehiculo> bitacoraRuta){
+ public Iterable<IEventoVehiculo> darEventosSospechososPorPatron(Vehiculo vehiculo, Ruta ruta, Iterable<IEventoVehiculo> bitacoraRuta){
    PilaEventosSospechosos pilaEventos = new PilaEventosSospechosos(vehiculo, ruta);
    
+   Iterator<EventoVehiculo> it = vehiculo.getEventos().iterator();
+   while(it.hasNext()){
+     EventoVehiculo a = it.next();
+     if(vehiculo.estaEnRuta(a)==false){
+     pilaEventos.push(a);
+     }   
+   }
+   PilaEventosSospechosos<EventoVehiculo> nueva = pilaEventos.voltear();
+   Iterator<EventoVehiculo> iter = nueva.getEventos().iterator();
+   PilaEventosSospechosos<EventoVehiculo> sos = new PilaEventosSospechosos;
+   int contador ==0;
+   while(iter.hasNext()){
+     EventoVehiculo temp = iter.next();
+     if(contador==0&&temp.darTipo()==APAGAR_VEHICULO){
+       sos.offer(temp);
+       contador++;
+     }
+     else if((contador==1&&temp.darTipo()==ABRIR_PUERTA_VEHICULO)||(contador==1&&temp.darTipo()==ABRIR_PUERTA_CARGA)){
+     sos.offer(temp);
+       contador++;
+     }
+     else if((contador==2&&temp.darTipo()==ABRIR_PUERTA_CARGA)||(contador==2&&temp.darTipo()==SUBIR_PASAJERO)){
+     sos.offer(temp);
+       contador++;
+     }
+      else if((contador==3&&temp.darTipo()== CERRAR_PUERTA_VEHICULO)||(contador==3&&temp.darTipo()==SENSOR_PESO)){
+     sos.offer(temp);
+       contador++;
+     }
+      else if((contador==4&&temp.darTipo()== CERRAR_PUERTA_CARGA)||(contador==4&&temp.darTipo()== ENCENDER_VEHICULO)){
+     sos.offer(temp);
+       contador++;
+     }
+        else if(contador==5&&temp.darTipo()==CERRAR_PUERTA_VEHICULO){
+     sos.offer(temp);
+       contador++;
+     }
+                else if(contador==6&&temp.darTipo()==ENCENDER_VEHICULO){
+     sos.offer(temp);
+       contador++;
+     }
+      
+   }
    
-//   Iterator<EventoVehiculo> it = bitacoraRuta.iterator();
-//  while(it.hasNext()){
-//      EventoVehiculo temp = it.next();
-//      if(i==0){
-//        T ref= bitacora.dar(bitacora.size());
-//        bitacora.agregarDesde(temp, ref);
-//      }
-//      else{
-//      T ref= bitacora.dar(i-1);
-//      bitacora.agregarDesde(temp, ref);
-//      }
-//      i++;
-//    }
-   
-   
-   return pilaEventos;
+   return sos;
  }
 
  /**
@@ -175,7 +209,9 @@ Gson aLeer = new ProcessJSON;
   * M�todo que permite buscar el veh�culo que m�s reporta accidentes
   * @return
   */
- public IVehiculo buscarVehiculoMasAccidentado();
+    public Vehiculo buscarVehiculoMasAccidentado(){
+    
+    }
 
  /**
   * M�todo que permite buscar el Segmento donde se reportan m�s accidentes de veh�culos
@@ -209,4 +245,16 @@ Gson aLeer = new ProcessJSON;
  }
  return(gas/j);
 }
+ public void setEventosSospechoso(){
+for(int i =0;i<listaVehiculos.size(); i++){
+Vehiculo temp = listaVehiculos.get(i);
+Iterator<EventoVehiculo> it = temp.getEventos.iterator();
+   while(it.hasNext()){
+     EventoVehiculo a = it.next();
+     if(temp.estaEnRuta(a)==false){
+     pilaEventos.push(a);
+     }   
+   }
+ }
+ }
  }

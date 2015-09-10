@@ -5,6 +5,20 @@ private Punto punto;
 private TipoEventoVehiculo tipoEvento;
 private long fecha;
 enum TipoEventoVehiculo;
+private int idCliente;
+private int idDespacho;
+public EventoVehiculo(TipoEventoVehiculo evento, Punto point, int pIdCliente, int pIdDespacho){
+this.setTipo(evento);
+this.setPunto(point);
+idCliente = pIdCliente;
+idDespacho=pIdDespacho;
+}
+public int darIdCliente(){
+return idCliente;
+}
+public int darIdDespacho(){
+return idDespacho;
+}
 public void setTipo(TipoEventoControl tipo)
   {
   tipoEvento = tipo;

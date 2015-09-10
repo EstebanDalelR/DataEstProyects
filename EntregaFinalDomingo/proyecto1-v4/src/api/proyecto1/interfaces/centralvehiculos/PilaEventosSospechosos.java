@@ -8,6 +8,7 @@ private Vehiculo vehicu;
 private Ruta rut;
   public Iterable<T> PilaEventosSospechosos(Vehiculo vehiculo, Ruta ruta){  
   PilaEventosSospechosos pilaSos= new PilaEventosSospechosos();
+  
   vehicu = vehiculo;
   rut = ruta;
   size=0;
@@ -32,8 +33,14 @@ private Ruta rut;
    *@return elemento atendido y removido de la Pila  
    */
   public Object pop(){
-    Object temp = first.element;
-    first = first.next();
+    Node anterior = first;
+    Node ult=anterior.next();
+    while(ult.next()!=null){
+    anterior = ult;
+      ult=ult.next();
+    }
+    anterior.cambiarSiguiente(null);
+    Object temp = ult.element;
     size--;
     return temp;
   }
@@ -90,6 +97,25 @@ private Ruta rut;
    Object a =temp.pop();
    nueva.add(a);
    }
+  }
+ public Iterable<EventoVehiculo> voltear(){
+   int tamanio=0;
+   tamanio = pilaSos.size();
+ EventoVehiculo[] temporal= new EventoVehiculo[tamanio];
+  while(pilaSos.isEmpty()==false){
+   temporal[pilaSos.size()] = pilaSos.pop();
+    }
+  PilaEventosSospechosos nueva = new PilaEventosSospechosos;
+  boolean termino = false;
+  while(termino==false){
+    EventoVehiculo a = temporal[tamanio];
+    nueva.push(a);
+    tamanio--;
+    if(tamanio==0){
+    termino=true;
+    }
+    return nueva;
+  }
   }
   }
   

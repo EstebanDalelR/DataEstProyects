@@ -160,8 +160,16 @@ public void eliminarRepetidos(){
     }
     }
   }
-public void ordenarPorFecha(Iterable<EventoVehiculo> bitacoraE){
-  
+public int darNumeroAccidentes(){
+  int i = 0;
+  int contador=0;
+  while(i<bitacora.darTamanio)(){
+  EventoVehiculo temp = bitacora.dar(i);
+  if(temp.darTipo()==ACCIDENTE){
+    contador++;
+  }
+  }
+  return contador;
 }
   public void unificarEventos(Iterable<EventoVehiculo> cola, Iterable<EventoVehiculo> reportados){
     int i=0;
