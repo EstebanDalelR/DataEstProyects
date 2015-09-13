@@ -97,4 +97,10 @@ return fechaInicioRuta;
 public long darFechaFin(){
   return fechaFinRuta;
 }
+public void asignarBitacoraARuta(Iterable<EventoVehiculo> bitacora){
+ruta.asignarBitacoraARuta(bitacora);
+}
+public boolean estaEnRuta(EventoVehiculo evento){
+return ruta.puntoEnSegmentoDeRuta(evento.darPunto());
+}
 }

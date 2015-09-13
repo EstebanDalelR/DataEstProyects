@@ -4,21 +4,28 @@ package api.proyecto1.interfaces.centralvehiculos;
  *Ruta modela una ruta definida como un conjunto de segmentos
  */
 public class Ruta implements IRuta {
-private Iterable<ListaSegmento> listaSegmentos;
-private ListaEventosAutorizados listaEventosAutorizados;
+private Iterable<ListaSegmentos> listaSegmento;
+private Iterable<EventosAutorizados> listaEventosAutorizados;
+private Iterable<EventosAutorizados> bitacora;
 private int idRuta;
 private String nombre;
 private double gasolinaInicial
-private double gasolinaFinal; 
-  public Ruta(int pId, String pNombre){
+private double gasolinaFinal;
+public Ruta(int pId, String pNombre){
   idRuta= pId;
   nombre= pNombre;
   ListaSegmentos listaSegmentos = new ListaSegmentos();
   ListaEventosAutorizados listaEventosAutorizados = new ListaEventosAutorizados();
+  Iterable<EventosAutorizados> bitacora = new Iterable<EventosAutorizados>;
   }
+public void asignarBitacoraARuta(Iterable<EventosAutorizados> pBitacora){
+bitacora =  pBitacora;
+  }
+public Iterable<EventosAutorizados> darBitacora(){
+return bitacora.iterator();
+}
   
-  
-  public Iterable<Segmentos> darSegmentosNoAutorizados(){
+public Iterable<Segmentos> darSegmentosNoAutorizados(){
    ListaSegmentos segmentosNoAutorizados = new ListaSegmentos();
    Iterator<Segmentos> it = listaSegmentos.iterator();
     while(it.hasNext()){
@@ -135,3 +142,4 @@ public double gasolina(){
 return gasolinaInicial-gasolinaFinal;
 }
 }
+
