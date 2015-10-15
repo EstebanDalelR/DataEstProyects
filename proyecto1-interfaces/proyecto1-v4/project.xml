@@ -3,6 +3,7 @@
   <project autorefresh="true" build="bin/" main="taller.Main" manifest="" root="src/" work="">
     <createjar file="proyecto1.jar" flags="12"/>
     <source>
+<<<<<<< HEAD
       <file active="true" name="api/proyecto1/interfaces/centralllamadas/Caso.java" package="api" timestamp="03-Sep-2015 12:08:31">
         <select from="1203" to="1203"/>
         <scroll column="723" row="0"/>
@@ -22,92 +23,274 @@
       <file name="api/proyecto1/interfaces/centralvehiculos/ProcessJSON.java" package="api.proyecto1.interfaces.centralvehiculos" timestamp="27-Aug-2015 15:14:47">
         <select from="1203" to="1203"/>
         <scroll column="723" row="0"/>
+||||||| merged common ancestors
+      <file active="true" name="api/proyecto1/interfaces/centralllamadas/Caso.java" package="api" timestamp="27-Aug-2015 08:58:35">
+        <select from="1136" to="1136"/>
+        <scroll column="593" row="0"/>
+=======
+      <file active="true" name="api/proyecto1/interfaces/analisisunificado/AnalisisUnificado.java" package="api" timestamp="27-Aug-2015 12:15:22">
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+      </file>
+      <file name="api/proyecto1/interfaces/centralllamadas/Caso.java" package="api" timestamp="27-Aug-2015 08:58:35">
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+>>>>>>> intentoUnir
       </file>
       <file name="api/proyecto1/interfaces/TipoEventoControl.java" package="api.proyecto1.interfaces" timestamp="25-Aug-2015 16:36:28">
+<<<<<<< HEAD
         <select from="1203" to="1203"/>
         <scroll column="723" row="0"/>
+||||||| merged common ancestors
+        <select from="1136" to="1136"/>
+        <scroll column="593" row="0"/>
+=======
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+>>>>>>> intentoUnir
       </file>
       <file name="api/proyecto1/interfaces/centralvehiculos/IVehiculo.java" package="api.proyecto1.interfaces.centralvehiculos" timestamp="20-Aug-2015 18:52:44">
+<<<<<<< HEAD
         <select from="1203" to="1203"/>
         <scroll column="723" row="0"/>
+||||||| merged common ancestors
+        <select from="1136" to="1136"/>
+        <scroll column="593" row="0"/>
+=======
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+>>>>>>> intentoUnir
       </file>
       <file name="test/MainTest.java" package="test" timestamp="20-Aug-2015 15:41:24">
+<<<<<<< HEAD
         <select from="1203" to="1203"/>
         <scroll column="723" row="0"/>
+||||||| merged common ancestors
+        <select from="1136" to="1136"/>
+        <scroll column="593" row="0"/>
+=======
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+>>>>>>> intentoUnir
       </file>
       <file name="mundo/Main.java" package="mundo" timestamp="20-Aug-2015 15:41:28">
+<<<<<<< HEAD
         <select from="1203" to="1203"/>
         <scroll column="723" row="0"/>
+||||||| merged common ancestors
+        <select from="1136" to="1136"/>
+        <scroll column="593" row="0"/>
+=======
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+>>>>>>> intentoUnir
       </file>
       <file name="api/proyecto1/interfaces/centralllamadas/CategoriaCaso.java" package="api.proyecto1.interfaces.centralllamadas" timestamp="20-Aug-2015 15:40:08">
+<<<<<<< HEAD
         <select from="1203" to="1203"/>
         <scroll column="723" row="0"/>
+||||||| merged common ancestors
+        <select from="1136" to="1136"/>
+        <scroll column="593" row="0"/>
+=======
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+>>>>>>> intentoUnir
       </file>
       <file name="api/proyecto1/interfaces/centralllamadas/EstadoCaso.java" package="api.proyecto1.interfaces.centralllamadas" timestamp="20-Aug-2015 15:40:10">
+<<<<<<< HEAD
         <select from="1203" to="1203"/>
         <scroll column="723" row="0"/>
+||||||| merged common ancestors
+        <select from="1136" to="1136"/>
+        <scroll column="593" row="0"/>
+=======
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+>>>>>>> intentoUnir
       </file>
       <file name="api/proyecto1/interfaces/centralllamadas/ICaso.java" package="api.proyecto1.interfaces.centralllamadas" timestamp="20-Aug-2015 15:40:16">
+<<<<<<< HEAD
         <select from="1203" to="1203"/>
         <scroll column="723" row="0"/>
+||||||| merged common ancestors
+        <select from="1136" to="1136"/>
+        <scroll column="593" row="0"/>
+=======
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+>>>>>>> intentoUnir
       </file>
       <file name="api/proyecto1/interfaces/centralllamadas/IAgente.java" package="api.proyecto1.interfaces.centralllamadas" timestamp="25-Aug-2015 16:27:30">
+<<<<<<< HEAD
         <select from="1203" to="1203"/>
         <scroll column="723" row="0"/>
+||||||| merged common ancestors
+        <select from="1136" to="1136"/>
+        <scroll column="593" row="0"/>
+=======
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+>>>>>>> intentoUnir
       </file>
       <file name="api/proyecto1/interfaces/centralllamadas/ICliente.java" package="api.proyecto1.interfaces.centralllamadas" timestamp="25-Aug-2015 16:28:08">
+<<<<<<< HEAD
         <select from="1203" to="1203"/>
         <scroll column="723" row="0"/>
+||||||| merged common ancestors
+        <select from="1136" to="1136"/>
+        <scroll column="593" row="0"/>
+=======
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+>>>>>>> intentoUnir
       </file>
       <file name="api/proyecto1/interfaces/centralllamadas/IPedidoDespacho.java" package="api.proyecto1.interfaces.centralllamadas" timestamp="20-Aug-2015 15:40:34">
+<<<<<<< HEAD
         <select from="1203" to="1203"/>
         <scroll column="723" row="0"/>
+||||||| merged common ancestors
+        <select from="1136" to="1136"/>
+        <scroll column="593" row="0"/>
+=======
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+>>>>>>> intentoUnir
       </file>
       <file name="api/proyecto1/interfaces/centralvehiculos/IPunto.java" package="api.proyecto1.interfaces.centralvehiculos" timestamp="20-Aug-2015 15:39:48">
+<<<<<<< HEAD
         <select from="1203" to="1203"/>
         <scroll column="723" row="0"/>
+||||||| merged common ancestors
+        <select from="1136" to="1136"/>
+        <scroll column="593" row="0"/>
+=======
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+>>>>>>> intentoUnir
       </file>
       <file name="api/proyecto1/interfaces/centralvehiculos/ISegmento.java" package="api.proyecto1.interfaces.centralvehiculos" timestamp="20-Aug-2015 15:39:54">
+<<<<<<< HEAD
         <select from="1203" to="1203"/>
         <scroll column="723" row="0"/>
+||||||| merged common ancestors
+        <select from="1136" to="1136"/>
+        <scroll column="593" row="0"/>
+=======
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+>>>>>>> intentoUnir
       </file>
       <file name="api/proyecto1/interfaces/centralllamadas/TipoProblema.java" package="api.proyecto1.interfaces.centralllamadas" timestamp="20-Aug-2015 15:40:40">
+<<<<<<< HEAD
         <select from="1203" to="1203"/>
         <scroll column="723" row="0"/>
+||||||| merged common ancestors
+        <select from="1136" to="1136"/>
+        <scroll column="593" row="0"/>
+=======
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+>>>>>>> intentoUnir
       </file>
       <file name="api/proyecto1/interfaces/centralvehiculos/TipoEventoVehiculo.java" package="api.proyecto1.interfaces.centralvehiculos" timestamp="20-Aug-2015 15:40:00">
+<<<<<<< HEAD
         <select from="1203" to="1203"/>
         <scroll column="723" row="0"/>
+||||||| merged common ancestors
+        <select from="1136" to="1136"/>
+        <scroll column="593" row="0"/>
+=======
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+>>>>>>> intentoUnir
       </file>
       <file name="api/proyecto1/interfaces/analisisunificado/IAnalisisUnificado.java" package="api.proyecto1.interfaces.analisisunificado" timestamp="20-Aug-2015 18:45:44">
+<<<<<<< HEAD
         <select from="1203" to="1203"/>
         <scroll column="723" row="0"/>
+||||||| merged common ancestors
+        <select from="1136" to="1136"/>
+        <scroll column="593" row="0"/>
+=======
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+>>>>>>> intentoUnir
       </file>
       <file name="api/proyecto1/interfaces/centralllamadas/ICentralLlamadas.java" package="api.proyecto1.interfaces.centralllamadas" timestamp="25-Aug-2015 16:30:14">
+<<<<<<< HEAD
         <select from="1203" to="1203"/>
         <scroll column="723" row="0"/>
+||||||| merged common ancestors
+        <select from="1136" to="1136"/>
+        <scroll column="593" row="0"/>
+=======
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+>>>>>>> intentoUnir
       </file>
       <file name="api/proyecto1/interfaces/centralllamadas/ILlamada.java" package="api.proyecto1.interfaces.centralllamadas" timestamp="20-Aug-2015 18:49:18">
+<<<<<<< HEAD
         <select from="1203" to="1203"/>
         <scroll column="723" row="0"/>
+||||||| merged common ancestors
+        <select from="1136" to="1136"/>
+        <scroll column="593" row="0"/>
+=======
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+>>>>>>> intentoUnir
       </file>
       <file name="api/proyecto1/interfaces/centralllamadas/IProblema.java" package="api.proyecto1.interfaces.centralllamadas" timestamp="20-Aug-2015 18:50:22">
+<<<<<<< HEAD
         <select from="1203" to="1203"/>
         <scroll column="723" row="0"/>
+||||||| merged common ancestors
+        <select from="1136" to="1136"/>
+        <scroll column="593" row="0"/>
+=======
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+>>>>>>> intentoUnir
       </file>
       <file name="api/proyecto1/interfaces/centralvehiculos/ICentralVehiculos.java" package="api.proyecto1.interfaces.centralvehiculos" timestamp="20-Aug-2015 18:51:36">
+<<<<<<< HEAD
         <select from="1203" to="1203"/>
         <scroll column="723" row="0"/>
+||||||| merged common ancestors
+        <select from="1136" to="1136"/>
+        <scroll column="593" row="0"/>
+=======
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+>>>>>>> intentoUnir
       </file>
       <file name="api/proyecto1/interfaces/centralvehiculos/IEventoVehiculo.java" package="api.proyecto1.interfaces.centralvehiculos" timestamp="20-Aug-2015 18:52:24">
+<<<<<<< HEAD
         <select from="1203" to="1203"/>
         <scroll column="723" row="0"/>
+||||||| merged common ancestors
+        <select from="1136" to="1136"/>
+        <scroll column="593" row="0"/>
+=======
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+>>>>>>> intentoUnir
       </file>
       <file name="api/proyecto1/interfaces/centralvehiculos/IRuta.java" package="api.proyecto1.interfaces.centralvehiculos" timestamp="20-Aug-2015 18:52:38">
+<<<<<<< HEAD
         <select from="1203" to="1203"/>
         <scroll column="723" row="0"/>
+||||||| merged common ancestors
+        <select from="1136" to="1136"/>
+        <scroll column="593" row="0"/>
+=======
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+>>>>>>> intentoUnir
       </file>
       <file name="api/proyecto1/interfaces/TipoEventoDatos.java" package="api.proyecto1.interfaces" timestamp="25-Aug-2015 16:35:58">
+<<<<<<< HEAD
         <select from="1203" to="1203"/>
         <scroll column="723" row="0"/>
       </file>
@@ -162,6 +345,37 @@
       <file name="api/proyecto1/interfaces/centralllamadas/QueueAgentes.java" package="api" timestamp="03-Sep-2015 08:52:25">
         <select from="1203" to="1203"/>
         <scroll column="723" row="0"/>
+||||||| merged common ancestors
+        <select from="1136" to="1136"/>
+        <scroll column="593" row="0"/>
+=======
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+      </file>
+      <file name="api/proyecto1/interfaces/centralllamadas/Llamada.java" package="api" timestamp="27-Aug-2015 11:00:10">
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+      </file>
+      <file name="api/proyecto1/interfaces/centralllamadas/Problema.java" package="api" timestamp="27-Aug-2015 11:04:27">
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+      </file>
+      <file name="api/proyecto1/interfaces/centralllamadas/Agente.java" package="api" timestamp="27-Aug-2015 11:08:43">
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+      </file>
+      <file name="api/proyecto1/interfaces/centralllamadas/Cliente.java" package="api" timestamp="27-Aug-2015 11:23:13">
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+      </file>
+      <file name="api/proyecto1/interfaces/centralllamadas/PedidoDespacho.java" package="api" timestamp="27-Aug-2015 11:37:29">
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+      </file>
+      <file name="api/proyecto1/interfaces/centralllamadas/CentralLlamadas.java" package="api" timestamp="27-Aug-2015 11:52:59">
+        <select from="0" to="0"/>
+        <scroll column="0" row="0"/>
+>>>>>>> intentoUnir
       </file>
     </source>
     <included/>

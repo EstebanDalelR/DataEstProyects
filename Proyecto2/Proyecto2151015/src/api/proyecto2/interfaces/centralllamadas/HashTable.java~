@@ -7,48 +7,46 @@ public class HashTable<T> implements serializable, ILista
   
   private int tamanioEst=0;
   private Object elementos[];
-  private int hashNumber;
   public HashTable()
   {
     elementos= (T[]) new Object[tamanioEst];
   }
-  public void agregar(T aAgregar)
+  public void agregar(T aAgregar, int hashNumber)
   {
-    if(tamanioEst== elementos.length)
-    {
-      agrandarArreglo();
-    }
-    elementos [tamanioEst++] =aAgregar;
+    
   }
   public void agrandarArreglo()
   {
     int nuevoTamanio= elementos.length*2;
     elementos= Arrays.copyOf(elementos, nuevoTamanio);
   }
-  public T eliminarAgente(T input)
+  public T eliminar(T input)
   {
-    for(i=0;i<elementos.length;i++)
-    {
-      if(elementos[i].equals(input))
-      {
-        T retornar=elementos[i];
-        elementos[i]==null;
-        return retornar;     
-      }
-    }
-    return null;
+    
   }
-  public T atenderAgente() 
+  public T buscar() 
   {
-    for(i=0;i<elementos.length;i++)
+   
+  }
+  public int darTamano()
+  {
+    for (i=0;i<elementos.length;i++)
     {
-      if(!elementos[i].equals(null))
+      if(elementos[i].equals(aBuscar)
       {
-        T retornar=elementos[i];
-        elementos[i]==null;
-        return retornar;    
+        return elementos[i];
       }
     }
-    return null;
+  }
+  public boolean estaVacio()
+  {
+    if (elementos.length==0)
+    {
+      return true;
+    }
+    else
+    {
+      return false
+    }
   }
 }

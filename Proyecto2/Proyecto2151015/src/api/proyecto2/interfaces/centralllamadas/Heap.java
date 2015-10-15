@@ -2,71 +2,57 @@ package api;
 
 import estructuras.cola.ILista;
 
-public class HashTable<T> implements serializable, ILista
+public class Heap<T> implements serializable, ILista
 {
-  
   private int tamanioEst=0;
   private Lista elementos[];
-
-  //elemento es value, llave es key
-  
   //------------------------------------
   //Constructors
   //------------------------------------
-  //un construtor para una estructura vacía
-  
-  public HashTable()
+  //un construtor para una estructura vacía 
+
+  public Heap()
   {
     elementos= (T[]) new Object[tamanioEst];
   }
   //un constructor para un tamaño
-  public HashTable(int tam)
+  public Heap(int tam)
   {
-    elementos= (T[]) new Object[tam];
+    elementos = (T[]) new Object[tam];
   }
 
   //------------------------------------
   //Methods
-  //------------------------------------
+  //------------------------------------  
+
   public void agregar(T aAgregar)
   {
-    calcularCarga();
-    elementos[hashCode()].agregar(aAgregar);
+    elementos.agregar(aAgregar);
+    ordenar();
   }
 
-  //este hashTable permite varios mapeos a la misma llave
-  
-  public Lista obtener(int llave)
+  public void Ordenar(Comparable[] pq)
   {
-    Lista retornar = new Lista[];
-    if(!elementos[llave]==null)
+    int N = pq.length;
+    for (int k = N/2; k >= 1; k--)
     {
-    retornar = elementos[llave];
+     sink(pq, k, N);
     }
-    return retornar;
+    while (N > 1) 
+    {
+      exch(pq, 1, N--);
+      sink(pq, 1, N);
+    }
   }
 
-  //rehash
-  
-  
   public void agrandarArreglo()
   {
     int nuevoTamanio= elementos.length*2;
     elementos= Arrays.copyOf(elementos, nuevoTamanio);
-    tamanioEst= nuevoTamanio;
   }
-  
-  public void calcularCarga()
+
+  public void eliminar(T aEliminar)
   {
-  if(tamanioEst/darTamano>=0.75)
-    {
-    agrandarArreglo();
-    }
-  }
-  
-  public boolean contieneLlave(int aBuscar)
-  {
-    Lista aComparar = darLlaves();
     for(i =0; i<elementos.length; i++)
     {
       if(aComparar[i]==aBuscar)
@@ -76,14 +62,7 @@ public class HashTable<T> implements serializable, ILista
     }
     return false;
   }
-  
-  //hashCode para ubicar el elemento
-  
-  public int hashCode(T elemento)
-  {
-  return elemento.toInt()%tamanioEst;
-  }
-  
+
   public boolean contieneElemento(T aBuscar)
   {
     Lista aComparar = darElementos();
@@ -97,44 +76,26 @@ public class HashTable<T> implements serializable, ILista
     return false;
   }
   
-  public Lista darLlaves()
-  {
-    Lista retornar = new Lista[];
-   if(estaVacio())
-    {
-    return null;
-    }
-    for (i =0; i<elementos.length; i++)
-    {
-      if(elementos[i]==null)
-      {}
-      else
-      {
-      retornar.agregar(i);
-      }
-    }
-    return retornar;
-  }
-  
+
   public Lista darElementos() 
   {
   Lista retornar = new Lista[];
    if(estaVacio())
-    {
+   {
     return null;
-    }
-    for (i =0; i<elementos.length; i++)
+   }
+   for (i =0; i<elementos.length; i++)
+   {
+    if(elementos[i]==null)
+    {}
+    else
     {
-      if(elementos[i]==null)
-      {}
-      else
-      {
-      retornar.agregar(elementos[i]);
-      }
+    retornar.agregar(elementos[i]);
     }
+  }
     return retornar;
   }
-  
+
   public int darTamano()
   {
     if(estaVacio())
@@ -164,5 +125,41 @@ public class HashTable<T> implements serializable, ILista
     {
       return false
     }
+  }
+  //------------------------------------
+  //Helper Functions
+  //------------------------------------  
+
+  public void sink(Comparable[] pq, int k, int N)
+  {
+   while (2*k <= N) 
+    {
+    int j = 2*k;
+    if (j < N && less(pq, j, j+1)) 
+    {
+      j++;
+    }
+    if (!less(pq, k, j)) 
+    {
+      break;
+    }
+    exch(pq, k, j);
+    k = j;
+    }
+  }
+
+   public void swim()
+  {
+    while (k > 1 && greater(k/2, k)) 
+    {
+     exch(k, k/2);
+     k = k/2;
+    }
+  }
+
+  private void exch(int i, int j) {
+      Key swap = pq[i];
+      pq[i] = pq[j];
+      pq[j] = swap;
   }
 }

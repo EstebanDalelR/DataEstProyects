@@ -3,9 +3,9 @@ package.api;
 import estructuras.cola.ILista;
 public class ArbolBinarioOrdenado <Key extends Comparable<Key>, Value>
 {
-	// raiz 
-	private Nodo raiz; 
-	//crear clase nodo             
+ // raiz 
+ private Nodo raiz; 
+ //crear clase nodo             
     private class Nodo
     {
         private Key key;           
@@ -20,10 +20,10 @@ public class ArbolBinarioOrdenado <Key extends Comparable<Key>, Value>
             this.N = N;
         }
     }
-	//------------------------------------
+ //------------------------------------
     //Constructors
     //------------------------------------
-    //un construtor para una estructura vacÃ­a 
+    //un construtor para una estructura vacía 
 
     public ArbolBinarioOrdenado()
     {
@@ -46,7 +46,7 @@ public class ArbolBinarioOrdenado <Key extends Comparable<Key>, Value>
         else
         {
          return aBuscar.N;
-    	}
+     }
     }
 
     public boolean contieneLlave(Key key) {
