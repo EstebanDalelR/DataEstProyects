@@ -1,0 +1,62 @@
+package api.proyecto1.interfaces.centralvehiculos;
+import java.util.Collections;
+import java.util.LinkedList;
+/*
+ * IColaEventos modela una cola de eventos definida como un conjunto de eventos que recibe de los vehiculos 
+ */
+public interface IColaEventos<IEventoVehiculo> extends Iterable
+{
+   /**
+  * Mï¿½todo que retorna la lista de eventos 
+  * @return Iterablea de eventos
+  */
+ public Iterable<IEventoVehiculo> getEventoVehiculo();
+
+ /**
+  * Mï¿½todo que permite cargar la lista de eventos 
+  * @param segmentos
+  */
+ public void setEventos(Iterable<IEventoVehiculo> eventos);
+
+ /**
+  * Mï¿½todo que permite buscar un evento en la ruta por sus extremos
+  * @param extremoInicial El extremo del segmento del evento
+  * @return EventoVehiculo de la ruta (si existe) asociado a el punto geografico
+  */
+ public IEventoVehiculo buscarEventoVehiculoPorUbicacion(IPunto extremo);
+
+ /**
+  * Mï¿½todo que permite cargar los eventos autorizados para la ruta,
+  * se debe verificar si los cambios de posiciï¿½n entre los eventos
+  * son horizontales o verticales y si suceden en segmentos de la ruta.
+  * @param eventosAutorizados lista de eventos autorizados
+  */
+ public void setEventosAutorizados(Iterable<IEventoVehiculo> eventosAutorizados);
+
+ /**
+  * Mï¿½todo que permite obtener el listado de eventos autorizados para la ruta
+  * @return La lista con los eventos de la ruta
+  */
+ public Iterable<IEventoVehiculo> getEventosAutorizados();
+ /**
+  * Metodo encargado de agregar eventos a la cola
+  * @param elemento - elemento a ser agregado en la Cola
+  */
+ public void encolar(T IEventoVehiculo);
+ /**
+  * Método que remueve un elemento de la Cola 
+  *@return el elemento atendido y eliminado de la Cola
+  */
+ public IEventoVehiculo decolar();
+ /**
+  * Método que retorna el tamaño de la Cola
+  *@return el tamaño actual de la Cola
+  */
+ public int darTamanio();
+ /**
+  * Método que verifica si la Cola está vacía
+  * @return true si lo está, false de lo contrario
+  */
+  public boolean estaVacia();
+}
+  

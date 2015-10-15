@@ -8,10 +8,11 @@ public class ArbolBinarioOrdenado <Key extends Comparable<Key>, Value>
 	//crear clase nodo             
     private class Node
     {
-        private Key key;           // sorted by key
-        private Value val;         // associated data
-        private Node left, right;  // left and right subtrees
-        private int N;             // number of nodes in subtree
+        private Key key;           
+        private Value val;         
+        private Node right;  
+        private Node left;
+        private int N;            
 
         public Node(Key key, Value val, int N) {
             this.key = key;
@@ -19,33 +20,33 @@ public class ArbolBinarioOrdenado <Key extends Comparable<Key>, Value>
             this.N = N;
         }
     }
+	//------------------------------------
+    //Constructors
+    //------------------------------------
+    //un construtor para una estructura vacía 
 
-    /**
-     * Initializes an empty symbol table.
-     */
-    public BST() {
+    public ArbolBinarioOrdenado()
+    {
     }
 
-    /**
-     * Returns true if this symbol table is empty.
-     * @return <tt>true</tt> if this symbol table is empty; <tt>false</tt> otherwise
-     */
-    public boolean isEmpty() {
+    public boolean estaVacio()
+    {
         return size() == 0;
     }
 
-    /**
-     * Returns the number of key-value pairs in this symbol table.
-     * @return the number of key-value pairs in this symbol table
-     */
     public int size() {
         return size(raiz);
     }
 
-    // return number of key-value pairs in BST raized at x
-    private int size(Node x) {
-        if (x == null) return 0;
-        else return x.N;
+    private int size(Node aBuscar) {
+        if (aBuscar == null)
+        {
+         return 0;
+        }
+        else
+        {
+         return aBuscar.N;
+    	}
     }
 
     /**
@@ -115,7 +116,7 @@ public class ArbolBinarioOrdenado <Key extends Comparable<Key>, Value>
      * @throws NoSuchElementException if the symbol table is empty
      */
     public void deleteMin() {
-        if (isEmpty()) throw new NoSuchElementException("Symbol table underflow");
+        if (estaVacio()) throw new NoSuchElementException("Symbol table underflow");
         raiz = deleteMin(raiz);
         assert check();
     }
@@ -133,7 +134,7 @@ public class ArbolBinarioOrdenado <Key extends Comparable<Key>, Value>
      * @throws NoSuchElementException if the symbol table is empty
      */
     public void deleteMax() {
-        if (isEmpty()) throw new NoSuchElementException("Symbol table underflow");
+        if (estaVacio()) throw new NoSuchElementException("Symbol table underflow");
         raiz = deleteMax(raiz);
         assert check();
     }
@@ -182,7 +183,7 @@ public class ArbolBinarioOrdenado <Key extends Comparable<Key>, Value>
      * @throws NoSuchElementException if the symbol table is empty
      */
     public Key min() {
-        if (isEmpty()) throw new NoSuchElementException("called min() with empty symbol table");
+        if (estaVacio()) throw new NoSuchElementException("called min() with empty symbol table");
         return min(raiz).key;
     } 
 
@@ -198,7 +199,7 @@ public class ArbolBinarioOrdenado <Key extends Comparable<Key>, Value>
      * @throws NoSuchElementException if the symbol table is empty
      */
     public Key max() {
-        if (isEmpty()) throw new NoSuchElementException("called max() with empty symbol table");
+        if (estaVacio()) throw new NoSuchElementException("called max() with empty symbol table");
         return max(raiz).key;
     } 
 
@@ -216,7 +217,7 @@ public class ArbolBinarioOrdenado <Key extends Comparable<Key>, Value>
      * @throws NullPointerException if <tt>key</tt> is <tt>null</tt>
      */
     public Key floor(Key key) {
-        if (isEmpty()) throw new NoSuchElementException("called floor() with empty symbol table");
+        if (estaVacio()) throw new NoSuchElementException("called floor() with empty symbol table");
         Node x = floor(raiz, key);
         if (x == null) return null;
         else return x.key;
@@ -241,7 +242,7 @@ public class ArbolBinarioOrdenado <Key extends Comparable<Key>, Value>
      * @throws NullPointerException if <tt>key</tt> is <tt>null</tt>
      */
     public Key ceiling(Key key) {
-        if (isEmpty()) throw new NoSuchElementException("called ceiling() with empty symbol table");
+        if (estaVacio()) throw new NoSuchElementException("called ceiling() with empty symbol table");
         Node x = ceiling(raiz, key);
         if (x == null) return null;
         else return x.key;
@@ -373,7 +374,7 @@ public class ArbolBinarioOrdenado <Key extends Comparable<Key>, Value>
         Queue<Key> keys = new Queue<Key>();
         Queue<Node> queue = new Queue<Node>();
         queue.enqueue(raiz);
-        while (!queue.isEmpty()) {
+        while (!queue.estaVacio()) {
             Node x = queue.dequeue();
             if (x == null) continue;
             keys.enqueue(x.key);
@@ -432,7 +433,7 @@ public class ArbolBinarioOrdenado <Key extends Comparable<Key>, Value>
      */
     public static void main(String[] args) { 
         BST<String, Integer> st = new BST<String, Integer>();
-        for (int i = 0; !StdIn.isEmpty(); i++) {
+        for (int i = 0; !StdIn.estaVacio(); i++) {
             String key = StdIn.readString();
             st.put(key, i);
         }

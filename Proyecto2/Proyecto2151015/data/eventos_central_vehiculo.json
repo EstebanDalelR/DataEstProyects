@@ -1,0 +1,166 @@
+[
+  {
+    "evento_control" : "INICIAR_CENTRAL_VEHICULO"
+  },
+  {
+    "evento_control" : "CREAR_VEHICULO",
+    "vehiculo" : { "id_vehiculo": 1, "tipo_vehiculo":"CAMION", "placas":"BUENO123","modelo":2012,"capacidad":[3,"toneladas"]}
+  },
+  {
+    "evento_control" : "CREAR_VEHICULO",
+    "vehiculo" : { "id_vehiculo": 2, "tipo_vehiculo":"FURGON", "placas":"MALO888","modelo":1998,"capacidad":[1,"toneladas"]}
+  },
+  {
+    "evento_control" : "AGREGAR_RUTA",
+    "ruta":{"id_ruta":1, "nombre_ruta":"BOGOTA_CALI", "segmentos":[{"punto_inicial":[1,5], "punto_final":[1,2]}, {"punto_inicial":[1,2], "punto_final":[-1,2]}, {"punto_inicial":[-1,2], "punto_final":[-1,-1]},{"punto_inicial":[-1,-1], "punto_final":[5,-1]},{"punto_inicial":[5,-1], "punto_final":[5,5]},{"punto_inicial":[5,5], "punto_final":[1,5]}]}
+  },
+  {
+    "evento_control" : "AGREGAR_RUTA",
+    "ruta":{"id_ruta":2, "nombre_ruta":"BOGOTA_BUCARAMANGA", "segmentos":[{"punto_inicial":[1,5], "punto_final":[2,5]}, {"punto_inicial":[2,5], "punto_final":[2,10]}, {"punto_inicial":[2,10], "punto_final":[-2,10]},{"punto_inicial":[-2,10], "punto_final":[-2,5]},{"punto_inicial":[-2,5], "punto_final":[1,5]}]}
+  },
+  {
+    "evento_control" : "AGREGAR_CLIENTE",
+    "cliente":{"id_cliente":1, "nombre":"Andres", "apellido":"Rodriguez", "direccion":"Calle 19 #70 - 1", "Ciudad":"Bogota"}
+  },
+  {
+    "evento_control" : "AGREGAR_CLIENTE",
+    "cliente":{"id_cliente":2, "nombre":"Angela", "apellido":"Ardila", "direccion": "calle 8a #40 - 29", "Ciudad":"Cali"}
+  },
+  {
+    "evento_control" : "AGREGAR_CLIENTE",
+    "cliente":{"id_cliente":3, "nombre":"Ramiro", "apellido":"Contreras", "direccion": "calle 8a #12 - 57", "Ciudad":"Bucaramanga"}
+  },
+  {
+    "evento_control" : "AGREGAR_CLIENTE",
+    "cliente":{"id_cliente":4, "nombre":"Ana", "apellido":"Galindo", "direccion": "carrera 36 #94 - 25", "Ciudad":"Cali"}
+  },
+  {
+    "evento_control": "AGREGAR_PEDIDO_DESPACHO",
+    "pedido_despacho":{"id_despacho":1, "id_cliente": 1, "punto_recogida":[1,4.4], "punto_entrega":[-1,0.3]}
+  },
+  {
+    "evento_control": "AGREGAR_PEDIDO_DESPACHO",
+    "pedido_despacho":{"id_despacho":2, "id_cliente": 4, "punto_recogida":[4,-1], "punto_entrega":[1,10]}
+  },
+  {
+    "evento_control": "AGREGAR_PEDIDO_DESPACHO",
+    "pedido_despacho":{"id_despacho":3, "id_cliente": 3, "punto_recogida":[-1.7,10], "punto_entrega":[-2,5.8]}
+  },
+  {
+    "evento_control": "AGREGAR_PEDIDO_DESPACHO",
+    "pedido_despacho":{"id_despacho":4, "id_cliente": 2, "punto_recogida":[5,1], "punto_entrega":[-2,8]}
+  },
+  {
+    "evento_control": "ASOCIAR_RUTA_VEHICULO",
+    "ruta_vehiculo":{"vehiculo":1, "ruta":1}
+  },
+  {
+    "evento_control": "ASOCIAR_RUTA_VEHICULO",
+    "ruta_vehiculo":{"vehiculo":2, "ruta":2}
+  },
+  {
+    "evento_control": "AGREGAR_EVENTOS_AUTORIZADOS",
+    "eventos_autorizados":{"vehiculo":1, "ruta":1, "eventos":[{"evento":"CARGAR", "punto":[1,4.4], "id_cliente":1, "id_despacho":1 },{"evento":"DESCARGAR", "punto":[-1,0.3], "id_cliente":1, "id_despacho":1 },{"evento":"CARGAR", "punto":[4,-1], "id_cliente":4, "id_despacho":2 },{"evento":"CARGAR", "punto":[5,1], "id_cliente":2, "id_despacho":4 }]}
+  },
+  {
+    "evento_control": "AGREGAR_EVENTOS_AUTORIZADOS",
+    "eventos_autorizados":{"vehiculo":2, "ruta":2, "eventos":[{"evento":"DESCARGAR", "punto":[1,10], "id_cliente":4, "id_despacho":2 },{"evento":"CARGAR", "punto":[-1.7,10], "id_cliente":3, "id_despacho":3 },{"evento":"DESCARGAR", "punto":[-2,8], "id_cliente":2, "id_despacho":4 },{"evento":"DESCARGAR", "punto":[-2,5.8], "id_cliente":3, "id_despacho":3 }]}
+  },
+  {
+    "evento_datos": "EVENTOS_REGISTRADOS",
+    "eventos":[{"evento_vehiculo":"INICIAR_RUTA","id_vehiculo":1,"enviado":true,"timestamp":"20/08/2015 08:00", "punto":[1,5], "combustible":{"cantidad":12,"unidades":"GALONES"}},
+    {"evento_vehiculo":"APAGAR_VEHICULO", "id_vehiculo":1,"enviado":true,"timestamp":"20/08/2015 10:25","punto":[1,4.4]},
+    {"evento_vehiculo":"ABRIR_PUERTA_VEHICULO", "id_vehiculo":1,"enviado":true,"timestamp":"20/08/2015 10:25","punto":[1,4.4]},
+    {"evento_vehiculo":"CERRAR_PUERTA_VEHICULO", "id_vehiculo":1,"enviado":false,"timestamp":"20/08/2015 10:25","punto":[1,4.4]},
+    {"evento_vehiculo":"ABRIR_PUERTA_CARGA", "id_vehiculo":1,"enviado":false,"timestamp":"20/08/2015 10:27","punto":[1,4.4]},
+    {"evento_vehiculo":"SENSOR_PESO", "id_vehiculo":1,"enviado":false,"timestamp":"20/08/2015 10:27","punto":[1,4.4], "delta_peso": {"operacion": "SUBE", "cantidad": 2, "unidades": "kg"}},
+    {"evento_vehiculo":"CERRAR_PUERTA_CARGA", "id_vehiculo":1,"enviado":true,"timestamp":"20/08/2015 10:28","punto":[1,4.4]},
+    {"evento_vehiculo":"ABRIR_PUERTA_VEHICULO", "id_vehiculo":1,"enviado":true,"timestamp":"20/08/2015 10:35","punto":[1,4.4]},
+    {"evento_vehiculo":"CERRAR_PUERTA_VEHICULO", "id_vehiculo":1,"enviado":true,"timestamp":"20/08/2015 10:35","punto":[1,4.4]},
+    {"evento_vehiculo":"ENCENDER_VEHICULO", "id_vehiculo":1,"enviado":true,"timestamp":"20/08/2015 10:37","punto":[1,4.4]},
+
+    {"evento_vehiculo":"APAGAR_VEHICULO", "id_vehiculo":1,"enviado":false,"timestamp":"20/08/2015 11:00","punto":[-1,0.3]},
+    {"evento_vehiculo":"ABRIR_PUERTA_VEHICULO", "id_vehiculo":1,"enviado":true,"timestamp":"20/08/2015 11:00","punto":[-1,0.3]},
+    {"evento_vehiculo":"CERRAR_PUERTA_VEHICULO", "id_vehiculo":1,"enviado":true,"timestamp":"20/08/2015 11:00","punto":[-1,0.3]},
+    {"evento_vehiculo":"ABRIR_PUERTA_CARGA", "id_vehiculo":1,"enviado":true,"timestamp":"20/08/2015 11:02","punto":[-1,0.3]},
+    {"evento_vehiculo":"SENSOR_PESO", "id_vehiculo":1,"enviado":true,"timestamp":"20/08/2015 11:02","punto":[-1,0.3], "delta_peso": {"operacion": "BAJA", "cantidad": 2, "unidades": "kg"}},
+    {"evento_vehiculo":"CERRAR_PUERTA_CARGA", "id_vehiculo":1,"enviado":true,"timestamp":"20/08/2015 11:03","punto":[-1,0.3]},
+    {"evento_vehiculo":"ABRIR_PUERTA_VEHICULO", "id_vehiculo":1,"enviado":true,"timestamp":"20/08/2015 11:12","punto":[-1,0.3]},
+    {"evento_vehiculo":"CERRAR_PUERTA_VEHICULO", "id_vehiculo":1,"enviado":true,"timestamp":"20/08/2015 11:12","punto":[-1,0.3]},
+    {"evento_vehiculo":"ENCENDER_VEHICULO", "id_vehiculo":1,"enviado":false,"timestamp":"20/08/2015 11:14","punto":[-1,0.3]},
+
+    {"evento_vehiculo":"APAGAR_VEHICULO", "id_vehiculo":1,"enviado":true,"timestamp":"20/08/2015 14:00","punto":[4,-1]},
+    {"evento_vehiculo":"ABRIR_PUERTA_VEHICULO", "id_vehiculo":1,"enviado":false,"timestamp":"20/08/2015 14:00","punto":[4,-1]},
+    {"evento_vehiculo":"CERRAR_PUERTA_VEHICULO", "id_vehiculo":1,"enviado":true,"timestamp":"20/08/2015 14:00","punto":[4,-1]},
+    {"evento_vehiculo":"ABRIR_PUERTA_CARGA", "id_vehiculo":1,"enviado":true,"timestamp":"20/08/2015 14:01","punto":[4,-1]},
+    {"evento_vehiculo":"SENSOR_PESO", "id_vehiculo":1,"enviado":true,"timestamp":"20/08/2015 13:05","punto":[4,-1], "delta_peso": {"operacion": "SUBE", "cantidad": 8, "unidades": "kg"}},
+    {"evento_vehiculo":"CERRAR_PUERTA_CARGA", "id_vehiculo":1,"enviado":true,"timestamp":"20/08/2015 14:05","punto":[4,-1]},
+    {"evento_vehiculo":"ABRIR_PUERTA_VEHICULO", "id_vehiculo":1,"enviado":true,"timestamp":"20/08/2015 14:06","punto":[4,-1]},
+    {"evento_vehiculo":"CERRAR_PUERTA_VEHICULO", "id_vehiculo":1,"enviado":false,"timestamp":"20/08/2015 14:06","punto":[4,-1]},
+    {"evento_vehiculo":"ENCENDER_VEHICULO", "id_vehiculo":1,"enviado":true,"timestamp":"20/08/2015 14:08","punto":[4,-1]},
+
+    {"evento_vehiculo":"APAGAR_VEHICULO", "id_vehiculo":1,"enviado":true,"timestamp":"20/08/2015 15:00","punto":[5,1]},
+    {"evento_vehiculo":"ABRIR_PUERTA_VEHICULO", "id_vehiculo":1,"enviado":true,"timestamp":"20/08/2015 15:00","punto":[5,1]},
+    {"evento_vehiculo":"CERRAR_PUERTA_VEHICULO", "id_vehiculo":1,"enviado":false,"timestamp":"20/08/2015 15:00","punto":[5,1]},
+    {"evento_vehiculo":"ABRIR_PUERTA_CARGA", "id_vehiculo":1,"enviado":true,"timestamp":"20/08/2015 15:02","punto":[5,1]},
+    {"evento_vehiculo":"SENSOR_PESO", "id_vehiculo":1,"enviado":true,"timestamp":"20/08/2015 15:02","punto":[5,1], "delta_peso": {"operacion": "SUBE", "cantidad": 3, "unidades": "kg"}},
+    {"evento_vehiculo":"CERRAR_PUERTA_CARGA", "id_vehiculo":1,"enviado":true,"timestamp":"20/08/2015 15:04","punto":[5,1]},
+    {"evento_vehiculo":"ABRIR_PUERTA_VEHICULO", "id_vehiculo":1,"enviado":false,"timestamp":"20/08/2015 15:05","punto":[5,1]},
+    {"evento_vehiculo":"CERRAR_PUERTA_VEHICULO", "id_vehiculo":1,"enviado":false,"timestamp":"20/08/2015 15:05","punto":[5,1]},
+    {"evento_vehiculo":"ENCENDER_VEHICULO", "id_vehiculo":1,"enviado":false,"timestamp":"20/08/2015 15:07","punto":[5,1]},
+    {"evento_vehiculo":"TERMINAR_RUTA","id_vehiculo":1,"enviado":true,"timestamp":"20/08/2015 20:30", "punto":[1,5], "combustible":{"cantidad":8,"unidades":"GALONES"}},
+
+    {"evento_vehiculo":"INICIAR_RUTA","id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 08:00", "punto":[1,5], "combustible":{"cantidad":9,"unidades":"GALONES"}},
+    {"evento_vehiculo":"APAGAR_VEHICULO", "id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 10:25","punto":[1,9]},
+    {"evento_vehiculo":"ABRIR_PUERTA_VEHICULO", "id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 10:25","punto":[1,9]},
+    {"evento_vehiculo":"SUBIR_PASAJERO", "id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 10:25","punto":[1,9]},
+    {"evento_vehiculo":"CERRAR_PUERTA_VEHICULO", "id_vehiculo":2,"enviado":false,"timestamp":"21/08/2015 10:25","punto":[1,9]},
+    {"evento_vehiculo":"ENCENDER_VEHICULO", "id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 10:27","punto":[1,9]},
+
+    {"evento_vehiculo":"APAGAR_VEHICULO", "id_vehiculo":2,"enviado":false,"timestamp":"21/08/2015 11:00","punto":[-1.7,10]},
+    {"evento_vehiculo":"ABRIR_PUERTA_VEHICULO", "id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 11:00","punto":[-1.7,10]},
+    {"evento_vehiculo":"CERRAR_PUERTA_VEHICULO", "id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 11:00","punto":[-1.7,10]},
+    {"evento_vehiculo":"ABRIR_PUERTA_CARGA", "id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 11:02","punto":[-1.7,10]},
+    {"evento_vehiculo":"SENSOR_PESO", "id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 11:02","punto":[-1.7,10], "delta_peso":{"operacion": "SUBE", "cantidad": 5, "unidades": "kg"}},
+    {"evento_vehiculo":"CERRAR_PUERTA_CARGA", "id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 11:03","punto":[-1.7,10]},
+    {"evento_vehiculo":"ABRIR_PUERTA_VEHICULO", "id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 11:12","punto":[-1.7,10]},
+    {"evento_vehiculo":"CERRAR_PUERTA_VEHICULO", "id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 11:12","punto":[-1.7,10]},
+    {"evento_vehiculo":"ENCENDER_VEHICULO", "id_vehiculo":2,"enviado":false,"timestamp":"21/08/2015 11:14","punto":[-1.7,10]},
+
+    {"evento_vehiculo":"APAGAR_VEHICULO", "id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 14:00","punto":[-2,8]},
+    {"evento_vehiculo":"ABRIR_PUERTA_VEHICULO", "id_vehiculo":2,"enviado":false,"timestamp":"21/08/2015 14:00","punto":[-2,8]},
+    {"evento_vehiculo":"CERRAR_PUERTA_VEHICULO", "id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 14:00","punto":[-2,8]},
+    {"evento_vehiculo":"ABRIR_PUERTA_CARGA", "id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 14:01","punto":[-2,8]},
+    {"evento_vehiculo":"SENSOR_PESO", "id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 13:05","punto":[-2,8], "delta_peso":{"operacion": "BAJA", "cantidad": 8, "unidades": "kg"}},
+    {"evento_vehiculo":"CERRAR_PUERTA_CARGA", "id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 14:05","punto":[-2,8]},
+    {"evento_vehiculo":"ABRIR_PUERTA_VEHICULO", "id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 14:06","punto":[-2,8]},
+    {"evento_vehiculo":"CERRAR_PUERTA_VEHICULO", "id_vehiculo":2,"enviado":false,"timestamp":"21/08/2015 14:06","punto":[-2,8]},
+    {"evento_vehiculo":"ENCENDER_VEHICULO", "id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 14:08","punto":[-2,8]},
+
+    {"evento_vehiculo":"APAGAR_VEHICULO", "id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 15:00","punto":[-2,5.8]},
+    {"evento_vehiculo":"ABRIR_PUERTA_VEHICULO", "id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 15:00","punto":[-2,5.8]},
+    {"evento_vehiculo":"CERRAR_PUERTA_VEHICULO", "id_vehiculo":2,"enviado":false,"timestamp":"21/08/2015 15:00","punto":[-2,5.8]},
+    {"evento_vehiculo":"ABRIR_PUERTA_CARGA", "id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 15:02","punto":[-2,5.8]},
+    {"evento_vehiculo":"SENSOR_PESO", "id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 15:02","punto":[-2,5.8], "delta_peso":{"operacion": "BAJA", "cantidad": 5, "unidades": "kg"}},
+    {"evento_vehiculo":"CERRAR_PUERTA_CARGA", "id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 15:04","punto":[-2,5.8]},
+    {"evento_vehiculo":"ABRIR_PUERTA_VEHICULO", "id_vehiculo":2,"enviado":false,"timestamp":"21/08/2015 15:05","punto":[-2,5.8]},
+    {"evento_vehiculo":"CERRAR_PUERTA_VEHICULO", "id_vehiculo":2,"enviado":false,"timestamp":"21/08/2015 15:05","punto":[-2,5.8]},
+    {"evento_vehiculo":"ENCENDER_VEHICULO", "id_vehiculo":2,"enviado":false,"timestamp":"21/08/2015 15:07","punto":[-2,5.8]},
+
+    {"evento_vehiculo":"APAGAR_VEHICULO", "id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 17:25","punto":[-1,5]},
+    {"evento_vehiculo":"ABRIR_PUERTA_VEHICULO", "id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 17:25","punto":[-1,5]},
+    {"evento_vehiculo":"BAJAR_PASAJERO", "id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 17:25","punto":[-1,5]},
+    {"evento_vehiculo":"CERRAR_PUERTA_VEHICULO", "id_vehiculo":2,"enviado":false,"timestamp":"21/08/2015 17:25","punto":[-1,5]},
+    {"evento_vehiculo":"ENCENDER_VEHICULO", "id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 10:37","punto":[-1,5]},
+    {"evento_vehiculo":"TERMINAR_RUTA","id_vehiculo":2,"enviado":true,"timestamp":"21/08/2015 20:30", "punto":[1,5], "combustible":{"cantidad":10,"unidades":"GALONES"}}
+    ]
+  },
+  {
+    "evento_control":"RECIBIR_EVENTOS",
+    "cantidad":10
+  },
+  {
+    "evento_control":"CONSOLIDAR_EVENTOS",
+    "id_vehiculo":1
+  }
+]
