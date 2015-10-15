@@ -4,6 +4,8 @@ public class CentralLlamadas implements ICentralLlamdas
   private ListaAgentes listaAgentes;
   private ArrayList listaCasos;
   private Heap heapClientes;
+  private ArbolBinarioOrdenado arbolFecha;
+  private HashTable hashInfo;
   /**
    * M�todo que permite iniciar la central de llamadas, realiza las acciones
    * necesarias para que la central de llamadas pueda atender los eventos de control
@@ -225,5 +227,25 @@ public class CentralLlamadas implements ICentralLlamdas
   {
     heapClientes.agregar(aAgregar);
   }
-  
+  public void crearArbol()
+  {
+    ArbolBinarioOrdenado creado= new ArbolBinarioOrdenado;
+    arbolFecha=creado;
+  }
+  public void agregarAArbol(Date fecha, int idCliente)
+  {
+    arbolFecha.put(fecha,idCliente);
+  }
+  public boolean buscarPorFecha(Date aBuscar)
+  {
+    return arbolFecha.contieneLlave(aBuscar);
+  }
+  public void crearHash()
+  {
+    hashInfo= new HashTable<PedidoDespacho>;
+  }
+  public PedidoDespacho buscarPedidoHash(int idCliente)
+  {
+    return hashInfo.buscar(idCliente);
+  }
 }

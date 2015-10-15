@@ -3,6 +3,7 @@ public class CentralLlamadas implements ICentralLlamdas
 {
   private ListaAgentes listaAgentes;
   private ArrayList listaCasos;
+  private Heap heapClientes;
   /**
    * M�todo que permite iniciar la central de llamadas, realiza las acciones
    * necesarias para que la central de llamadas pueda atender los eventos de control
@@ -209,6 +210,20 @@ public class CentralLlamadas implements ICentralLlamdas
   public Agente darAgenteActivo()
   {
     listaAgentes.atenderAgente();//TODO
+  }
+  //PROYECTO2
+  public void crearHeapClientes()
+  {
+    Heap heapPrioridad= new Heap<Cliente>;
+    for(i=0;i<listaClientes.length();i++)
+    {
+      heapPrioridad.agregar(listaClientes[i]);
+    }
+    heapClientes = heapPrioridad;
+  }
+  public void agregarAHeap(Cliente aAgregar)
+  {
+    heapClientes.agregar(aAgregar);
   }
   
 }

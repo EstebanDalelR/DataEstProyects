@@ -51,7 +51,7 @@ public class Heap<T> implements serializable, ILista
     elementos= Arrays.copyOf(elementos, nuevoTamanio);
   }
 
-  public boolean eliminar(T aEliminar)
+  public void eliminar(T aEliminar)
   {
     for(i =0; i<elementos.length; i++)
     {
