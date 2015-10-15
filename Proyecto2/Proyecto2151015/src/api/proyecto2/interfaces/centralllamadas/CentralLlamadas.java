@@ -246,6 +246,6 @@ public class CentralLlamadas implements ICentralLlamdas
   }
   public PedidoDespacho buscarPedidoHash(int idCliente)
   {
-    return hashInfo.buscar(idCliente);
+    return hashInfo.obtener(idCliente);
   }
 }

@@ -45,10 +45,22 @@ public class HashTable<T> implements serializable, ILista
     }
     return retornar;
   }
-
-  //rehash
+  public boolean contains(Key key)
+  {
+   return get(key) != null;
+  }
   
-  
+  public T buscar(Key key)
+  {
+     int j = hash(key);
+     for(i=0;i<elementos.legth();i++
+     {
+         if (j==elementos.obtener(i))
+         {
+           return elementos[i].get(key);
+         }
+     }
+  }
   public void agrandarArreglo()
   {
     int nuevoTamanio= elementos.length*2;
