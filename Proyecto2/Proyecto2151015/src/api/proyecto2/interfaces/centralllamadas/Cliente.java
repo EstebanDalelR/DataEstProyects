@@ -5,6 +5,16 @@ public class Cliente implements ICliente
   private String apellido;
   private Iterable<Caso> casos;
   private Iterable<PedidoDespacho> pedidos;
+  private int prioridad;
+    //PROYECTO2
+  public int darPrioridad()
+  {
+    return prioridad;
+  }
+  public void cambiarPrioridad(int aCambiar)
+  {
+    prioridad=aCambiar;
+  }
   public String getNombre()
   {
     return nombre;
