@@ -7,7 +7,7 @@ public class ParteA {
         /**
         *  Instanciar una Central de Vehiculos e inicializarla con los datos del archivo formato JSON de la version mas completa y correcta disponible.
          */
-         CentralVehiculos NCV = new CentralVehiculos("/data/JSON");
+         CentraLlamadas NCL = new CentraLlamadas("/data/JSON");
 
         long tInicioConsultaClientes = System.nanoTime();
         /**TODO Requerimiento 1: Clientes en orden de prioridad
@@ -15,7 +15,7 @@ public class ParteA {
          */
         public iterable<Cliente> darListaClientes();
         {
-            return NCV.heapClientes.darElementos;
+            return NCL.heapClientes.darElementos;
         }
          long tTotalConsultaClientes = System.nanoTime() - tInicioConsultaClientes; 
         System.out.println("tiempo Consulta Clientes: " + tTotalConsultaClientes + " nseg");
@@ -51,9 +51,9 @@ public class ParteA {
          */
         public int buscarPedidoFecha(Date aBuscar, int idCliente)
         {
-            for (i=0; i<NCV.arbolFecha.tamano();i++ ) {
-                if (NCV.arbolFecha.contieneLlave(aBuscar)) {
-                    return NCV.arbolFecha.get(aBuscar, idCliente);
+            for (i=0; i<NCL.arbolFecha.tamano();i++ ) {
+                if (NCL.arbolFecha.contieneLlave(aBuscar)) {
+                    return NCL.arbolFecha.get(aBuscar, idCliente);
                 }
                 return -1;
             }
@@ -74,9 +74,9 @@ public class ParteA {
          */
         public Pedido buscarPedidoFecha(int idPedido)
         {
-            for (i=0; i<NCV.hashInfo.darTamano();i++ ) {
-                if (NCV.hashInfo.obtener(idCliente)!= null) {
-                    return NCV.hashInfo.obtener( idCliente);
+            for (i=0; i<NCL.hashInfo.darTamano();i++ ) {
+                if (NCL.hashInfo.obtener(idCliente)!= null) {
+                    return NCL.hashInfo.obtener( idCliente);
                 }
                 return null;
             }

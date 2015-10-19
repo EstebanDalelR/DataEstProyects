@@ -7,12 +7,15 @@ public class ParteC{
         /**
         * TODO Instanciar una Central CCT con informacion de vehiculos, llamadas y datos de unificacion e inicializarla con los datos de los archivos formato JSON de las versiones mas completas y correctas disponibles.
          */
-
+         CentraLlamadas NCL = new CentraLlamadas("/data/JSON");
         long tInicioConsultaClientes = System.nanoTime();
         /**TODO Requerimiento 1: Clientes en orden de prioridad. La prioridad tiene en cuenta la prioridad inicial del cliente 
          * y su variacion debido a las llamadas reportadas por cada cliente.
          * Se obtiene un objeto iterable que contenga los clientes ordenados por prioridad, en orden descendente
-         */
+         */public iterable<Cliente> darListaClientes();
+        {
+            return NCL.heapClientes.darElementos;
+        }
         long tTotalConsultaClientes = System.nanoTime() - tInicioConsultaClientes; 
         System.out.println("tiempo Consulta Clientes: " + tTotalConsultaClientes + " nseg");
 
@@ -52,6 +55,10 @@ public class ParteC{
         /**
          *TODO Requerimiento 4: Dada una ruta, obtener su calificacion promedio en encuestas.
          */
+        public int darCalificacionRuta(Ruta aBuscar)
+        {
+            return NCL.darCalificacionRuta(aBuscar);
+        }
         long tTotalCalificacionRuta = System.nanoTime() - tInicioCalificacionRuta; 
         System.out.println("tiempo calificacion promedio ruta: " + tTotalCalificacionRuta + " nseg");
 
