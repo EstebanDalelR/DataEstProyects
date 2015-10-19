@@ -1,0 +1,438 @@
+package.api;
+
+import estructuras.cola.ILista;
+public class ArbolRojoNegro<Llave extends Comparable<Llave>, Value> {
+
+    private static final boolean ROJO   = true;
+    private static final boolean NEGRO = false;
+
+    private Nodo raiz;     // raiz of the BST
+
+    // clase nodo para implementar el arbl
+    private class Nodo 
+    {
+        private Llave llave;           // llave
+        private Value val;         // associated data
+        private Nodo izq, der;  // links to izq and der subtrees
+        private boolean color;     // color of parent link
+        private int N;             // subtree count
+
+        public Nodo(Llave llave, Value val, boolean color, int N) 
+        {
+            this.llave = llave;
+            this.val = val;
+            this.color = color;
+            this.N = N;
+        }
+    }
+
+    public ArbolRojoNegro()
+    {
+    }
+
+    // is nodo x rojo; false if x is null ?
+    private boolean esRojo(Nodo x) 
+    {
+        if (x == null) return false;
+        return x.color == ROJO;
+    }
+
+    private int tamano(Nodo x) 
+    {
+        if (x == null) return 0;
+        return x.N;
+    } 
+
+    public int tamano() 
+    {
+        return tamano(raiz);
+    }
+
+    public boolean estaVacio() 
+    {
+        return raiz == null;
+    }
+
+    public Value get(Llave llave) 
+    {
+        return get(raiz, llave);
+    }
+
+    private Value get(Nodo x, Llave llave) 
+    {
+        while (x != null) {
+            int comparar = llave.compareTo(x.llave);
+            if      (comparar < 0)
+            {
+             x = x.izq;
+            }
+            else if (comparar > 0) 
+            {
+            x = x.der;
+            }
+            else              
+            {
+            return x.val;
+            }
+        }
+        return null;
+    }
+
+    public boolean contiene(Llave llave) 
+    {
+        return get(llave) != null;
+    }
+
+    public void put(Llave llave, Value val) 
+    {
+        raiz = put(raiz, llave, val);
+        raiz.color = NEGRO;
+
+    }
+
+    private Nodo put(Nodo h, Llave llave, Value val) 
+    { 
+        if (h == null) return new Nodo(llave, val, ROJO, 1);
+
+        int comparar = llave.compareTo(h.llave);
+        if      (comparar < 0) h.izq  = put(h.izq,  llave, val); 
+        else if (comparar > 0) h.der = put(h.der, llave, val); 
+        else              h.val   = val;
+
+        // arregla el arbol
+        if (esRojo(h.der) && !esRojo(h.izq))      h = rotarIzq(h);
+        if (esRojo(h.izq)  &&  esRojo(h.izq.izq)) h = rotarDer(h);
+        if (esRojo(h.izq)  &&  esRojo(h.der))     cambiaColores(h);
+        h.N = tamano(h.izq) + tamano(h.der) + 1;
+
+        return h;
+    }
+
+    
+    public void borrarMenor() 
+    {
+        if (estaVacio()) throw new NoSuchElementException("BST underflow");
+
+        // cambia a rojo
+        if (!esRojo(raiz.izq) && !esRojo(raiz.der))
+            raiz.color = ROJO;
+
+        raiz = borrarMenor(raiz);
+        if (!estaVacio()) raiz.color = NEGRO;
+
+    }
+
+    private Nodo borrarMenor(Nodo h) 
+    { 
+        if (h.izq == null)
+            return null;
+
+        if (!esRojo(h.izq) && !esRojo(h.izq.izq))
+            h = moverRojoIzq(h);
+
+        h.izq = borrarMenor(h.izq);
+        return balancear(h);
+    }
+
+    public void borrarMayor() 
+    {
+        if (estaVacio()) throw new NoSuchElementException("BST underflow");
+
+        // cambia a rojo la raiz
+        if (!esRojo(raiz.izq) && !esRojo(raiz.der))
+            raiz.color = ROJO;
+
+        raiz = borrarMayor(raiz);
+        if (!estaVacio()) raiz.color = NEGRO;
+        // assert check();
+    }
+
+    private Nodo borrarMayor(Nodo h) 
+    { 
+        if (esRojo(h.izq))
+            h = rotarDer(h);
+
+        if (h.der == null)
+            return null;
+
+        if (!esRojo(h.der) && !esRojo(h.der.izq))
+            h = moverRojoDer(h);
+
+        h.der = borrarMayor(h.der);
+
+        return balancear(h);
+    }
+
+    
+    public void eliminar(Llave llave) 
+    { 
+        if (!contiene(llave)) 
+        {
+            System.err.println("symbol table does not contain " + llave);
+            return;
+        }
+
+        if (!esRojo(raiz.izq) && !esRojo(raiz.der))
+            raiz.color = ROJO;
+
+        raiz = eliminar(raiz, llave);
+        if (!estaVacio()) raiz.color = NEGRO;
+    }
+
+    private Nodo eliminar(Nodo h, Llave llave) 
+    { 
+        // assert get(h, llave) != null;
+
+        if (llave.compareTo(h.llave) < 0)  
+        {
+            if (!esRojo(h.izq) && !esRojo(h.izq.izq))
+                h = moverRojoIzq(h);
+            h.izq = eliminar(h.izq, llave);
+        }
+        else 
+        {
+            if (esRojo(h.izq))
+                h = rotarDer(h);
+            if (llave.compareTo(h.llave) == 0 && (h.der == null))
+                return null;
+            if (!esRojo(h.der) && !esRojo(h.der.izq))
+                h = moverRojoDer(h);
+            if (llave.compareTo(h.llave) == 0) {
+                Nodo x = min(h.der);
+                h.llave = x.llave;
+                h.val = x.val;
+                // h.val = get(h.der, min(h.der).llave);
+                // h.llave = min(h.der).llave;
+                h.der = borrarMenor(h.der);
+            }
+            else h.der = eliminar(h.der, llave);
+        }
+        return balancear(h);
+    }
+//	funciones de apoyo
+
+    // cabiar de izq a der
+    private Nodo rotarDer(Nodo h) 
+    {
+        Nodo x = h.izq;
+        h.izq = x.der;
+        x.der = h;
+        x.color = x.der.color;
+        x.der.color = ROJO;
+        x.N = h.N;
+        h.N = tamano(h.izq) + tamano(h.der) + 1;
+        return x;
+    }
+
+    // cambiar de der a izq
+    private Nodo rotarIzq(Nodo h) 
+    {
+        // assert (h != null) && esRojo(h.der);
+        Nodo x = h.der;
+        h.der = x.izq;
+        x.izq = h;
+        x.color = x.izq.color;
+        x.izq.color = ROJO;
+        x.N = h.N;
+        h.N = tamano(h.izq) + tamano(h.der) + 1;
+        return x;
+    }
+
+    // cambiar los colores de un nodo y sus hijos
+
+    private void cambiaColores(Nodo h) 
+    {
+        h.color = !h.color;
+        h.izq.color = !h.izq.color;
+        h.der.color = !h.der.color;
+    }
+
+    // asumiendo que  h es rojo y h.izq and h.izq.izq
+    // son negro, hace h.izq o uno de sus hijos rojo.
+
+    private Nodo moverRojoIzq(Nodo h) 
+    {
+
+        cambiaColores(h);
+        if (esRojo(h.der.izq)) { 
+            h.der = rotarDer(h.der);
+            h = rotarIzq(h);
+            cambiaColores(h);
+        }
+        return h;
+    }
+
+    
+    private Nodo moverRojoDer(Nodo h) 
+    {
+        cambiaColores(h);
+        if (esRojo(h.izq.izq)) { 
+            h = rotarDer(h);
+            cambiaColores(h);
+        }
+        return h;
+    }
+
+    // restore rojo-negro tree invariant
+    private Nodo balancear(Nodo h) 
+    {
+       
+        if (esRojo(h.der))                      h = rotarIzq(h);
+        if (esRojo(h.izq) && esRojo(h.izq.izq)) h = rotarDer(h);
+        if (esRojo(h.izq) && esRojo(h.der))     cambiaColores(h);
+
+        h.N = tamano(h.izq) + tamano(h.der) + 1;
+        return h;
+    }
+
+//	funciones de apoyo
+
+    public int altura() 
+    {
+        return altura(raiz);
+    }
+
+    private int altura(Nodo x) 
+    {
+        if (x == null) return -1;
+        return 1 + Math.max(altura(x.izq), altura(x.der));
+    }
+      
+
+    public Llave min() 
+    {
+        if (estaVacio()) throw new NoSuchElementException("called min() with empty symbol table");
+        return min(raiz).llave;
+    } 
+
+    private Nodo min(Nodo x) 
+    { 
+        if (x.izq == null) return x; 
+        else                return min(x.izq); 
+    } 
+
+    public Llave max() 
+    {
+        if (estaVacio()) throw new NoSuchElementException("called max() with empty symbol table");
+        return max(raiz).llave;
+    } 
+
+    private Nodo max(Nodo x) 
+    { 
+        // assert x != null;
+        if (x.der == null) return x; 
+        else                 return max(x.der); 
+    } 
+
+
+    public Llave piso(Llave llave) 
+    {
+        if (estaVacio()) throw new NoSuchElementException("called piso() with empty symbol table");
+        Nodo x = piso(raiz, llave);
+        if (x == null) return null;
+        else           return x.llave;
+    }    
+
+    private Nodo piso(Nodo x, Llave llave) {
+        if (x == null) return null;
+        int comparar = llave.compareTo(x.llave);
+        if (comparar == 0) return x;
+        if (comparar < 0)  return piso(x.izq, llave);
+        Nodo t = piso(x.der, llave);
+        if (t != null) return t; 
+        else           return x;
+    }
+
+    
+    public Llave techo(Llave llave) {  
+        if (estaVacio()) throw new NoSuchElementException("called techo() with empty symbol table");
+        Nodo x = techo(raiz, llave);
+        if (x == null) return null;
+        else           return x.llave;  
+    }
+
+    private Nodo techo(Nodo x, Llave llave) {  
+        if (x == null) return null;
+        int comparar = llave.compareTo(x.llave);
+        if (comparar == 0) return x;
+        if (comparar > 0)  return techo(x.der, llave);
+        Nodo t = techo(x.izq, llave);
+        if (t != null) return t; 
+        else           return x;
+    }
+
+    /**
+     * Return the kth smallest llave in the symbol table.
+     * @param k the order statistic
+     * @return the kth smallest llave in the symbol table
+     * @throws IllegalArgumentException unless <tt>k</tt> is between 0 and
+     *     <em>N</em> &minus; 1
+     */
+    public Llave seleccionar(int k) 
+    {
+        if (k < 0 || k >= tamano()) throw new IllegalArgumentException();
+        Nodo x = seleccionar(raiz, k);
+        return x.llave;
+    }
+
+    private Nodo seleccionar(Nodo x, int k) 
+    {
+
+        int t = tamano(x.izq); 
+        if      (t > k) return seleccionar(x.izq,  k); 
+        else if (t < k) return seleccionar(x.der, k-t-1); 
+        else            return x; 
+    } 
+
+    /**
+     * Return the number of llaves in the symbol table strictly less than <tt>llave</tt>.
+     * @param llave the llave
+     * @return the number of llaves in the symbol table strictly less than <tt>llave</tt>
+     * @throws NullPointerException if <tt>llave</tt> is <tt>null</tt>
+     */
+    public int rank(Llave llave) 
+    {
+        return rank(llave, raiz);
+    } 
+
+    // number of llaves less than llave in the subtree rooted at x
+    private int rank(Llave llave, Nodo x) 
+    {
+        if (x == null) return 0; 
+        int comparar = llave.compareTo(x.llave); 
+        if      (comparar < 0) return rank(llave, x.izq); 
+        else if (comparar > 0) return 1 + tamano(x.izq) + rank(llave, x.der); 
+        else              return tamano(x.izq); 
+    } 
+
+
+    public Iterable<Llave> llaves() 
+    {
+        return llaves(min(), max());
+    }
+
+    
+    public Iterable<Llave> llaves(Llave lo, Llave hi) 
+    {
+        Queue<Llave> queue = new Queue<Llave>();
+        if (estaVacio() || lo.compareTo(hi) > 0) return queue;
+        llaves(raiz, queue, lo, hi);
+        return queue;
+    } 
+
+    private void llaves(Nodo x, Queue<Llave> queue, Llave lo, Llave hi) 
+    { 
+        if (x == null) return; 
+        int cmplo = lo.compareTo(x.llave); 
+        int cmphi = hi.compareTo(x.llave); 
+        if (cmplo < 0) llaves(x.izq, queue, lo, hi); 
+        if (cmplo <= 0 && cmphi >= 0) queue.enqueue(x.llave); 
+        if (cmphi > 0) llaves(x.der, queue, lo, hi); 
+    } 
+
+    public int tamano(Llave lo, Llave hi) 
+    {
+        if (lo.compareTo(hi) > 0) return 0;
+        if (contiene(hi)) return rank(hi) - rank(lo) + 1;
+        else              return rank(hi) - rank(lo);
+    }

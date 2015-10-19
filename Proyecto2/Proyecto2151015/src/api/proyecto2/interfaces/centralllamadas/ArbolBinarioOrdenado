@@ -1,0 +1,303 @@
+package.api;
+
+import estructuras.cola.ILista;
+public class ArbolBinarioOrdenado <Llave extends Comparable<Llave>, Value>
+{
+	// raiz 
+	private Nodo raiz; 
+	//crear clase nodo             
+    private class Nodo
+    {
+        private Llave llave;           
+        private Value val;         
+        private Nodo derecha;  
+        private Nodo izquierda;
+        private int N;            
+
+        public Nodo(Llave llave, Value val, int N) {
+            this.llave = llave;
+            this.val = val;
+            this.N = N;
+        }
+    }
+	//------------------------------------
+    //Constructors
+    //------------------------------------
+    //un construtor para una estructura vacía 
+
+    public ArbolBinarioOrdenado()
+    {
+    }
+
+    public boolean estaVacio()
+    {
+        return tamano() == 0;
+    }
+
+    public int tamano() {
+        return tamano(raiz);
+    }
+
+    private int tamano(Nodo aBuscar) 
+    {
+        if (aBuscar == null)
+        {
+         return 0;
+        }
+        else
+        {
+         return aBuscar.N;
+    	}
+    }
+
+    public boolean contieneLlave(Llave llave) 
+    {
+        return get(llave) != null;
+    }
+
+    public Value get(Llave llave) 
+    {
+        return get(raiz, llave);
+    }
+
+    private Value get(Nodo input, Llave llave) 
+    {
+        if (input  == null) return null;
+        int comparar = llave.compareTo(input.llave);
+        if      (comparar < 0) return get(input.izquierda, llave);
+        else if (comparar > 0) return get(input.derecha, llave);
+        else              return input.val;
+    }
+
+    public void put(Llave llave, Value val) 
+    {
+        if (val == null) {
+            borrar(llave);
+            return;
+        }
+        raiz = put(raiz, llave, val);
+        assert check();
+    }
+
+    private Nodo put(Nodo input, Llave llave, Value val) {
+        if (input  == null) return new Nodo(llave, val, 1);
+        int comparar = llave.compareTo(input.llave);
+        if      (comparar < 0) input.izquierda  = put(input.izquierda,  llave, val);
+        else if (comparar > 0) input.derecha = put(input.derecha, llave, val);
+        else              input.val   = val;
+        input.N = 1 + tamano(input.izquierda) + tamano(input.derecha);
+        return input;
+    }
+
+
+    public void borrarMin() 
+    {
+        if (estaVacio()) throw new NoSuchElementException("Symbol table underflow");
+        raiz = borrarMin(raiz);
+        assert check();
+    }
+
+    private Nodo borrarMin(Nodo input) 
+    {
+        if (input.izquierda == null) return input.derecha;
+        input.izquierda = borrarMin(input.izquierda);
+        input.N = tamano(input.izquierda) + tamano(input.derecha) + 1;
+        return input;
+    }
+
+    public void borrarMax() 
+    {
+        if (estaVacio()) throw new NoSuchElementException("Symbol table underflow");
+        raiz = borrarMax(raiz);
+        assert check();
+    }
+
+    private Nodo borrarMax(Nodo input) 
+    {
+        if (input.derecha == null) return input.izquierda;
+        input.derecha = borrarMax(input.derecha);
+        input.N = tamano(input.izquierda) + tamano(input.derecha) + 1;
+        return input;
+    }
+
+   
+    public void borrar(Llave llave) 
+    {
+        raiz = borrar(raiz, llave);
+        assert check();
+    }
+
+    private Nodo borrar(Nodo input, Llave llave) 
+    {
+        if (input  == null) return null;
+        int comparar = llave.compareTo(input.llave);
+        if      (comparar < 0) input.izquierda  = borrar(input.izquierda,  llave);
+        else if (comparar > 0) input.derecha = borrar(input.derecha, llave);
+        else 
+        { 
+            if (input.derecha == null) return input.izquierda;
+            if (input.izquierda  == null) return input.derecha;
+            Nodo t = input ;
+            input  = min(t.derecha);
+            input.derecha = borrarMin(t.derecha);
+            input.izquierda = t.izquierda;
+        } 
+        input.N = tamano(input.izquierda) + tamano(input.derecha) + 1;
+        return input;
+    } 
+
+
+    public Llave min() 
+    {
+        if (estaVacio()) throw new NoSuchElementException("called min() with empty symbol table");
+        return min(raiz).llave;
+    } 
+
+    private Nodo min(Nodo input) 
+    { 
+        if (input.izquierda == null) return input; 
+        else                return min(input.izquierda); 
+    } 
+
+
+    public Llave max() 
+    {
+        if (estaVacio()) throw new NoSuchElementException("called max() with empty symbol table");
+        return max(raiz).llave;
+    } 
+
+    private Nodo max(Nodo input) 
+    {
+        if (input.derecha == null) return input; 
+        else                 return max(input.derecha); 
+    } 
+
+    public Llave piso(Llave llave) 
+    {
+        if (estaVacio()) throw new NoSuchElementException("called piso() with empty symbol table");
+        Nodo input = piso(raiz, llave);
+        if (input  == null) return null;
+        else return input.llave;
+    } 
+
+    private Nodo piso(Nodo input, Llave llave) 
+    {
+        if (input  == null) return null;
+        int comparar = llave.compareTo(input.llave);
+        if (comparar == 0) return input;
+        if (comparar <  0) return piso(input.izquierda, llave);
+        Nodo t = piso(input.derecha, llave); 
+        if (t != null) return t;
+        else return input; 
+    } 
+
+    public Llave techo(Llave llave) 
+    {
+        if (estaVacio()) throw new NoSuchElementException("called techo() with empty symbol table");
+        Nodo input = techo(raiz, llave);
+        if (input  == null) return null;
+        else return input.llave;
+    }
+
+    private Nodo techo(Nodo input, Llave llave) 
+    {
+        if (input  == null) return null;
+        int comparar = llave.compareTo(input.llave);
+        if (comparar == 0) return input;
+        if (comparar < 0) { 
+            Nodo t = techo(input.izquierda, llave); 
+            if (t != null) return t;
+            else return input; 
+        } 
+        return techo(input.derecha, llave); 
+    } 
+
+    public Llave seleccionar(int k) 
+    {
+        if (k < 0 || k >= tamano()) throw new IllegalArgumentException();
+        Nodo input = seleccionar(raiz, k);
+        return input.llave;
+    }
+
+    private Nodo seleccionar(Nodo input, int k) 
+    {
+        if (input  == null) return null; 
+        int t = tamano(input.izquierda); 
+        if      (t > k) return seleccionar(input.izquierda,  k); 
+        else if (t < k) return seleccionar(input.derecha, k-t-1); 
+        else            return input; 
+    } 
+
+    public int rank(Llave llave) 
+    {
+        return rank(llave, raiz);
+    } 
+
+    private int rank(Llave llave, Nodo input) 
+    {
+        if (input  == null) return 0; 
+        int comparar = llave.compareTo(input.llave); 
+        if      (comparar < 0) return rank(llave, input.izquierda); 
+        else if (comparar > 0) return 1 + tamano(input.izquierda) + rank(llave, input.derecha); 
+        else              return tamano(input.izquierda); 
+    } 
+
+    public Iterable<Llave> llaves() 
+    {
+        return llaves(min(), max());
+    }
+
+    public Iterable<Llave> llaves(Llave lo, Llave hi) 
+    {
+        Queue<Llave> queue = new Queue<Llave>();
+        llaves(raiz, queue, lo, hi);
+        return queue;
+    } 
+
+    private void llaves(Nodo input, Queue<Llave> queue, Llave lo, Llave hi) 
+    { 
+        if (input  == null) return; 
+        int cmplo = lo.compareTo(input.llave); 
+        int cmphi = hi.compareTo(input.llave); 
+        if (cmplo < 0) llaves(input.izquierda, queue, lo, hi); 
+        if (cmplo <= 0 && cmphi >= 0) queue.enqueue(input.llave); 
+        if (cmphi > 0) llaves(input.derecha, queue, lo, hi); 
+    } 
+
+
+    public int tamano(Llave lo, Llave hi) 
+    {
+        if (lo.compareTo(hi) > 0) return 0;
+        if (contieneLlave(hi)) return rank(hi) - rank(lo) + 1;
+        else              return rank(hi) - rank(lo);
+    }
+
+    public int altura() 
+    {
+        return altura(raiz);
+    }
+    private int altura(Nodo input) {
+        if (input  == null) return -1;
+        return 1 + Math.max(altura(input.izquierda), altura(input.derecha));
+    }
+
+
+    public Iterable<Llave> levelOrder() 
+    {
+        Queue<Llave> llaves = new Queue<Llave>();
+        Queue<Nodo> queue = new Queue<Nodo>();
+        queue.enqueue(raiz);
+        while (!queue.estaVacio()) 
+        {
+            Nodo input = queue.dequeue();
+            if (input  == null) continue;
+            llaves.enqueue(input.llave);
+            queue.enqueue(input.izquierda);
+            queue.enqueue(input.derecha);
+        }
+        return llaves;
+    }
+
+
+
+}
