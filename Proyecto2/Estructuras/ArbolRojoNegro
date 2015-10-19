@@ -1,0 +1,540 @@
+package.api;
+
+import estructuras.cola.ILista;
+public class ArbolRojoNegro<Llave extends Comparable<Llave>, Value> {
+
+    private static final boolean ROJO   = true;
+    private static final boolean NEGRO = false;
+
+    private Nodo raiz;     // raiz of the BST
+
+    // clase nodo para implementar el arbl
+    private class Nodo 
+    {
+        private Llave llave;           // llave
+        private Value val;         // associated data
+        private Nodo left, right;  // links to left and right subtrees
+        private boolean color;     // color of parent link
+        private int N;             // subtree count
+
+        public Nodo(Llave llave, Value val, boolean color, int N) 
+        {
+            this.llave = llave;
+            this.val = val;
+            this.color = color;
+            this.N = N;
+        }
+    }
+
+    public ArbolRojoNegro()
+    {
+    }
+
+    // is nodo x rojo; false if x is null ?
+    private boolean esRojo(Nodo x) 
+    {
+        if (x == null) return false;
+        return x.color == ROJO;
+    }
+
+    private int tamano(Nodo x) 
+    {
+        if (x == null) return 0;
+        return x.N;
+    } 
+
+    public int tamano() 
+    {
+        return tamano(raiz);
+    }
+
+   /**
+     * Is this symbol table empty?
+     * @return <tt>true</tt> if this symbol table is empty and <tt>false</tt> otherwise
+     */
+    public boolean isEmpty() {
+        return raiz == null;
+    }
+
+
+   /***************************************************************************
+    *  Standard BST search.
+    ***************************************************************************/
+
+    /**
+     * Returns the value associated with the given llave.
+     * @param llave the llave
+     * @return the value associated with the given llave if the llave is in the symbol table
+     *     and <tt>null</tt> if the llave is not in the symbol table
+     * @throws NullPointerException if <tt>llave</tt> is <tt>null</tt>
+     */
+    public Value get(Llave llave) {
+        return get(raiz, llave);
+    }
+
+    // value associated with the given llave in subtree rooted at x; null if no such llave
+    private Value get(Nodo x, Llave llave) {
+        while (x != null) {
+            int cmp = llave.compareTo(x.llave);
+            if      (cmp < 0) x = x.left;
+            else if (cmp > 0) x = x.right;
+            else              return x.val;
+        }
+        return null;
+    }
+
+    /**
+     * Does this symbol table contain the given llave?
+     * @param llave the llave
+     * @return <tt>true</tt> if this symbol table contains <tt>llave</tt> and
+     *     <tt>false</tt> otherwise
+     * @throws NullPointerException if <tt>llave</tt> is <tt>null</tt>
+     */
+    public boolean contains(Llave llave) {
+        return get(llave) != null;
+    }
+
+   /***************************************************************************
+    *  Rojo-black tree insertion.
+    ***************************************************************************/
+
+    /**
+     * Inserts the llave-value pair into the symbol table, overwriting the old value
+     * with the new value if the llave is already in the symbol table.
+     * If the value is <tt>null</tt>, this effectively deletes the llave from the symbol table.
+     * @param llave the llave
+     * @param val the value
+     * @throws NullPointerException if <tt>llave</tt> is <tt>null</tt>
+     */
+    public void put(Llave llave, Value val) {
+        raiz = put(raiz, llave, val);
+        raiz.color = NEGRO;
+        // assert check();
+    }
+
+    // insert the llave-value pair in the subtree rooted at h
+    private Nodo put(Nodo h, Llave llave, Value val) { 
+        if (h == null) return new Nodo(llave, val, ROJO, 1);
+
+        int cmp = llave.compareTo(h.llave);
+        if      (cmp < 0) h.left  = put(h.left,  llave, val); 
+        else if (cmp > 0) h.right = put(h.right, llave, val); 
+        else              h.val   = val;
+
+        // fix-up any right-leaning links
+        if (esRojo(h.right) && !esRojo(h.left))      h = rotateLeft(h);
+        if (esRojo(h.left)  &&  esRojo(h.left.left)) h = rotateRight(h);
+        if (esRojo(h.left)  &&  esRojo(h.right))     flipColors(h);
+        h.N = tamano(h.left) + tamano(h.right) + 1;
+
+        return h;
+    }
+
+   /***************************************************************************
+    *  Rojo-black tree deletion.
+    ***************************************************************************/
+
+    /**
+     * Removes the smallest llave and associated value from the symbol table.
+     * @throws NoSuchElementException if the symbol table is empty
+     */
+    public void deleteMin() {
+        if (isEmpty()) throw new NoSuchElementException("BST underflow");
+
+        // if both children of raiz are black, set raiz to rojo
+        if (!esRojo(raiz.left) && !esRojo(raiz.right))
+            raiz.color = ROJO;
+
+        raiz = deleteMin(raiz);
+        if (!isEmpty()) raiz.color = NEGRO;
+        // assert check();
+    }
+
+    // delete the llave-value pair with the minimum llave rooted at h
+    private Nodo deleteMin(Nodo h) { 
+        if (h.left == null)
+            return null;
+
+        if (!esRojo(h.left) && !esRojo(h.left.left))
+            h = moveRedLeft(h);
+
+        h.left = deleteMin(h.left);
+        return balance(h);
+    }
+
+
+    /**
+     * Removes the largest llave and associated value from the symbol table.
+     * @throws NoSuchElementException if the symbol table is empty
+     */
+    public void deleteMax() {
+        if (isEmpty()) throw new NoSuchElementException("BST underflow");
+
+        // if both children of raiz are black, set raiz to rojo
+        if (!esRojo(raiz.left) && !esRojo(raiz.right))
+            raiz.color = ROJO;
+
+        raiz = deleteMax(raiz);
+        if (!isEmpty()) raiz.color = NEGRO;
+        // assert check();
+    }
+
+    // delete the llave-value pair with the maximum llave rooted at h
+    private Nodo deleteMax(Nodo h) { 
+        if (esRojo(h.left))
+            h = rotateRight(h);
+
+        if (h.right == null)
+            return null;
+
+        if (!esRojo(h.right) && !esRojo(h.right.left))
+            h = moveRedRight(h);
+
+        h.right = deleteMax(h.right);
+
+        return balance(h);
+    }
+
+    /**
+     * Removes the llave and associated value from the symbol table
+     * (if the llave is in the symbol table).
+     * @param llave the llave
+     * @throws NullPointerException if <tt>llave</tt> is <tt>null</tt>
+     */
+    public void delete(Llave llave) { 
+        if (!contains(llave)) {
+            System.err.println("symbol table does not contain " + llave);
+            return;
+        }
+
+        // if both children of raiz are black, set raiz to rojo
+        if (!esRojo(raiz.left) && !esRojo(raiz.right))
+            raiz.color = ROJO;
+
+        raiz = delete(raiz, llave);
+        if (!isEmpty()) raiz.color = NEGRO;
+        // assert check();
+    }
+
+    // delete the llave-value pair with the given llave rooted at h
+    private Nodo delete(Nodo h, Llave llave) { 
+        // assert get(h, llave) != null;
+
+        if (llave.compareTo(h.llave) < 0)  {
+            if (!esRojo(h.left) && !esRojo(h.left.left))
+                h = moveRedLeft(h);
+            h.left = delete(h.left, llave);
+        }
+        else {
+            if (esRojo(h.left))
+                h = rotateRight(h);
+            if (llave.compareTo(h.llave) == 0 && (h.right == null))
+                return null;
+            if (!esRojo(h.right) && !esRojo(h.right.left))
+                h = moveRedRight(h);
+            if (llave.compareTo(h.llave) == 0) {
+                Nodo x = min(h.right);
+                h.llave = x.llave;
+                h.val = x.val;
+                // h.val = get(h.right, min(h.right).llave);
+                // h.llave = min(h.right).llave;
+                h.right = deleteMin(h.right);
+            }
+            else h.right = delete(h.right, llave);
+        }
+        return balance(h);
+    }
+
+   /***************************************************************************
+    *  Rojo-black tree helper functions.
+    ***************************************************************************/
+
+    // make a left-leaning link lean to the right
+    private Nodo rotateRight(Nodo h) {
+        // assert (h != null) && esRojo(h.left);
+        Nodo x = h.left;
+        h.left = x.right;
+        x.right = h;
+        x.color = x.right.color;
+        x.right.color = ROJO;
+        x.N = h.N;
+        h.N = tamano(h.left) + tamano(h.right) + 1;
+        return x;
+    }
+
+    // make a right-leaning link lean to the left
+    private Nodo rotateLeft(Nodo h) {
+        // assert (h != null) && esRojo(h.right);
+        Nodo x = h.right;
+        h.right = x.left;
+        x.left = h;
+        x.color = x.left.color;
+        x.left.color = ROJO;
+        x.N = h.N;
+        h.N = tamano(h.left) + tamano(h.right) + 1;
+        return x;
+    }
+
+    // flip the colors of a nodo and its two children
+    private void flipColors(Nodo h) {
+        // h must have opposite color of its two children
+        // assert (h != null) && (h.left != null) && (h.right != null);
+        // assert (!esRojo(h) &&  esRojo(h.left) &&  esRojo(h.right))
+        //    || (esRojo(h)  && !esRojo(h.left) && !esRojo(h.right));
+        h.color = !h.color;
+        h.left.color = !h.left.color;
+        h.right.color = !h.right.color;
+    }
+
+    // Assuming that h is rojo and both h.left and h.left.left
+    // are black, make h.left or one of its children rojo.
+    private Nodo moveRedLeft(Nodo h) {
+        // assert (h != null);
+        // assert esRojo(h) && !esRojo(h.left) && !esRojo(h.left.left);
+
+        flipColors(h);
+        if (esRojo(h.right.left)) { 
+            h.right = rotateRight(h.right);
+            h = rotateLeft(h);
+            flipColors(h);
+        }
+        return h;
+    }
+
+    // Assuming that h is rojo and both h.right and h.right.left
+    // are black, make h.right or one of its children rojo.
+    private Nodo moveRedRight(Nodo h) {
+        // assert (h != null);
+        // assert esRojo(h) && !esRojo(h.right) && !esRojo(h.right.left);
+        flipColors(h);
+        if (esRojo(h.left.left)) { 
+            h = rotateRight(h);
+            flipColors(h);
+        }
+        return h;
+    }
+
+    // restore rojo-black tree invariant
+    private Nodo balance(Nodo h) {
+        // assert (h != null);
+
+        if (esRojo(h.right))                      h = rotateLeft(h);
+        if (esRojo(h.left) && esRojo(h.left.left)) h = rotateRight(h);
+        if (esRojo(h.left) && esRojo(h.right))     flipColors(h);
+
+        h.N = tamano(h.left) + tamano(h.right) + 1;
+        return h;
+    }
+
+
+   /***************************************************************************
+    *  Utility functions.
+    ***************************************************************************/
+
+    /**
+     * Returns the height of the BST (for debugging).
+     * @return the height of the BST (a 1-nodo tree has height 0)
+     */
+    public int height() {
+        return height(raiz);
+    }
+    private int height(Nodo x) {
+        if (x == null) return -1;
+        return 1 + Math.max(height(x.left), height(x.right));
+    }
+      /***************************************************************************
+    *  Ordered symbol table methods.
+    ***************************************************************************/
+
+    /**
+     * Returns the smallest llave in the symbol table.
+     * @return the smallest llave in the symbol table
+     * @throws NoSuchElementException if the symbol table is empty
+     */
+    public Llave min() {
+        if (isEmpty()) throw new NoSuchElementException("called min() with empty symbol table");
+        return min(raiz).llave;
+    } 
+
+    // the smallest llave in subtree rooted at x; null if no such llave
+    private Nodo min(Nodo x) { 
+        // assert x != null;
+        if (x.left == null) return x; 
+        else                return min(x.left); 
+    } 
+
+    /**
+     * Returns the largest llave in the symbol table.
+     * @return the largest llave in the symbol table
+     * @throws NoSuchElementException if the symbol table is empty
+     */
+    public Llave max() {
+        if (isEmpty()) throw new NoSuchElementException("called max() with empty symbol table");
+        return max(raiz).llave;
+    } 
+
+    // the largest llave in the subtree rooted at x; null if no such llave
+    private Nodo max(Nodo x) { 
+        // assert x != null;
+        if (x.right == null) return x; 
+        else                 return max(x.right); 
+    } 
+
+
+    /**
+     * Returns the largest llave in the symbol table less than or equal to <tt>llave</tt>.
+     * @param llave the llave
+     * @return the largest llave in the symbol table less than or equal to <tt>llave</tt>
+     * @throws NoSuchElementException if there is no such llave
+     * @throws NullPointerException if <tt>llave</tt> is <tt>null</tt>
+     */
+    public Llave floor(Llave llave) {
+        if (isEmpty()) throw new NoSuchElementException("called floor() with empty symbol table");
+        Nodo x = floor(raiz, llave);
+        if (x == null) return null;
+        else           return x.llave;
+    }    
+
+    // the largest llave in the subtree rooted at x less than or equal to the given llave
+    private Nodo floor(Nodo x, Llave llave) {
+        if (x == null) return null;
+        int cmp = llave.compareTo(x.llave);
+        if (cmp == 0) return x;
+        if (cmp < 0)  return floor(x.left, llave);
+        Nodo t = floor(x.right, llave);
+        if (t != null) return t; 
+        else           return x;
+    }
+
+    /**
+     * Returns the smallest llave in the symbol table greater than or equal to <tt>llave</tt>.
+     * @param llave the llave
+     * @return the smallest llave in the symbol table greater than or equal to <tt>llave</tt>
+     * @throws NoSuchElementException if there is no such llave
+     * @throws NullPointerException if <tt>llave</tt> is <tt>null</tt>
+     */
+    public Llave ceiling(Llave llave) {  
+        if (isEmpty()) throw new NoSuchElementException("called ceiling() with empty symbol table");
+        Nodo x = ceiling(raiz, llave);
+        if (x == null) return null;
+        else           return x.llave;  
+    }
+
+    // the smallest llave in the subtree rooted at x greater than or equal to the given llave
+    private Nodo ceiling(Nodo x, Llave llave) {  
+        if (x == null) return null;
+        int cmp = llave.compareTo(x.llave);
+        if (cmp == 0) return x;
+        if (cmp > 0)  return ceiling(x.right, llave);
+        Nodo t = ceiling(x.left, llave);
+        if (t != null) return t; 
+        else           return x;
+    }
+
+    /**
+     * Return the kth smallest llave in the symbol table.
+     * @param k the order statistic
+     * @return the kth smallest llave in the symbol table
+     * @throws IllegalArgumentException unless <tt>k</tt> is between 0 and
+     *     <em>N</em> &minus; 1
+     */
+    public Llave select(int k) {
+        if (k < 0 || k >= tamano()) throw new IllegalArgumentException();
+        Nodo x = select(raiz, k);
+        return x.llave;
+    }
+
+    // the llave of rank k in the subtree rooted at x
+    private Nodo select(Nodo x, int k) {
+        // assert x != null;
+        // assert k >= 0 && k < tamano(x);
+        int t = tamano(x.left); 
+        if      (t > k) return select(x.left,  k); 
+        else if (t < k) return select(x.right, k-t-1); 
+        else            return x; 
+    } 
+
+    /**
+     * Return the number of keys in the symbol table strictly less than <tt>llave</tt>.
+     * @param llave the llave
+     * @return the number of keys in the symbol table strictly less than <tt>llave</tt>
+     * @throws NullPointerException if <tt>llave</tt> is <tt>null</tt>
+     */
+    public int rank(Llave llave) {
+        return rank(llave, raiz);
+    } 
+
+    // number of keys less than llave in the subtree rooted at x
+    private int rank(Llave llave, Nodo x) {
+        if (x == null) return 0; 
+        int cmp = llave.compareTo(x.llave); 
+        if      (cmp < 0) return rank(llave, x.left); 
+        else if (cmp > 0) return 1 + tamano(x.left) + rank(llave, x.right); 
+        else              return tamano(x.left); 
+    } 
+
+   /***************************************************************************
+    *  Range count and range search.
+    ***************************************************************************/
+
+    /**
+     * Returns all keys in the symbol table as an <tt>Iterable</tt>.
+     * To iterate over all of the keys in the symbol table named <tt>st</tt>,
+     * use the foreach notation: <tt>for (Llave llave : st.keys())</tt>.
+     * @return all keys in the sybol table as an <tt>Iterable</tt>
+     */
+    public Iterable<Llave> keys() {
+        return keys(min(), max());
+    }
+
+    /**
+     * Returns all keys in the symbol table in the given range,
+     * as an <tt>Iterable</tt>.
+     * @return all keys in the sybol table between <tt>lo</tt> 
+     *    (inclusive) and <tt>hi</tt> (exclusive) as an <tt>Iterable</tt>
+     * @throws NullPointerException if either <tt>lo</tt> or <tt>hi</tt>
+     *    is <tt>null</tt>
+     */
+    public Iterable<Llave> keys(Llave lo, Llave hi) {
+        Queue<Llave> queue = new Queue<Llave>();
+        // if (isEmpty() || lo.compareTo(hi) > 0) return queue;
+        keys(raiz, queue, lo, hi);
+        return queue;
+    } 
+
+    // add the keys between lo and hi in the subtree rooted at x
+    // to the queue
+    private void keys(Nodo x, Queue<Llave> queue, Llave lo, Llave hi) { 
+        if (x == null) return; 
+        int cmplo = lo.compareTo(x.llave); 
+        int cmphi = hi.compareTo(x.llave); 
+        if (cmplo < 0) keys(x.left, queue, lo, hi); 
+        if (cmplo <= 0 && cmphi >= 0) queue.enqueue(x.llave); 
+        if (cmphi > 0) keys(x.right, queue, lo, hi); 
+    } 
+
+    /**
+     * Returns the number of keys in the symbol table in the given range.
+     * @return the number of keys in the sybol table between <tt>lo</tt> 
+     *    (inclusive) and <tt>hi</tt> (exclusive)
+     * @throws NullPointerException if either <tt>lo</tt> or <tt>hi</tt>
+     *    is <tt>null</tt>
+     */
+    public int tamano(Llave lo, Llave hi) {
+        if (lo.compareTo(hi) > 0) return 0;
+        if (contains(hi)) return rank(hi) - rank(lo) + 1;
+        else              return rank(hi) - rank(lo);
+    }
+
+
+   /***************************************************************************
+    *  Check integrity of rojo-black tree data structure.
+    ***************************************************************************/
+    private boolean check() {
+        if (!isBST())            StdOut.println("Not in symmetric order");
+        if (!isSizeConsistent()) StdOut.println("Subtree counts not consistent");
+        if (!isRankConsistent()) StdOut.println("Ranks not consistent");
+        if (!is23())             StdOut.println("Not a 2-3 tree");
+        if (!isBalanced())       StdOut.println("Not balanced");
+        return isBST() && isSizeConsistent() && isRankConsistent() && is23() && isBalanced();
+    }
