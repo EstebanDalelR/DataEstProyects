@@ -1,0 +1,7 @@
+public class grafoDirigido{
+	
+	public int numeroVertices;
+
+	public int numeroLados;
+	
+}
