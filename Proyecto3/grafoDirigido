@@ -4,4 +4,15 @@ public class grafoDirigido{
 
 	public int numeroLados;
 	
+	public class dijkstra{
+
+	}
+	
+	public class agregarNodo{
+
+	}
+
+	public class agregarBorde{
+
+	}
 }
