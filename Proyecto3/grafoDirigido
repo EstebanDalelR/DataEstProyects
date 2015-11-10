@@ -7,8 +7,9 @@ public class grafoDirigido{
 
 	public int numeroLados;
 
-	//constructor
+	//constructor para un grafo vacío con V vértices
 	//el número de vertices es mayor a cero
+
 	public grafoDirigido(int V) {
         
         this.numeroVertices = V;
@@ -17,6 +18,29 @@ public class grafoDirigido{
         adj = (Bag<Integer>[]) new Bag[V];
         for (int v = 0; v < V; v++) {
             adj[v] = new Bag<Integer>();
+        }
+    }
+
+    //constructor para un grafo con un InputStream
+    //el número de vertices es mayor a cero
+
+    public grafoDirigido(In in) {
+        try {
+            this.numeroVertices = in.readInt();
+           adjacencias = (Bag<Integer>[]) new Bag[V];
+            for (int v = 0; v < V; v++) {
+                adj[v] = new Bag<Integer>();
+            }
+            int E = in.readInt();
+            if (E < 0) throw new IllegalArgumentException("Number of edges in a Digraph must be nonnegative");
+            for (int i = 0; i < E; i++) {
+                int v = in.readInt();
+                int w = in.readInt();
+                addEdge(v, w); 
+            }
+        }
+        catch (NoSuchElementException e) {
+            throw new InputMismatchException("Invalid input format in Digraph constructor");
         }
     }
 		
