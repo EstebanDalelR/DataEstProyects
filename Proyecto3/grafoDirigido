@@ -1,13 +1,25 @@
 public class grafoDirigido{
 	
+	//una bolsa con las conexiones
+	private Bag<Integer>[] adjacencias;
+
 	public int numeroVertices;
 
 	public int numeroLados;
-	
-	public class dijkstra{
 
-	}
-	
+	//constructor
+	//el número de vertices es mayor a cero
+	public grafoDirigido(int V) {
+        
+        this.numeroVertices = V;
+        this.numeroLados = 0;
+        indegree = new int[V];
+        adj = (Bag<Integer>[]) new Bag[V];
+        for (int v = 0; v < V; v++) {
+            adj[v] = new Bag<Integer>();
+        }
+    }
+		
 	public class agregarNodo{
 
 	}
@@ -15,4 +27,17 @@ public class grafoDirigido{
 	public class agregarBorde{
 
 	}
+	//búsqueda DepthFirstSearch
+	public class BFP{
+
+	}
+	//búsqueda BreadthFirstPaths
+	Public class DFS{
+
+	}
+	
+	public class dijkstra{
+
+	}
+
 }
