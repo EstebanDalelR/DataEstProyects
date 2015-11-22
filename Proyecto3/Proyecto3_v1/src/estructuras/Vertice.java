@@ -4,7 +4,7 @@ public class Vertice<llave, valor>
 {
 	private Object llave;
 	private Object valor;
-	private Arco arco; 
+	private Lista arco; 
 	
 	public Vertice()
 	{
@@ -24,10 +24,10 @@ public class Vertice<llave, valor>
 	public void setValor(Object valor) {
 		this.valor = valor;
 	}
-	public Arco getArco() {
+	public Lista getArco() {
 		return arco;
 	}
-	public void setArco(Arco arco) {
+	public void setArco(Lista arco) {
 		this.arco = arco;
 	}
 	

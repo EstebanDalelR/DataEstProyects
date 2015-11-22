@@ -3,13 +3,13 @@ package estructuras;
 public class GrafoDirigido 
 {
 	private TablaHash vertices;
-	private Lista<Object> arcos;
+	private Lista<Arco> arcos;
 	private TablaHash nombres;
 	
 	public GrafoDirigido()
 	{
 		vertices = new TablaHash();
-		arcos = new Lista<Object>();
+		arcos = new Lista<Arco>();
 		nombres = new TablaHash();
 	}
 	
@@ -18,7 +18,7 @@ public class GrafoDirigido
 		vertices.agregar(llave, valor);
 	}
 	
-	public void añadirArco(Object value)
+	public void añadirArco(Arco value)
 	{
 		arcos.agregar(value);
 	}
@@ -33,7 +33,7 @@ public class GrafoDirigido
 		return vertices.getValue(llave);
 	}
 	
-	public Object obtenerArco(Object valor)
+	public Object obtenerArco(Arco valor)
 	{
 		return arcos.buscar(valor);
 	}
