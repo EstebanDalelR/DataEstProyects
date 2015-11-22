@@ -31,8 +31,16 @@ public class NodoHash<llave, valor>
 		this.valor = valor;
 	}
 
-	public NodoHash getSiguiente() {
+	public NodoHash getSiguiente() 
+	{
+		if(siguiente.equals(null))
+		{
+			return null;
+		}
+		else
+		{
 		return siguiente;
+		}
 	}
 
 	public void setSiguiente(NodoHash siguiente) {

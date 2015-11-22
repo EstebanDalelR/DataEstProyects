@@ -47,3 +47,4 @@ public class CentroAcopio
 		this.esCentro = esCentro;
 	}
 }
+

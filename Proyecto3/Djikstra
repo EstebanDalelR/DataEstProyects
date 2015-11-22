@@ -1,5 +1,5 @@
-public DijkstraSP(EdgeWeightedDigraph G, int s) {
-        for (DirectedEdge e : G.edges()) {
+public Lista DijkstraSP(GrafoDirigido G, int s) {
+        for (Arco e : G.devolverArcos()) {
             if (e.weight() < 0)
                 throw new IllegalArgumentException("edge " + e + " has negative weight");
         }

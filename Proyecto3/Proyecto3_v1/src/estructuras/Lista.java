@@ -43,4 +43,9 @@ public class Lista<T>
 	  return tamanioEst;
   }
   
+  public Object[] darElementos()
+  {
+	  return elementos;
+  }
+  
 }

@@ -1,5 +1,4 @@
 package mundo;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 
@@ -113,5 +112,13 @@ public class CCT
 			e.printStackTrace();
 		}
 				
+	}
+	
+	public static void main(String[] args)
+	{
+		CCT prueba = new CCT();
+		TablaHash d = prueba.definiciones;
+		String valor = (String)d.getValue("AC");
+		System.out.println(valor);
 	}
 }

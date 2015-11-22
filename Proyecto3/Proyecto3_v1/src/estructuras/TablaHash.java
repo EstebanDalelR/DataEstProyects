@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class TablaHash 
 {
 	private int m = 0;
-	private NodoHash[] th = new NodoHash[m];
+	private NodoHash[] th = new NodoHash[1000];
 	
 	private int hash(Object key)
 	{
@@ -29,6 +29,7 @@ public class TablaHash
 	
 	public void agregar(Object key, Object value)
 	{
+		m++;
 		int i = hash(key);
 		for(NodoHash x = th[i]; x != null; x  = x.getSiguiente())
 		{

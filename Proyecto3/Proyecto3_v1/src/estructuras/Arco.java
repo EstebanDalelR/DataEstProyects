@@ -7,7 +7,7 @@ public class Arco<valor>
 	private Vertice<Object, Object> origen;
 	private Vertice<Object, Object> destino;
 	
-	public Arco(Vertice<Object, Object> orig, Vertice<Object, Object> dest, Object v1, Object v2)
+public Arco(Vertice<Object, Object> orig, Vertice<Object, Object> dest, Object v1, Object v2)
 	{
 		valor1 = v1;
 		valor2 = v2;

@@ -42,4 +42,14 @@ public class GrafoDirigido
 	{
 		return nombres.getValue(llave);
 	}
+	
+	public TablaHash devolverVertices()
+	{
+		return vertices;
+	}
+	
+	public Lista devolverArcos()
+	{
+		return arcos;
+	}
 }
