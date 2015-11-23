@@ -5,7 +5,7 @@ import java.util.*;
 public class Dijkstra {
 	//listas de respuesta
 	private Lista<Double> distTo;   // distTo[v] = distance  of shortest s->v path
-	private Lista<Arco> edgeTo;    // lista de arcos que conectan los dos vértices
+	private Lista<Arco> edgeTo;    // lista de arcos que conectan los dos vÃ©rtices
 	
 	public Dijkstra(){
 		
@@ -33,15 +33,19 @@ public class Dijkstra {
 
 		//crea un queue con los arcos a explorar por los que demoran menos tiempo
 			PriorityQueue<Arco> queueSiguientes = 
-					new PriorityQueue<Arco>(origen.getArco().darTamaño(), menorTiempo);
+					new PriorityQueue<Arco>(origen.getArco().darTamaÃ±o(), menorTiempo);
 			while(!queueSiguientes.isEmpty()){
-				//toma el vértice de ese primer arco
-				Vertice<llave, valor> actual=queueSiguientes.poll().getDestino();
+				//toma el vÃ©rtice de ese primer arco
+				Arco<> actual=queueSiguientes.poll();
+				Vertice destActual= actual.getDestino();
 				//si es la meta, retorna
 				if (actual.equals(meta)) {
 					return respuesta;
 				}
-				
+				Lista<Arco> agregar = destActual.getArco();
+				Collections.sort(agregar, menorTiempo)
+				queueSiguientes.add(agregar);
+				//http://www.vogella.com/tutorials/JavaAlgorithmsDijkstra/article.html
 			}
 			return  respuesta;
 		}
