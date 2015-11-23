@@ -1,39 +1,53 @@
 package estructuras;
+import java.awt.Dimension;
+import java.util.*;
 
 public class Dijkstra {
+	//listas de respuesta
+	private Lista<Double> distTo;   // distTo[v] = distance  of shortest s->v path
+	private Lista<Arco> edgeTo;    // lista de arcos que conectan los dos vértices
 	
-        for (Arco e : G.devolverArcos()) {
-            if (e.weight() < 0)
-                throw new IllegalArgumentException("edge " + e + " has negative weight");
-        }
+	public Dijkstra(){
+		
+	}
+	public static Comparator<Arco> menorTiempo =new Comparator<Arco>() {
+			@Override
+			//compara las distancias entre dos arcos
+			public int compare(Arco o1, Arco o2) {
+				Double dist1= (Double)o1.getValor();
+				Double dist2=(Double)o2.getValor();
+				Double vel1=(Double)o1.getValor2();
+				Double vel2=(Double)o2.getValor2();
+				Double t1=(Double)dist1/vel1;
+				Double t2=(Double)dist2/vel2;
+				Double respuesta=(t1)-(t2);
+				int resp= (int)((double)respuesta) ;
+				return resp;
+			}		
+		};
+	
+	public Lista<Arco> dijkstraTiempo(Vertice origen,Vertice meta){
+	
+		//produce una lista con los arcos de menor distancia entre dos ejes
+		Lista<Arco> respuesta = new Lista<Arco>();
 
-        distTo = new double[G.V()];
-        edgeTo = new DirectedEdge[G.V()];
-        for (int v = 0; v < G.V(); v++)
-            distTo[v] = Double.POSITIVE_INFINITY;
-        distTo[s] = 0.0;
+		//crea un queue con los arcos a explorar por los que demoran menos tiempo
+			PriorityQueue<Arco> queueSiguientes = 
+					new PriorityQueue<Arco>(origen.getArco().darTamaño(), menorTiempo);
+			while(!queueSiguientes.isEmpty()){
+				//toma el vértice de ese primer arco
+				Vertice<llave, valor> actual=queueSiguientes.poll().getDestino();
+				//si es la meta, retorna
+				if (actual.equals(meta)) {
+					return respuesta;
+				}
+				
+			}
+			return  respuesta;
+		}
+		public Lista<Arco> dijkstraDistancia(Vertice origen,Vertice meta){
+			PriorityQueue<Arco> queueSiguientes = new PriorityQueue<>();
+			
 
-        // relax vertices in order of distance from s
-        pq = new IndexMinPQ<Double>(G.V());
-        pq.insert(s, distTo[s]);
-        while (!pq.isEmpty()) {
-            int v = pq.delMin();
-            for (DirectedEdge e : G.adj(v))
-                relax(e);
-        }
-
-        // check optimality conditions
-        assert check(G, s);
-    }
-
-    // relax edge e and update pq if changed
-    private void relax(DirectedEdge e) {
-        int v = e.from(), w = e.to();
-        if (distTo[w] > distTo[v] + e.weight()) {
-            distTo[w] = distTo[v] + e.weight();
-            edgeTo[w] = e;
-            if (pq.contains(w)) pq.decreaseKey(w, distTo[w]);
-            else                pq.insert(w, distTo[w]);
-        }
-    
-}
+		}
+	}

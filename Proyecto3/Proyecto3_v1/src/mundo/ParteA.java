@@ -9,6 +9,9 @@ public class ParteA {
 	}
 
     public void calcularRutaPorDistancia() {
+    	//tiempo= distancia/Velocidad
+        //[h]=1000[m]/[Km/h]
+    	//distancia=tiempo*velocidad
     	
         long tInicioCalculoRuta = System.nanoTime();
         /**TODO Requerimiento 1: Encontrar la ruta más corta en distancia entre dos centros de acopio 

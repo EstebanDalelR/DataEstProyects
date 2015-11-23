@@ -3,7 +3,6 @@ package estructuras;
 import java.util.Arrays;
 
 
-
 public class TablaHash 
 {
 	private int m = 0;
