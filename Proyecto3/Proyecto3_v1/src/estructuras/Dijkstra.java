@@ -27,13 +27,32 @@ public class Dijkstra {
 			}		
 		};
 	public static Comparator<Arco> menorDistancia =new Comparator<Arco>() {
-		//TODO
+		
 		@Override
 		//compara las distancias entre dos arcos
 		public int compare(Arco o1, Arco o2) {
 			Double dist1= (Double)o1.getValor();
 			Double dist2=(Double)o2.getValor();
 			return dist1.compareTo(dist2);
+		}		
+	};
+	public static Comparator<Arco> menorCosto =new Comparator<Arco>() {
+		@Override
+		//compara las distancias entre dos arcos
+		public int compare(Arco o1, Arco o2) {
+			int precioKm=120;
+			int precioMin=25;
+			Double dist1= (Double)o1.getValor();
+			Double dist2=(Double)o2.getValor();
+			Double vel1=(Double)o1.getValor2();
+			Double vel2=(Double)o2.getValor2();
+			Double t1=(Double)dist1/vel1;
+			Double t2=(Double)dist2/vel2;
+			Double costo1= (t1*precioKm)+(dist1*precioMin);
+			Double costo2= (t2*precioKm)+(dist2*precioMin);
+			Double respuesta=(costo1)-(costo2);
+			int resp= (int)((double)respuesta) ;
+			return resp;
 		}		
 	};
 	

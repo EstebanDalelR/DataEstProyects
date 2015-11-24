@@ -1,5 +1,5 @@
 package mundo;
-
+import estructuras.*;
 public class ParteC{
 	
 	public ParteC(){
@@ -20,6 +20,7 @@ public class ParteC{
           * Se obtiene un objeto iterable que contenga los arcos que integran la ruta mas corta para los
           * puntos dados
           */
+      
           long tTotalConsultaClientes = System.nanoTime() - tInicioCalculoRuta; 
          System.out.println("tiempo Consulta Clientes: " + tTotalConsultaClientes + " nseg");
 
