@@ -8,7 +8,8 @@ public class Dijkstra {
 	private Lista<Arco> edgeTo;    // lista de arcos que conectan los dos vértices
 	
 	public Dijkstra(){
-		
+		distTo=new Lista<>();
+		edgeTo=new Lista<>();
 	}
 	public static Comparator<Arco> menorTiempo =new Comparator<Arco>() {
 			@Override
@@ -49,20 +50,20 @@ public class Dijkstra {
 
 		//crea un queue con los arcos a explorar por los que demoran menos tiempo
 			PriorityQueue<Arco> queueSiguientes = 
-					new PriorityQueue<Arco>(origen.getArco().darTamaño(), menorTiempo);
+					new PriorityQueue<Arco>(origen.getArco().darTama�o(), menorTiempo);
 			while(!queueSiguientes.isEmpty()){
 				//toma el vértice de ese primer arco
 				Arco<> actual=queueSiguientes.poll();
 				Vertice destActual= actual.getDestino();
 				//si es la meta, retorna
-				repuesta.agregar(actual);
+				respuesta.agregar(actual);
 				
 				if (destActual.equals(meta)) {
 					return respuesta;
 				}
 				Lista<Arco> agregar = destActual.getArco();
-				Collections.sort(agregar, menorTiempo)
-				queueSiguientes.add(agregar);
+				Collections.sort(agregar, menorTiempo);
+				queueSiguientes.addAll(agregar);
 				
 				//http://www.vogella.com/tutorials/JavaAlgorithmsDijkstra/article.html
 			}
@@ -77,10 +78,10 @@ public class Dijkstra {
 
 		//crea un queue con los arcos a explorar por los que demoran menos tiempo
 			PriorityQueue<Arco> queueSiguientes = 
-					new PriorityQueue<Arco>(origen.getArco().darTamaño(), menorTiempo);
+					new PriorityQueue<Arco>(origen.getArco().darTama�o(), menorTiempo);
 			while(!queueSiguientes.isEmpty()){
 				//toma el vértice de ese primer arco
-				Arco<> actual=queueSiguientes.poll();
+				Arco<T> actual=queueSiguientes.poll();
 				Vertice destActual= actual.getDestino();
 				//si es la meta, retorna
 				repuesta.agregar(actual);
@@ -96,3 +97,4 @@ public class Dijkstra {
 			}
 			return  respuesta;
 	}
+}

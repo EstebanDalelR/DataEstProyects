@@ -1,13 +1,17 @@
 package mundo;
 
+import estructuras.Dijkstra;
+import estructuras.Lista;
+
 public class ParteA {
 	
 	public ParteA(){
 		/**
          * TODO Instanciar el calculador de rutas por latitud y longitud
          */
+		
 	}
-
+	//private final static int PRECIO_KM= 10;
     public void calcularRutaPorDistancia() {
     	//tiempo= distancia/Velocidad
         //[h]=1000[m]/[Km/h]
@@ -23,6 +27,8 @@ public class ParteA {
          * Se obtiene un objeto iterable que contenga los arcos que integran la ruta mas corta para los
          * puntos dados
          */
+        //llama al dijkstra
+        Lista<T> respuesta= estructuras.Dijkstra.dijkstraTiempo(origen,meta);
          long tTotalConsultaClientes = System.nanoTime() - tInicioCalculoRuta; 
         System.out.println("tiempo Consulta Clientes: " + tTotalConsultaClientes + " nseg");
 
