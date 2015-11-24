@@ -30,5 +30,9 @@ public class Vertice<llave, valor>
 	public void setArco(Lista arco) {
 		this.arco = arco;
 	}
+	public void añadirArco(Arco a)
+	{
+		arco.agregar(a);
+	}
 	
 }

@@ -4,6 +4,7 @@ import java.io.FileReader;
 
 import estructuras.Arco;
 import estructuras.GrafoDirigido;
+import estructuras.Lista;
 import estructuras.TablaHash;
 import estructuras.Vertice;
 
@@ -49,6 +50,7 @@ public class CCT
              {
                   String[] values = line.split(",");
                   definiciones.agregar(values[0], values[1]);
+                  System.out.println(values[0] + " " +values[1]);
              }
         }
         catch(Exception e)
@@ -103,9 +105,12 @@ public class CCT
 				Vertice origen = (Vertice) grafo.obtenerVertice(orig);
 				Vertice destino = (Vertice) grafo.obtenerVertice(dest);
 				Arco a = new Arco(origen, destino, distancia, velocidad);
-				
+				origen.añadirArco(a);
+				destino.añadirArco(a);
 				grafo.añadirArco(a);
 			}
+			
+			
        	 }
 		catch(Exception e)
 		{

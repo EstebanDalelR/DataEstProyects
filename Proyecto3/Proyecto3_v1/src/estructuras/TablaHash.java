@@ -6,8 +6,9 @@ import java.util.Arrays;
 
 public class TablaHash 
 {
-	private int m = 0;
-	private NodoHash[] th = new NodoHash[1000];
+	private int m = 2;
+	private NodoHash[] th = new NodoHash[500];
+	private NodoHash[] reserva = th;
 	
 	private int hash(Object key)
 	{
@@ -29,6 +30,7 @@ public class TablaHash
 	
 	public void agregar(Object key, Object value)
 	{
+		calcularCarga();
 		m++;
 		int i = hash(key);
 		for(NodoHash x = th[i]; x != null; x  = x.getSiguiente())
@@ -45,16 +47,28 @@ public class TablaHash
 	
 	public void aumentarCapacidad()
 	{
+		System.out.println(th.length);
 		int nuevoTamaño = th.length*2;
-		th = Arrays.copyOf(th, nuevoTamaño);
-		m = th.length;
+		th = new NodoHash[nuevoTamaño];
+		for(int i = 0; i < reserva.length; i++)
+		{
+			NodoHash nh = reserva[i];
+			if(nh != null)
+			{
+			agregar(nh.getLlave(),nh.getValor());
+			}
+		}
+		
 	}
 	
 	public void calcularCarga()
 	{
-		if(m/posicionesOcupadas() > 0.75)
+		if(posicionesOcupadas() != 0)
 		{
-			aumentarCapacidad();
+			if(m/posicionesOcupadas() > 0.75)
+			{
+				aumentarCapacidad();
+			}
 		}
 	}
 	
