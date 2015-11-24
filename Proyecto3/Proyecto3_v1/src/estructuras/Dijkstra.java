@@ -33,13 +33,7 @@ public class Dijkstra {
 		public int compare(Arco o1, Arco o2) {
 			Double dist1= (Double)o1.getValor();
 			Double dist2=(Double)o2.getValor();
-			Double vel1=(Double)o1.getValor2();
-			Double vel2=(Double)o2.getValor2();
-			Double t1=(Double)dist1/vel1;
-			Double t2=(Double)dist2/vel2;
-			Double respuesta=(t1)-(t2);
-			int resp= (int)((double)respuesta) ;
-			return resp;
+			return dist1.compareTo(dist2);
 		}		
 	};
 	
