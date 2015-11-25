@@ -3,13 +3,19 @@ package mundo;
 import estructuras.Arco;
 import estructuras.Dijkstra;
 import estructuras.Lista;
+import estructuras.Vertice;
 
 public class ParteA {
 	
-	public ParteA(){
+	private Vertice<llave, valor> origen;
+	private Vertice<llave, valor> meta;
+	
+	public ParteA(int id, double latitud, double longitud, boolean centro){
+		new CentroAcopio(id, latitud, longitud, centro);
 		/**
          * TODO Instanciar el calculador de rutas por latitud y longitud
          */
+		
 	}
 
     public void calcularRutaPorDistancia() {
