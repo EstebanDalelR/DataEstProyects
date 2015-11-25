@@ -119,6 +119,11 @@ public class CCT
 				
 	}
 	
+	public GrafoDirigido devolverGrafo()
+	{
+		return grafo;
+	}
+	
 	public static void main(String[] args)
 	{
 		CCT prueba = new CCT();

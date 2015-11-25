@@ -1,11 +1,17 @@
 package mundo;
 
+import java.util.Scanner;
+
+import estructuras.Dijkstra;
+import estructuras.Vertice;
+
 public class ParteB {
 
 	public ParteB(){
 		/**
          * TODO Instanciar el calculador de rutas por calle y carrera
          */
+		Dijkstra d;
 	}
     public void calcularRutaPorTiempo() {
     	
@@ -19,6 +25,10 @@ public class ParteB {
           * Se obtiene un objeto iterable que contenga los arcos que integran la ruta mas corta para los 
           * puntos dados
           */
+         Scanner in = new Scanner(System.in);
+         String origen = in.nextLine();
+         
+         d.dijkstraTiempo()
           long tTotalConsultaClientes = System.nanoTime() - tInicioCalculoRuta; 
          System.out.println("tiempo Consulta Clientes: " + tTotalConsultaClientes + " nseg");
 

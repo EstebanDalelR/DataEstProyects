@@ -4,39 +4,11 @@ import java.io.*;
 import java.util.Map;
 
 import estructuras.GrafoDirigido;
+import estructuras.Vertice;
 
-public class OutputKML {
+public class OutputKML 
+{
 	
-
-	    /**
-	     * Constante que establece la ubicación del archivo comprimido inicial.
-	     */
-	    private final static String COMPRESSED_USER_DATA = "./data/data.tar.bz2";
-
-	    /**
-	     * Constante que establece la ubicación del archivo que contiene la nomenclatura
-	     * principal de las vías de Bogotá.
-	     */
-	    private final static String DEFINITIONS_FILE = "./data/definitions.csv";
-
-	    /**
-	     * Constante que establece la ubicación del archivo que contiene la descripción de
-	     * los nodos que componen la malla vial de la ciudad.
-	     */
-	    private final static String NODES_FILE = "./data/nodes.csv";
-
-	    /**
-	     * Constante que establece la ubicación del archivo que contiene el conjunto de nodos
-	     * que conforman cada arteria vial de la ciudad.
-	     */
-	    private final static String NAMES_FILE = "./data/names.csv";
-
-	    /**
-	     * Constante que establece la ubicación del archivo que contiene la descripción de cada
-	     * arco que conforma un segmento de vía.
-	     */
-	    private final static String EDGES_FILE = "./data/edges.csv";
-
 	    /**
 	     * Constante que establece la ubicación del archivo kml que se produce al calcular la
 	     * ruta entre dos puntos del grafo
@@ -44,109 +16,15 @@ public class OutputKML {
 	    private static final String OUTPUT_FILE = "./data/output.kml";
 
 	    /**
-	     * Instancia del grafo que contiene y abstrae la malla vial de la ciudad de Bogotá.
-	     */
-	    private GrafoDirigido graph;
-
-	    /**
-	     * Diccionario que establece una relación entre una abreviatura nominal y su significado
-	     * correspondiente en la nomenclatura estándar de la ciudad.
-	     */
-	    private Map<String, String> definitions;
-
-
-	    /**
 	     * Constructor principal de la clase, esta se encuentra encargada de realizar la
 	     * inicialización y carga de los archivos de descripción de la representación de
 	     * grafo de la malla vial Bogotana.
 	     */
+	    private CCT c;
 	    public  OutputKML()
 	    {
-	        graph = new GrafoDirigido();
-	        definitions = new HashMap<String, String>();
-
-	        File f = new File(COMPRESSED_USER_DATA);
-	        if(f.exists())
-	        {
-	            uncompressTarBzip(COMPRESSED_USER_DATA);
-	            f.delete();
-	        }
-
-	        try(BufferedReader br = new BufferedReader(new FileReader(DEFINITIONS_FILE)))
-	        {
-	            String line;
-	            br.readLine();
-	            while((line = br.readLine()) != null)
-	            {
-	                String[] values = line.split(",");
-	                definitions.put(values[0], values[1]);
-	            }
-	        }
-	        catch(Exception e)
-	        {
-	            e.printStackTrace();
-	        }
-
-	        try(BufferedReader br = new BufferedReader(new FileReader(NODES_FILE)))
-	        {
-	            String line;
-	            br.readLine();
-	            while((line = br.readLine()) != null)
-	            {
-	                String[] values = line.split(",");
-	                int id = Integer.parseInt(values[0]);
-	                double latitude = Double.parseDouble(values[1]);
-	                double longitude = Double.parseDouble(values[2]);
-	                graph.addNode(id, latitude, longitude);
-	            }
-	        }
-	        catch(Exception e)
-	        {
-	            e.printStackTrace();
-	        }
-
-	        try(BufferedReader br = new BufferedReader(new FileReader(NAMES_FILE)))
-	        {
-	            String line;
-	            br.readLine();
-	            while((line = br.readLine()) != null)
-	            {
-	                String[] values = line.split(",");
-	                int id = Integer.parseInt(values[0]);
-	                try
-	                {
-	                    graph.addName(id, values[1]);
-	                }
-	                catch(ArrayIndexOutOfBoundsException a)
-	                {
-	                    graph.addName(id, "");
-	                }
-	            }
-	        }
-	        catch(Exception e)
-	        {
-	            e.printStackTrace();
-	        }
-
-	        try(BufferedReader br = new BufferedReader(new FileReader(EDGES_FILE)))
-	        {
-	            String line;
-	            br.readLine();
-	            while((line = br.readLine()) != null)
-	            {
-	                String[] values = line.split(",");
-	                int from = Integer.parseInt(values[0]);
-	                int to = Integer.parseInt(values[1]);
-	                double distance = Double.parseDouble(values[2]);
-	                graph.addEdge(from, to, distance);
-	            }
-	        }
-	        catch(Exception e)
-	        {
-	            e.printStackTrace();
-	        }
+	    	c = new CCT();
 	    }
-
 	    /**
 	     * Basándose en los dos componentes de una dirección (<i>e.g.,</i> Calle y Carrera),
 	     * retorna la información completa del nodo que representa la intersección entre ambas vías.
@@ -160,6 +38,8 @@ public class OutputKML {
 	     */
 	    public String findAddress(String addrMain, String addrSec)
 	    {
+	    	GrafoDirigido gd = c.devolverGrafo();
+	    	Vertice v = gd.obtenerVertice(llave);
 	        int id = graph.searchAddress(addrMain, addrSec);
 	        if(id >= 0)
 	        {

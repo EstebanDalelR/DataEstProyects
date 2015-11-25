@@ -30,21 +30,22 @@ public class TablaHash
 	
 	public void agregar(Object key, Object value)
 	{
+		
 		calcularCarga();
 		m++;
 		int i = hash(key);
-		for(NodoHash x = th[i]; x != null; x  = x.getSiguiente())
+		for(NodoHash x = th[i]; x != null; x = x.getSiguiente())
 		{
 			if(key.equals(x.getLlave()))
 			{
-				x.setValor(value);
-				return;
+			x.setValor(value);
+			return;
 			}
 		}
 		th[i] = new NodoHash(key, value, th[i]);
 		m++;
+		 
 	}
-	
 	public void aumentarCapacidad()
 	{
 		System.out.println(th.length);
@@ -65,7 +66,7 @@ public class TablaHash
 	{
 		if(posicionesOcupadas() != 0)
 		{
-			if(m/posicionesOcupadas() > 0.75)
+			if(posicionesOcupadas()/m > 0.75)
 			{
 				aumentarCapacidad();
 			}
