@@ -1,17 +1,11 @@
-﻿package mundo;
-
+package mundo;
 
 public class ParteA {
 	
-	private Vertice<llave, valor> origen;
-	private Vertice<llave, valor> meta;
-	
-	public ParteA(int id, double latitud, double longitud, boolean centro){
-		new CentroAcopio(id, latitud, longitud, centro);
+	public ParteA(){
 		/**
          * TODO Instanciar el calculador de rutas por latitud y longitud
          */
-		
 	}
 
     public void calcularRutaPorDistancia() {
@@ -26,8 +20,6 @@ public class ParteA {
          * Se obtiene un objeto iterable que contenga los arcos que integran la ruta mas corta para los
          * puntos dados
          */
-
-	//llama al dijkstra
          long tTotalConsultaClientes = System.nanoTime() - tInicioCalculoRuta; 
         System.out.println("tiempo Consulta Clientes: " + tTotalConsultaClientes + " nseg");
 
@@ -42,9 +34,6 @@ public class ParteA {
          * requerimiento R1 (en caso de existir) para poderse mostrar en Google Maps
         * Recibe un mensaje de éxito o de error
          */
-
-	//llama al OutputKML
-
         long tTotalRuta = System.nanoTime() - tInicioExportar; 
         System.out.println("tiempo creacion ruta: " + tTotalRuta + " nseg");
 

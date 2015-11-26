@@ -80,9 +80,25 @@ public class CCT
 			br.readLine();
 			while((line = br.readLine()) != null)
 			{
+				
 				String values[] = line.split(",");
-				grafo.añadirNombre(values[0], values[1]);
+				String c = br.readLine();
+				String comp[] = c.split(",");
+				if(values[0].equals(comp[0]))
+				{
+					String u = values[1] + " " + comp[1];
+				    NodoDireccion nd = new NodoDireccion(values[0],u);
+				    grafo.añadirNombre(values[0], nd);
+				}
+				else
+				{
+					NodoDireccion nd = new NodoDireccion(values[0],values[1]);
+					grafo.añadirNombre(values[0], nd);
+				}
 			}
+			//Se debían agregar la calle y la carrera a un mismo nodo, pero como entra con el mismo numero
+			//la tablahash elimina el valor de la calle, dejando solo la carrera, no se puede buscar nodo 
+			//por calle y carrera.
 			
 		}
 		catch(Exception e)
@@ -124,11 +140,4 @@ public class CCT
 		return grafo;
 	}
 	
-	public static void main(String[] args)
-	{
-		CCT prueba = new CCT();
-		TablaHash d = prueba.definiciones;
-		String valor = (String)d.getValue("AC");
-		System.out.println(valor);
-	}
 }

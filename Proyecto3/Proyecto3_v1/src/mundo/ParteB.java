@@ -2,16 +2,26 @@ package mundo;
 
 import java.util.Scanner;
 
+import estructuras.Arco;
 import estructuras.Dijkstra;
+import estructuras.GrafoDirigido;
+import estructuras.Lista;
+import estructuras.TablaHash;
 import estructuras.Vertice;
 
 public class ParteB {
-
+	private Dijkstra d;
+	private CCT c;
+    private OutputKML ok;
+    private int i1;
+    private int i2;
 	public ParteB(){
 		/**
          * TODO Instanciar el calculador de rutas por calle y carrera
          */
-		Dijkstra d;
+		d = new Dijkstra();
+		c = new CCT();
+		ok = new OutputKML();
 	}
     public void calcularRutaPorTiempo() {
     	
@@ -25,16 +35,61 @@ public class ParteB {
           * Se obtiene un objeto iterable que contenga los arcos que integran la ruta mas corta para los 
           * puntos dados
           */
+       //NO SE TOMA EN CUENTA LA DISTANCIA RADIAL
+         String respuesta = "";
+         System.out.println("Inserte calle y carrera del origen");
          Scanner in = new Scanner(System.in);
-         String origen = in.nextLine();
+         String orig = in.nextLine();
+         GrafoDirigido gd = c.devolverGrafo();
+         TablaHash n = gd.devolverNombres();
+         System.out.println("Inserte calle y carrera del destino");
+         String dest = in.nextLine();
+         String m = in.nextLine();
+         String s1 = (String) n.buscarPorValor(orig);
+         if(s1==null)
+         {
+        	 respuesta = "Verifique la direccion del origen e intente de nuevo";
+         }
+         String s2 = (String) n.buscarPorValor(dest);
+         if(s2==null)
+         {
+        	 respuesta = "Verifique la direccion del destino e intente de nuevo";
+         }
+         i1 = Integer.valueOf(s1);
+         i2 = Integer.valueOf(s2);
+         Vertice origen = (Vertice) gd.obtenerVertice(i1);
+         Vertice destino = (Vertice) gd.obtenerVertice(i2);
+         Lista r = d.dijkstraTiempo(origen, destino);
+         Arco[] o = (Arco[]) r.darElementos();
+         double tiempo = 0;
+         for(int i = 0; i < o.length; i++)
+         {
+        	 Arco a = o[i];
+        	 tiempo += (double)a.getValor()/(double)a.getValor2();
+        	 Vertice v = a.getOrigen();
+        	 System.out.println(v);
+         }
+         if(tiempo > 0)
+         {
+        	 respuesta = "El tiempo de viaje es de: " + tiempo;
+         }
+         else
+         {
+        	 try 
+        	 {
+				throw new Exception("No se pudo hallar la ruta");
+			 } 
+        	 catch (Exception e) 
+        	 {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			 }
+         }
          
-         d.dijkstraTiempo()
           long tTotalConsultaClientes = System.nanoTime() - tInicioCalculoRuta; 
          System.out.println("tiempo Consulta Clientes: " + tTotalConsultaClientes + " nseg");
-
-
          /**TODO Mostrar el tiempo de la ruta más corta o retornar una excepción en caso de no poder encontrarlo */
-
+         System.out.println(respuesta);
     }
     
     public void exportarUltimaRutaCalculada(){
@@ -44,6 +99,7 @@ public class ParteB {
          * requerimiento R1 (en caso de existir) para poderse mostrar en Google Maps
         * Recibe un mensaje de éxito o de error
          */
+    	ok.getShortestPath(i1, i2);
         long tTotalRuta = System.nanoTime() - tInicioExportar; 
         System.out.println("tiempo creacion ruta: " + tTotalRuta + " nseg");
 

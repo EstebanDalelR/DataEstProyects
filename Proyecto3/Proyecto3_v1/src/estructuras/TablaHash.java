@@ -28,6 +28,19 @@ public class TablaHash
 		return null;
 	}
 	
+	public Object buscarPorValor(Object value)
+	{
+		for(int i = 0; i < th.length; i++)
+		{
+			NodoHash b = th[i];
+			if(b.getValor().equals(value))
+			{
+				return b.getLlave();
+			}
+		}
+		return null;
+	}
+	
 	public void agregar(Object key, Object value)
 	{
 		
@@ -85,5 +98,10 @@ public class TablaHash
 			}
 		}
 		return contador;
+	}
+	
+	public int devolverTamaño()
+	{
+		return th.length;
 	}
 }

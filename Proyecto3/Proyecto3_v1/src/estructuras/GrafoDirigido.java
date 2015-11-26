@@ -52,4 +52,9 @@ public class GrafoDirigido
 	{
 		return arcos;
 	}
+	
+	public TablaHash devolverNombres()
+	{
+		return nombres;
+	}
 }
