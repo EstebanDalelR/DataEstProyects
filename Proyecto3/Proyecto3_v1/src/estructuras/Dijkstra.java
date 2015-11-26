@@ -56,34 +56,6 @@ public class Dijkstra {
 			return resp;
 		}		
 	};
-
-	public Lista<Arco> dijkstraTiempo(Vertice origen,Vertice meta){
-
-
-		//produce una lista con los arcos de menor distancia entre dos ejes
-		Lista<Arco> respuesta = new Lista<Arco>();
-
-		//crea un queue con los arcos a explorar por los que demoran menos tiempo
-		PriorityQueue<Arco> queueSiguientes = 
-				new PriorityQueue<Arco>(origen.getArco().darTamaño(), menorTiempo);
-		while(!queueSiguientes.isEmpty()){
-			//toma el vÃ©rtice de ese primer arco
-			Arco actual=queueSiguientes.poll();
-			Vertice destActual= actual.getDestino();
-			//si es la meta, retorna
-			respuesta.agregar(actual);
-
-			if (destActual.equals(meta)) {
-				return respuesta;
-			}
-			Lista<Arco> agregar = destActual.getArco();
-			Collections.sort(agregar, menorTiempo);
-			queueSiguientes.addAll((Collection<? extends Arco>) agregar);
-
-			//http://www.vogella.com/tutorials/JavaAlgorithmsDijkstra/article.html
-		}
-		return  respuesta;
-	}
 	public Lista<Arco> dijkstra(Vertice origen,Vertice meta,Comparator<Arco> comparador){
 
 		//produce una lista con los arcos de menor distancia entre dos ejes
@@ -110,6 +82,34 @@ public class Dijkstra {
 		}
 		return  respuesta;
 	}
+	/*public Lista<Arco> dijkstraTiempo(Vertice origen,Vertice meta){
+
+
+		//produce una lista con los arcos de menor distancia entre dos ejes
+		Lista<Arco> respuesta = new Lista<Arco>();
+
+		//crea un queue con los arcos a explorar por los que demoran menos tiempo
+		PriorityQueue<Arco> queueSiguientes = 
+				new PriorityQueue<Arco>(origen.getArco().darTamaño(), menorTiempo);
+		while(!queueSiguientes.isEmpty()){
+			//toma el vÃ©rtice de ese primer arco
+			Arco actual=queueSiguientes.poll();
+			Vertice destActual= actual.getDestino();
+			//si es la meta, retorna
+			respuesta.agregar(actual);
+
+			if (destActual.equals(meta)) {
+				return respuesta;
+			}
+			Lista<Arco> agregar = destActual.getArco();
+			Collections.sort(agregar, menorTiempo);
+			queueSiguientes.addAll((Collection<? extends Arco>) agregar);
+
+			//http://www.vogella.com/tutorials/JavaAlgorithmsDijkstra/article.html
+		}
+		return  respuesta;
+	}
+	
 	public Lista<Arco> dijkstraDistancia(Vertice origen,Vertice meta){
 		//TODO
 		PriorityQueue<Arco> queueSiguientes = new PriorityQueue<>();
@@ -137,5 +137,5 @@ public class Dijkstra {
 			//http://www.vogella.com/tutorials/JavaAlgorithmsDijkstra/article.html
 		}
 		return  respuesta;
-	}
+	}*/
 }
