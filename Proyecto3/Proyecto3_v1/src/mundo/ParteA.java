@@ -37,7 +37,6 @@ public class ParteA {
 		 * Se obtiene un objeto iterable que contenga los arcos que integran la ruta mas corta para los
 		 * puntos dados
 		 */
-		//NO SE TOMA EN CUENTA LA DISTANCIA RADIAL
 		//se puede hacer un DFS dentro del radio a buscar
 		//se detiene en el borde
 		String respuesta = "";
@@ -111,12 +110,14 @@ public class ParteA {
 		 * Recibe un mensaje de éxito o de error
 		 */
 		
-		ok.getShortestPath(i1, i2);
+		String respuesta = ok.getShortestPathFile(i1, i2);
 		
 		long tTotalRuta = System.nanoTime() - tInicioExportar; 
 		
 		System.out.println("tiempo creacion ruta: " + tTotalRuta + " nseg");
 
 		/**TODO Mostrar el resultado de la exportación */
+		
+		System.out.println(respuesta);
 	}
 }

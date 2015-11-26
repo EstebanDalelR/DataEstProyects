@@ -16,8 +16,8 @@ public class Dijkstra {
 		@Override
 		//compara las distancias entre dos arcos
 		public int compare(Arco o1, Arco o2) {
-			Double dist1= (Double)o1.getValor();
-			Double dist2=(Double)o2.getValor();
+			Double dist1= (Double)o1.getValor()/1000;
+			Double dist2=(Double)o2.getValor()/1000;
 			Double vel1=(Double)o1.getValor2();
 			Double vel2=(Double)o2.getValor2();
 			Double t1=(Double)dist1/vel1;
@@ -42,15 +42,15 @@ public class Dijkstra {
 		//compara las distancias entre dos arcos
 		public int compare(Arco o1, Arco o2) {
 			int precioKm=120;
-			int precioMin=25;
-			Double dist1= (Double)o1.getValor();
-			Double dist2=(Double)o2.getValor();
+			int precioHora=25*60;
+			Double dist1= (Double)o1.getValor()/1000;
+			Double dist2=(Double)o2.getValor()/1000;
 			Double vel1=(Double)o1.getValor2();
 			Double vel2=(Double)o2.getValor2();
 			Double t1=(Double)dist1/vel1;
 			Double t2=(Double)dist2/vel2;
-			Double costo1= (t1*precioKm)+(dist1*precioMin);
-			Double costo2= (t2*precioKm)+(dist2*precioMin);
+			Double costo1= (t1*precioKm)+(dist1*precioHora);
+			Double costo2= (t2*precioKm)+(dist2*precioHora);
 			Double respuesta=(costo1)-(costo2);
 			int resp= (int)((double)respuesta) ;
 			return resp;

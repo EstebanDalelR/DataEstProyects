@@ -67,11 +67,11 @@ public class ParteC
          for(int i = 0; i < o.length; i++)
          {
         	 Arco a = o[i];
-        	 double tiempo = ((double)a.getValor()*1000)/(double)a.getValor2();
+        	 double tiempo = ((double)a.getValor()/1000)/(double)a.getValor2();
         	 //60*25 es el precio que cuesta una hora de viaje
         	 double p = tiempo*60*25;
-        	 //Debido a que la distancia esta en metros, se multiplica por 1000 para que quede en kilometros
-        	 precio += ((double)a.getValor()*1000 * 120) + p;
+        	 //Debido a que la distancia esta en metros, se divide en 1000 para que quede en kilometros
+        	 precio += ((double)a.getValor()/1000 * 120) + p;
         	 Vertice v = a.getOrigen();
         	 System.out.println(v);
          }
@@ -106,10 +106,12 @@ public class ParteC
          * requerimiento R1 para las partes A, B y C (en caso de existir) para poderse mostrar en Google Maps
         * Recibe un mensaje de éxito o de error
          */
+    	String respuesta = ok.getLowestCostPathFile(i1, i2);
         long tTotalRuta = System.nanoTime() - tInicioExportar; 
         System.out.println("tiempo creacion ruta: " + tTotalRuta + " nseg");
 
 
         /**TODO Mostrar el resultado de la exportación */
+        System.out.println(respuesta);
     }
 }

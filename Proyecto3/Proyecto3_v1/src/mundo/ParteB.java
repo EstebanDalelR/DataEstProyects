@@ -99,12 +99,13 @@ public class ParteB {
          * requerimiento R1 (en caso de existir) para poderse mostrar en Google Maps
         * Recibe un mensaje de éxito o de error
          */
-    	
+    	 String respuesta = ok.getShortestTimePathFile(i1, i2);
+    
         long tTotalRuta = System.nanoTime() - tInicioExportar; 
         System.out.println("tiempo creacion ruta: " + tTotalRuta + " nseg");
 
 
         /**TODO Mostrar el resultado de la exportación */
-        
+        System.out.println(respuesta);
     }
 }
