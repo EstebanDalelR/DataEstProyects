@@ -35,7 +35,6 @@ public class ParteB {
           * Se obtiene un objeto iterable que contenga los arcos que integran la ruta mas corta para los 
           * puntos dados
           */
-       //NO SE TOMA EN CUENTA LA DISTANCIA RADIAL
          String respuesta = "";
          System.out.println("Inserte calle y carrera del origen");
          Scanner in = new Scanner(System.in);
@@ -44,8 +43,9 @@ public class ParteB {
          TablaHash n = gd.devolverNombres();
          System.out.println("Inserte calle y carrera del destino");
          String dest = in.nextLine();
-         String m = in.nextLine();
          String s1 = (String) n.buscarPorValor(orig);
+         System.out.println("Inserte radio de busqueda");
+         String radio = in.nextLine();
          if(s1==null)
          {
         	 respuesta = "Verifique la direccion del origen e intente de nuevo";
@@ -57,15 +57,15 @@ public class ParteB {
          }
          i1 = Integer.valueOf(s1);
          i2 = Integer.valueOf(s2);
-         Vertice origen = (Vertice) gd.obtenerVertice(i1);
-         Vertice destino = (Vertice) gd.obtenerVertice(i2);
-         Lista r = d.dijkstraTiempo(origen, destino);
+         Vertice origen = (Vertice) gd.obtenerVertice(String.valueOf(i1));
+         Vertice destino = (Vertice) gd.obtenerVertice(String.valueOf(i2));
+         Lista r = d.dijkstra(origen, destino,d.menorTiempo);
          Arco[] o = (Arco[]) r.darElementos();
          double tiempo = 0;
          for(int i = 0; i < o.length; i++)
          {
         	 Arco a = o[i];
-        	 tiempo += (double)a.getValor()/(double)a.getValor2();
+        	 tiempo += ((double)a.getValor()*1000)/(double)a.getValor2();
         	 Vertice v = a.getOrigen();
         	 System.out.println(v);
          }
@@ -99,7 +99,7 @@ public class ParteB {
          * requerimiento R1 (en caso de existir) para poderse mostrar en Google Maps
         * Recibe un mensaje de éxito o de error
          */
-    	ok.getShortestPath(i1, i2);
+    	
         long tTotalRuta = System.nanoTime() - tInicioExportar; 
         System.out.println("tiempo creacion ruta: " + tTotalRuta + " nseg");
 

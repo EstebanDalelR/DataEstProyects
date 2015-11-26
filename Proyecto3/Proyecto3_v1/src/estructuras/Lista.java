@@ -1,10 +1,11 @@
 package estructuras;
 
+import java.awt.List;
 import java.util.Arrays;
 
 
 
-public class Lista<T>
+public class Lista<T> extends List
 {
   private int tamanioEst=0;
   private Object elementos[];

@@ -1,11 +1,28 @@
 package mundo;
 
-public class ParteC{
-	
+import java.util.Scanner;
+
+import estructuras.Arco;
+import estructuras.Dijkstra;
+import estructuras.GrafoDirigido;
+import estructuras.Lista;
+import estructuras.TablaHash;
+import estructuras.Vertice;
+
+public class ParteC
+{
+	private Dijkstra d;
+	private CCT c;
+    private OutputKML ok;
+    private int i1;
+    private int i2;
 	public ParteC(){
 		/**
          * TODO Instanciar el calculador de rutas por latitud y longitud
          */
+		d = new Dijkstra();
+		c = new CCT();
+		ok = new OutputKML();
 	}
 
     public void calcularRutaPorPrecio() {
@@ -20,6 +37,61 @@ public class ParteC{
           * Se obtiene un objeto iterable que contenga los arcos que integran la ruta mas corta para los
           * puntos dados
           */
+         String respuesta = "";
+         System.out.println("Inserte calle y carrera del origen");
+         Scanner in = new Scanner(System.in);
+         String orig = in.nextLine();
+         GrafoDirigido gd = c.devolverGrafo();
+         TablaHash n = gd.devolverNombres();
+         System.out.println("Inserte calle y carrera del destino");
+         String dest = in.nextLine();
+         String s1 = (String) n.buscarPorValor(orig);
+         System.out.println("Inserte radio de busqueda");
+         String radio = in.nextLine();
+         if(s1==null)
+         {
+        	 respuesta = "Verifique la direccion del origen e intente de nuevo";
+         }
+         String s2 = (String) n.buscarPorValor(dest);
+         if(s2==null)
+         {
+        	 respuesta = "Verifique la direccion del destino e intente de nuevo";
+         }
+         i1 = Integer.valueOf(s1);
+         i2 = Integer.valueOf(s2);
+         Vertice origen = (Vertice) gd.obtenerVertice(i1);
+         Vertice destino = (Vertice) gd.obtenerVertice(i2);
+         Lista r = d.dijkstra(origen, destino,d.menorTiempo);
+         Arco[] o = (Arco[]) r.darElementos();
+         double precio = 0;
+         for(int i = 0; i < o.length; i++)
+         {
+        	 Arco a = o[i];
+        	 double tiempo = ((double)a.getValor()*1000)/(double)a.getValor2();
+        	 //60*25 es el precio que cuesta una hora de viaje
+        	 double p = tiempo*60*25;
+        	 //Debido a que la distancia esta en metros, se multiplica por 1000 para que quede en kilometros
+        	 precio += ((double)a.getValor()*1000 * 120) + p;
+        	 Vertice v = a.getOrigen();
+        	 System.out.println(v);
+         }
+         if(precio > 0)
+         {
+        	 respuesta = "El precio de viaje es de: $" + precio;
+         }
+         else
+         {
+        	 try 
+        	 {
+				throw new Exception("No se pudo hallar la ruta");
+			 } 
+        	 catch (Exception e) 
+        	 {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			 }
+         }
+         
           long tTotalConsultaClientes = System.nanoTime() - tInicioCalculoRuta; 
          System.out.println("tiempo Consulta Clientes: " + tTotalConsultaClientes + " nseg");
 
