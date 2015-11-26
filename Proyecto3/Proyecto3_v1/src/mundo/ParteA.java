@@ -35,30 +35,34 @@ public class ParteA {
 		 * puntos dados
 		 */
 		//NO SE TOMA EN CUENTA LA DISTANCIA RADIAL
+		//se puede hacer un DFS dentro del radio a buscar
+		//se detiene en el borde
 		String respuesta = "";
 		System.out.println("Inserte calle y carrera del origen");
 		Scanner in = new Scanner(System.in);
 		String orig = in.nextLine();
-		GrafoDirigido gd = c.devolverGrafo();
-		TablaHash n = gd.devolverNombres();
+		GrafoDirigido grafoDir = c.devolverGrafo();
+		TablaHash tablaHashNombres = grafoDir.devolverNombres();
 		System.out.println("Inserte calle y carrera del destino");
 		String dest = in.nextLine();
 		String m = in.nextLine();
-		String s1 = (String) n.buscarPorValor(orig);
+		String s1 = (String) tablaHashNombres.buscarPorValor(orig);
+		//System.out.println("Inserte Radio de búsqueda");
+		
 		if(s1==null)
 		{
 			respuesta = "Verifique la direccion del origen e intente de nuevo";
 		}
-		String s2 = (String) n.buscarPorValor(dest);
+		String s2 = (String) tablaHashNombres.buscarPorValor(dest);
 		if(s2==null)
 		{
 			respuesta = "Verifique la direccion del destino e intente de nuevo";
 		}
 		i1 = Integer.valueOf(s1);
 		i2 = Integer.valueOf(s2);
-		Vertice origen = (Vertice) gd.obtenerVertice(i1);
-		Vertice destino = (Vertice) gd.obtenerVertice(i2);
-		Lista r = d.dijkstraTiempo(origen, destino);
+		Vertice origen = (Vertice) grafoDir.obtenerVertice(i1);
+		Vertice destino = (Vertice) grafoDir.obtenerVertice(i2);
+		Lista r = d.dijkstra(origen, destino,d.menorDistancia);
 		Arco[] o = (Arco[]) r.darElementos();
 		double tiempo = 0;
 		for(int i = 0; i < o.length; i++)
@@ -80,7 +84,7 @@ public class ParteA {
 			} 
 			catch (Exception e) 
 			{
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 		}
