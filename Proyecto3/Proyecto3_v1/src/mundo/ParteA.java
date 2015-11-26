@@ -1,4 +1,4 @@
-package mundo;
+﻿package mundo;
 
 
 public class ParteA {
@@ -26,6 +26,8 @@ public class ParteA {
          * Se obtiene un objeto iterable que contenga los arcos que integran la ruta mas corta para los
          * puntos dados
          */
+
+	//llama al dijkstra
          long tTotalConsultaClientes = System.nanoTime() - tInicioCalculoRuta; 
         System.out.println("tiempo Consulta Clientes: " + tTotalConsultaClientes + " nseg");
 
@@ -40,6 +42,9 @@ public class ParteA {
          * requerimiento R1 (en caso de existir) para poderse mostrar en Google Maps
         * Recibe un mensaje de éxito o de error
          */
+
+	//llama al OutputKML
+
         long tTotalRuta = System.nanoTime() - tInicioExportar; 
         System.out.println("tiempo creacion ruta: " + tTotalRuta + " nseg");
 
